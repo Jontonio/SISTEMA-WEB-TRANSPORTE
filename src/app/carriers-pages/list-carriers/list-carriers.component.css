@@ -1,0 +1,31 @@
+.img-preview{
+    border-radius: 50%;
+    background-size: cover;
+}
+.user-active{
+  border-radius: 20px;
+  height       : 20px;
+  font-size    : 15px;
+  width        : auto;
+  padding      : 0px 3px 0px 3px;
+  color        : #FFF;
+  font-size    : 13px;
+  background   : linear-gradient(to right, rgb(219, 208, 54),rgba(180, 42, 8, 0.74));
+
+  align-items: center;
+}
+
+.qr{
+  height: 120px;
+  width:  120px;
+}
+
+table {
+  width: 100%;
+}
+  
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+  

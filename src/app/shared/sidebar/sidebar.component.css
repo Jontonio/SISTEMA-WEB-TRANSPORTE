@@ -1,0 +1,22 @@
+.img-user-sidebar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.user-manager{
+    font-size: 13px;
+    color: gray;
+}
+.item-menu{
+    margin-top     : 12px;
+    display        : flex;
+    justify-content: space-between;
+    align-items    : center;
+    width          : 200px;
+    color: #FFF;
+}
+
+.menu-active{
+    background: linear-gradient(to right, #f87a63, #cc4831);
+    border-radius   : 5px;
+}

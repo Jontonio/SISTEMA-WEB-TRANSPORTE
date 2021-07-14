@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <mat-tab-group mat-align-tabs="end" animationDuration="0ms">
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="m-tab-icon"><span class="material-icons">format_list_numbered</span></mat-icon>
+             Lista usuarios
+            </ng-template>
+            <app-list-user></app-list-user>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="m-tab-icon"><span class="material-icons">person_add</span></mat-icon>
+             Registro usuario
+            </ng-template>
+            <app-register-user></app-register-user>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="m-tab-icon"><span class="material-icons">person_remove</span></mat-icon>
+             Usuarios eliminados
+            </ng-template>
+            <app-list-desac-user></app-list-desac-user>
+        </mat-tab>
+
+    </mat-tab-group>
+</div>

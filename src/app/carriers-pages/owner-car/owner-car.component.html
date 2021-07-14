@@ -1,0 +1,56 @@
+
+  <div>
+    <button mat-button routerLink="../../carriers" ><span class="material-icons">west</span></button>
+  </div>
+  <div class="row">
+    <div class="col-md-3 mb-4" *ngIf="owner!=null">
+      <mat-card class="mat-card mt-4 card-preview">
+        <mat-card-header>
+          <mat-card-title>Propietario</mat-card-title>
+          <mat-card-subtitle>Información</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="center"><img class="img-user-profile" [src]="owner.URL_photo | img" alt="" srcset=""></div>
+          <mat-card-subtitle>Nombres</mat-card-subtitle>
+          <h3 class="text-center">{{owner.firts_name}} {{owner.father_last_name}} {{owner.mother_last_name}}</h3>
+          <mat-card-subtitle>Información de contacto</mat-card-subtitle>
+          <h3 class="text-center">{{owner.email}} - {{owner.celphone}}</h3>
+          <mat-card-subtitle>Cantidad de vehículos: {{owner.cars.length}}</mat-card-subtitle>
+          <div class="text-center">
+            <qrcode [qrdata]="owner.id" [width]="140" [errorCorrectionLevel]="'M'"></qrcode>
+            <small>Municipalidad provincial de Andahuaylas</small>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-9" *ngIf="owner!=null">
+        <h2>Lista de Vehículos registrados en la cuenta</h2>
+        <div class="row">
+            <div class="col-md-12 mb-4" *ngFor="let car of owner.cars; let i=index">
+              <mat-card class="car-card">
+                <mat-card-header>
+                  <img class="header-image" src="../../../assets/img/muni.png" alt="">
+                  <mat-card-title>Vehículo {{i+1}}</mat-card-title>
+                  <mat-card-subtitle>Andahuaylas</mat-card-subtitle>
+                </mat-card-header>
+                <div class="row">
+                  <div class="col-md-4">
+                    <mat-card-subtitle>Información del vehículo</mat-card-subtitle>
+                    <h4><b>Placa: </b> SDD-55A</h4>
+                    <h3><b>Modelo:</b> modelo-2015</h3>
+                    <h3><b>Empresa:</b> Empresa los angeles</h3>
+                  </div>
+                  <div class="col-md-4">
+                    <mat-card-subtitle>Vehículo</mat-card-subtitle>
+                    <img class="img-car" src="../../../assets/img/Portada/combi4.png" alt="" srcset="">
+                  </div>
+                  <div class="col-md-4 text-center">
+                    <mat-card-subtitle>Código QR</mat-card-subtitle>
+                    <qrcode [qrdata]="'http://localhost:4200/#/home'" [width]="170" [errorCorrectionLevel]="'M'"></qrcode>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+        </div> 
+    </div>
+</div>

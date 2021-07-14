@@ -1,0 +1,24 @@
+.card, .card-body{
+    height: 200px;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right,rgb(106, 106, 107), rgba(51, 51, 51, 0.288));
+}
+.card-img-absolute{
+    height: 250px;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+.col-right{
+    width: 100%;
+}
+.container-general-chart{
+    overflow: hidden;
+}
+
+@media (max-width:760px){
+    .card{
+       margin: 5px;
+    }
+}

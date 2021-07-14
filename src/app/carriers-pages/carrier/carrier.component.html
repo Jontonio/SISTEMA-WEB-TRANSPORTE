@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <mat-tab-group mat-align-tabs="end" animationDuration="0ms">
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="m-tab-icon"><span class="material-icons">format_list_numbered</span></mat-icon>
+             Lista transportistas
+            </ng-template>
+            <app-list-carriers></app-list-carriers>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="m-tab-icon"><span class="material-icons">airport_shuttle</span></mat-icon>
+             Registro de transportista
+            </ng-template>
+            <app-register-carriers></app-register-carriers>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="m-tab-icon"><span class="material-icons">cancel_presentation</span></mat-icon>
+             Transportistas desactivadas
+            </ng-template>
+            <app-desactivate-carriers></app-desactivate-carriers>
+        </mat-tab>
+        
+    </mat-tab-group>
+</div>

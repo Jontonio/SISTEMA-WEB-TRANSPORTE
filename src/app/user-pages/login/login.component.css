@@ -1,0 +1,21 @@
+.conten-login{
+    display        : flex;
+    justify-content: center;
+    align-items  : center;
+    height         : 100vh;
+    background-color: #ececefc7;
+}
+.auth-form{
+    width     : 28%;
+    height    : 550px;
+    padding   : 20px;
+    border-radius: 5px;
+    background: #FFF;
+}
+
+/* estilos responsivos */
+@media (max-width:760px){
+    .auth-form{
+        width     : 90%;
+    }
+}

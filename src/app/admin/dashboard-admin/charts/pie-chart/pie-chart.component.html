@@ -1,0 +1,15 @@
+<div class="content-chart">
+    <ngx-charts-pie-chart class="pie-chart"
+        [scheme]="colorScheme"
+        [view]="view"
+        [results]="results"
+        [gradient]="gradient"
+        [legend]="showLegend"
+        [labels]="showLabels"
+        [doughnut]="isDoughnut"
+        [legendPosition]="position"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        (deactivate)="onDeactivate($event)">
+    </ngx-charts-pie-chart>
+</div>

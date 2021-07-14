@@ -1,0 +1,85 @@
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-md-3">
+      <mat-form-field appearance="legacy">
+        <mat-label>Empresa de transporte</mat-label>
+        <mat-select>
+          <div *ngFor="let enterprise of _db.listEnterpise">
+            <mat-option [value]="enterprise.id">{{enterprise.razonSocial}}</mat-option>
+          </div>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-3">
+      <mat-form-field class="full-width" appearance="legacy">
+        <mat-label>Buscar</mat-label>
+        <mat-icon matSuffix><i class="fas fa-search"></i></mat-icon>
+        <input type="text" matInput autocomplete="off">
+        <mat-error>
+            RUC is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3 d-flex justify-content-center aling-content-center"></div>
+    <div class="col-md-9">
+      <div class="table-responsive mt-2 animate__animated animate__fadeIn">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Nro</th>
+                <th scope="col">DNI propietario</th>
+                <th scope="col">Nombres y apellidos</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Desactivar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of _trans.listCarriers | slice:desde:hasta; let i=index" (click)="previewOwner(i)" class="cursor">
+                <td>{{i+1}}</td>
+                <td>{{data.ID_card}}</td>
+                <td>{{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}</td>
+                <td><span class="badge-s">activo</span></td>
+                <td><button mat-raised-button type="button" class="button-search"><span class="material-icons">edit</span> Editar</button></td>
+                <td><button mat-raised-button type="button" class="button-search" color="warn">Desactivar</button></td>
+              </tr>
+            </tbody>
+        </table>
+            <div *ngIf="_trans.listCarriers.length==0 && !_trans.loadGetcarriers">
+              <div class="alert alert-info" role="alert">
+                <span class="material-icons">folder</span> Lista de transportistas vacia
+              </div>
+            </div>
+            <div *ngIf="_trans.loadGetcarriers" class="text-center mt-4">
+              <div class="spinner-border text-secondary" role="status"></div>
+              <div>Cargando...</div>
+            </div>
+        </div>
+        <mat-paginator [length]="_trans.listCarriers.length" [pageSize]="9" (page)="pageEvent($event)"> </mat-paginator>
+      </div>
+      <div class="col-md-3">
+          <mat-card *ngIf="ownerPreview" class="mat-card mt-4 card-preview">
+            <mat-card-header>
+              <mat-card-title>Propietario</mat-card-title>
+              <mat-card-subtitle>Información</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="center"><img class="img-user-profile" [src]="ownerPreview.URL_photo | img" alt="" srcset=""></div>
+              <mat-card-subtitle>Nombres</mat-card-subtitle>
+              <h3 class="text-center">{{ownerPreview.firts_name}} {{ownerPreview.father_last_name}} {{ownerPreview.mother_last_name}}</h3>
+              <mat-card-subtitle>Información de contacto</mat-card-subtitle>
+              <h3 class="text-center">{{ownerPreview.email}} - {{ownerPreview.celphone}}</h3>
+              <mat-card-subtitle>Cantidad de vehículos: {{ownerPreview.cars.length}}</mat-card-subtitle>
+              <div class="text-center">
+                <qrcode [qrdata]="ownerPreview.id" [width]="140" [errorCorrectionLevel]="'M'"></qrcode>
+                <small>Municipalidad provincial de Andahuaylas</small>
+              </div>
+              <div class="text-center mt-2">
+                <button mat-raised-button [routerLink]="[ '../owner-car', ownerPreview.id ]" color="primary">Ver más</button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+      </div>
+  </div>
+</div>

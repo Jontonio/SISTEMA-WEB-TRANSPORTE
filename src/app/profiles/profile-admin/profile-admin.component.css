@@ -1,0 +1,44 @@
+.img-user-profile{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+.conten-form{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+.fas {
+    font-size: 16px;
+}
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+.user-active{
+    border-radius: 20px;
+    height       : 20px;
+    font-size    : 15px;
+    width        : auto;
+    padding      : 0px 3px 0px 3px;
+    color        : #FFF;
+    font-size    : 13px;
+    background   : linear-gradient(to right, rgb(54, 167, 219),rgba(0, 33, 94, 0.74));
+
+    align-items: center;
+}
+
+@media (max-width:760px){
+    .conten-form{
+        width: 100%;
+    }
+    
+}

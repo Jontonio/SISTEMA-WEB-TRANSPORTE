@@ -1,0 +1,43 @@
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+}
+.file{
+    margin-top: 3px;
+    height: 46px;
+}
+
+/* custom-input-file */
+.letterFile{
+    background:gray;
+    height:41px;
+    width:160px;
+    z-index: 10;
+    margin-top: -43px;
+    margin-left: 3px;
+    position: absolute;
+    border-radius: 3px 0px 0px 3px;
+}
+.custom-input-file p{
+    color:#FFF;
+    display: flex;
+    padding-top: 10px;
+    justify-content: center;
+    align-content: center;
+}
+.contenFoto{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.invalid{
+    border: 2px solid #F44336;
+}
+.valid{
+    border: none;
+}
+.message-invalid{
+    margin-top: 10px;
+    font-size: 11px;
+    color    : #F44336;
+}
+  

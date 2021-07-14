@@ -1,0 +1,44 @@
+.panel-container{
+    height: 100vh;
+    background-color: #ffffffd3;
+}
+.panel-sidenav{
+    width: 260px;
+    color: #FFF;
+    background:linear-gradient(to right,#e43434,#f56036);
+}
+mat-drawer-content {
+    padding       : 12px;
+    display       : flex;
+    height        : 100vh;
+}
+.mode-phone{
+    display: block;
+}
+.mode-desktop{
+    display: none;
+}
+.img-user-nav{
+    border-radius: 50%;
+    height       : 30px;
+    width        : 30px;
+}
+.btn-nav-img{
+    border-radius: 30px;
+}
+.list-img{
+    font-size: 18px;
+}
+.navbar-custom{
+    background:linear-gradient(to right,#e43434,#f56036);
+}
+
+@media (max-width:760px) {
+    .mode-phone{
+        display: none;
+    }
+    .mode-desktop{
+        display: block;
+    }
+    
+}

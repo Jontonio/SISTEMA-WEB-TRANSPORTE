@@ -1,0 +1,16 @@
+#item-nav a{
+    color: white;
+}
+#item-navbar a{
+    color: white;
+}
+.btn-nav{
+    width: 10%;
+}
+.navbar{
+    background-image: linear-gradient(315deg, #FA7D0B 0, #EB4E34 16.67%, #E8463A 33.33%, #f94646 50%, #ed2641 66.67%, #e3003f 83.33%, #db0040 100%);
+}
+
+#navbarNav a:hover{
+    color:purple;
+}

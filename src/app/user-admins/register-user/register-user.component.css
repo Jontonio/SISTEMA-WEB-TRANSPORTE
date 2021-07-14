@@ -1,0 +1,16 @@
+.img-preview{
+    height: 100px;
+    width: 100px;
+    margin-bottom: 5px;
+    border-radius: 100%;
+}
+.header-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.input-file{
+    width: 40%;
+    margin: 0 auto;
+}

@@ -1,0 +1,36 @@
+<div class="table-responsive mt-4 animate__animated animate__fadeIn">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center">Nro</th>
+          <th scope="col" class="text-center">RUC</th>
+          <th scope="col" class="text-center">Razón social</th>
+          <th scope="col" class="text-center">Dirección de la empresa</th>
+          <th scope="col" class="text-center">Estado</th>
+          <th scope="col" class="text-center">Editar</th>
+          <th scope="col" class="text-center">Desactivar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of _db.listEnterpise | slice:desde:hasta; let i=index">
+          <td class="text-center">{{i+1}}</td>
+          <td class="text-center">{{data.ruc}}</td>
+          <td class="text-center">{{data.razonSocial | slice:0:45}}..</td>
+          <td class="text-center">{{data.direccion | slice:0:50}}..</td>
+          <td class="text-center"><span class="badge-s">{{data.estado | lowercase}}</span></td>
+          <td class="text-center"><button mat-raised-button type="button" class="button-search" [routerLink]="['../edit-enterprise',data.id]"><span class="material-icons">edit</span> Editar</button></td>
+          <td class="text-center"><button mat-raised-button type="button" class="button-search" color="warn" (click)="desactivateEnterprise(data.id,'DESACTIVADO')">Desactivar</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="_db.listEnterpise.length==0 && !_db.loadGetenterprise">
+      <div class="alert alert-info" role="alert">
+        <span class="material-icons">folder</span> Lista de empresas vacia
+      </div>
+    </div>
+    <div *ngIf="_db.loadGetenterprise" class="text-center mt-4">
+      <div class="spinner-border text-secondary" role="status"></div>
+      <div>Cargando...</div>
+    </div>
+</div>
+<mat-paginator [length]="_db.listEnterpise.length" [pageSize]="9" (page)="pageEvent($event)"></mat-paginator>

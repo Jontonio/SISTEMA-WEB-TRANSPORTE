@@ -1,0 +1,48 @@
+<mat-drawer-container class="panel-container" hasBackdrop="true">
+    <mat-drawer #drawer class="panel-sidenav" mode="over">
+      <app-sidebar></app-sidebar>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+
+        <nav class="navbar navbar-custom fixed-top text-white">
+            <div class="container-fluid">
+                <div>
+                    <button class="mode-phone" type="button" mat-button  (click)="modeDesktop()">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <button class="mode-desktop" type="button" mat-button  (click)="modePhone()">
+                        <span class="material-icons">menu</span>
+                    </button>
+                </div>
+                <div *ngIf="_auth.loadUser" class="d-inline-flex justify-content-center list-navbar" >
+                    <button type="button" class="btn-nav-img" mat-button [matMenuTriggerFor]="menu">
+                        <img class="img-user-nav m-1" [src]="_auth.userActive.URL_photo" alt="image">  {{_auth.userActive.firts_name}}<i class="fas fa-caret-down"></i>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item routerLink="my-profile">
+                          <mat-icon><span class="material-icons">person</span></mat-icon>
+                          <span>Mi perfil</span>
+                        </button>
+                        <button mat-menu-item (click)="openLogout()">
+                          <mat-icon><span class="material-icons">logout</span>
+                            </mat-icon>
+                          <span>Cerrar sesión</span>
+                        </button>
+                    </mat-menu>
+                    <button type="button" mat-icon-button class="m-1" (click)="modePage=!modePage">
+                        <span *ngIf="!modePage" class="material-icons" (click)="usuario()">dark_mode</span>
+                        <span *ngIf="modePage" class="material-icons">light_mode</span>
+                    </button>
+                </div>
+                <div *ngIf="!_auth.loadUser" class="spinner-grow" role="status"></div>
+            </div>
+        </nav>
+
+        <div class="container-fluid p-3">
+            <div class="comodin"></div>
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</mat-drawer-container>

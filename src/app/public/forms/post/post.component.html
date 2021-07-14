@@ -1,0 +1,14 @@
+<div>
+    <h2 mat-dialog-title>Subir post a Portada</h2>
+    <div *ngIf="_db.subiedoImg" class="text-center">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <p class="m-3">Subiendo {{_db.porcentajeSFoto}}%</p>
+    </div>
+    <div *ngIf="!_db.subiedoImg">
+        <input (change)="_db.onImage($event,2)" type="file" class="form-control input-file" accept="image/*">
+    </div>
+</div>
+<mat-dialog-actions align="end">
+    <button mat-raised-button  [disabled]="_db.subiedoImg" (click)="savePost()">Guardar</button>
+    <button mat-raised-button class="m-2" color="warn" mat-dialog-close [disabled]="_db.subiedoImg">cancelar</button>
+</mat-dialog-actions>

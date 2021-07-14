@@ -1,0 +1,87 @@
+
+<div class="row animate__animated animate__fadeIn">
+        <h2><span class="material-icons c-icon">space_dashboard</span> Dashboard</h2>
+    <div class="col-md-4">
+        <div class="card bg-gradient-success card-img-holder">
+        <div class="card-body d-flex justify-content-between">
+            <div class="col-right d-flex justify-content-center">
+                <div class="text-center" >
+                    <h1 class=" mt-4 text-white">Empresas
+                        <i class="fas fa-building"></i>
+                    </h1>
+                    <h1 class="mb-3  text-white">{{_db.listEnterpise.length}}</h1>
+                    <h3 class="card-text  text-white">Increased by 60%</h3>
+                </div>
+            </div>
+            <div class="col-left">
+                <img src="../../../../assets/img/dashboard/circle.png" class="card-img-absolute" alt="circle-image"/>                                    
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-gradient-success card-img-holder">
+        <div class="card-body d-flex justify-content-between">
+            <div class="col-right d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class=" mt-4 text-white">Transportistas
+                        <i class="fas fa-car"></i>
+                    </h1>
+                    <h1 class="mb-3  text-white">{{_trans.listCarriers.length}}</h1>
+                    <h3 class="card-text  text-white">Increased by 54%</h3>
+                </div>
+            </div>
+            <div class="col-left">
+                <img src="../../../../assets/img/dashboard/circle.png" class="card-img-absolute" alt="circle-image"/>                                    
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+    <div class="card bg-gradient-success card-img-holder">
+        <div class="card-body d-flex justify-content-between">
+            <div class="col-right d-flex justify-content-center">
+                <div class="text-center">
+                    <h1 class=" mt-4 text-white">Usuarios
+                        <i class="fas fa-users"></i>
+                    </h1>
+                    <h1 class="mb-3  text-white">{{_db.listUsers.length}}</h1>
+                    <h3 class="card-text  text-white">Increased by 5%</h3>
+                </div>
+            </div>
+            <div class="col-left">
+                <img src="../../../../assets/img/dashboard/circle.png" class="card-img-absolute" alt="circle-image"/>                                    
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-3 container-general-chart">
+   <div class="row">
+        <div class="col-md-6">
+            <mat-card>
+                <div>
+                    <h2><span class="material-icons c-icon">leaderboard</span> Grafico horizontal</h2>
+                </div>
+                <app-horizontal-bar></app-horizontal-bar>
+            </mat-card>
+        </div>
+        <div class="col-md-6">
+            <mat-card>
+                <div>
+                    <h2><span class="material-icons c-icon">pie_chart</span> Grafico circular</h2>
+                </div>
+                <app-pie-chart></app-pie-chart>
+            </mat-card>
+        </div>
+        <div class="col-md-12 mt-2">
+            <mat-card>
+                <div>
+                    <h2><span class="material-icons c-icon">bar_chart</span> Grafico barra vertical</h2>
+                </div>
+                <app-vertical-bar-chart></app-vertical-bar-chart>
+            </mat-card>
+        </div>
+   </div>
+</div>

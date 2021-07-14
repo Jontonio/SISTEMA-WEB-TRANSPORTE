@@ -1,0 +1,63 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { MessagesService } from 'src/app/services/messages.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+
+  vista    : boolean = false;
+  formLogin: FormGroup;
+  loadLogin : boolean = true;
+  message  : string;
+
+  constructor(private fbuilder:FormBuilder, 
+              private ruta:Router, 
+              public _auth:AuthService, 
+              private _msg:MessagesService) {
+    this.formAuth();
+    this.userIsLoggin();
+  }
+
+  formAuth(){
+
+    this.formLogin = this.fbuilder.group({
+      user:['', [Validators.required, Validators.email]],
+      password:['', [Validators.required]]
+    })
+
+  }
+
+  SingIn(){
+
+    if(this.formLogin.invalid){
+      Object.keys(this.formLogin.controls).forEach( input =>{
+        this.formLogin.controls[input].markAllAsTouched()
+      })
+      return;
+    }
+
+    this._auth.loggin(this.formLogin.value.user, this.formLogin.value.password).then( res => {
+    }).catch( err => {
+      this._msg.warningMsg(err.message,'Acceso usuario');
+    })
+
+  }  
+
+  userIsLoggin(){
+    this._auth.seeLoggin().then( res => {
+      if(res==true){
+        this.ruta.navigateByUrl('panel-admin/dashboard');
+      }else{
+        this.loadLogin = false;
+        this.ruta.navigateByUrl('login');
+      }
+    }).catch( err =>{ })
+  }
+
+}

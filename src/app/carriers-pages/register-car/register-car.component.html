@@ -1,0 +1,176 @@
+<h2 mat-dialog-title><i class="fas fa-car"></i><span class="material-icons">directions_car_filled</span> Registro vehículo</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="container-fluid">
+        <form [formGroup]="formCar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6" >
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Placa</mat-label>
+                            <input type="text" matInput autocomplete="off" formControlName="placa" maxlength="7">
+                            <mat-error>
+                                La placa es <strong>requerida</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        </div>
+                        <div class="col-md-6" >
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Serie</mat-label>
+                                <input type="text" matInput autocomplete="off" formControlName="serie" maxlength="17">
+                                <mat-error>
+                                    La serie es <strong>requerida</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Modelo</mat-label>
+                                <input type="text" matInput autocomplete="off" formControlName="modelo">
+                                <mat-error>
+                                    El modelo es <strong>requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5" >
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Color</mat-label>
+                                <input type="text" matInput autocomplete="off" formControlName="color">
+                                <mat-error>
+                                    El color es <strong>requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-7" >
+                        <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Empresa al que pertenece</mat-label>
+                                <mat-select formControlName="idEmpresa">
+                                    <div *ngFor="let enterprise of _db.listEnterpise">
+                                        <mat-option [value]="enterprise.id">{{enterprise.razonSocial}}</mat-option>
+                                    </div>
+                                </mat-select>
+                                <mat-error>
+                                    La empresa en requerida <strong>requerida</strong>
+                                </mat-error>
+                        </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <div class="custom-input-file">
+                                <input type="file" class="form-control file"  [class.invalid]="photo" accept="image/*" formControlName="foto">
+                                <p class="letterFile">
+                                  <span *ngIf="false; else letra">
+                                    {{100}}%
+                                  </span>
+                                  <ng-template #letra>
+                                      <span class="material-icons">directions_car_filled</span> vehículo foto
+                                  </ng-template>
+                                </p>
+                                <div *ngIf="photo" class="mt-2 animate__animated animate__fadeInDown">
+                                    <span class="message-invalid">El campo foto del vehículo es <strong>requerido</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-4">
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Conductor</mat-label>
+                                <mat-select (ngModelChange)="vistaInputs(this.formCar.value.soyConductor)" formControlName="soyConductor">
+                                    <mat-option value="si">Soy conductor</mat-option>
+                                    <mat-option value="no">Tengo un conductor</mat-option>
+                                </mat-select>
+                                <mat-error>
+                                    El conductor <strong>requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <div class="row">
+                            <div class="col-md-12" >
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>DNI conductor</mat-label>
+                                <input type="text" matInput autocomplete="off" formControlName="dniconductor">
+                                <mat-error>
+                                    DNI es <strong>requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" >
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Nombres</mat-label>
+                                <input type="text" matInput autocomplete="off" formControlName="nombresConductor">
+                                <mat-error>
+                                    El nombre es <strong>requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6" >
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Apellido paterno</mat-label>
+                                <input type="text" matInput autocomplete="off" formControlName="apellidoPaterno">
+                                <mat-error>
+                                    Apellido paterno es <strong>requerido</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            </div>
+                            <div class="col-md-6" >
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Apellido materno</mat-label>
+                                    <input type="email" matInput autocomplete="off" formControlName="apellidoMaterno">
+                                    <mat-error>
+                                        Apellido materno es  <strong>requerido</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" >
+                                <mat-form-field class="full-width" appearance="outline">
+                                    <mat-label>Estado conductor</mat-label>
+                                    <mat-select formControlName="estadoConductor">
+                                        <mat-option value="true">Activo</mat-option>
+                                        <mat-option value="false">Desactivado</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" >
+                            <div class="custom-input-file">
+                                <input type="file" class="form-control file" [class.invalid]="targeta" accept="image/*" formControlName="targetaCirculacion">
+                                <p class="letterFile">
+                                  <span *ngIf="false; else letraT">
+                                    {{100}}%
+                                  </span>
+                                  <ng-template #letraT><span class="material-icons"> branding_watermark</span> Tarjeta circulación</ng-template>
+                                </p>
+                                <div *ngIf="targeta" class="mt-2 animate__animated animate__fadeInDown">
+                                    <span class="message-invalid">El campo targeta de circulación es <strong>requerida</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button *ngIf="!update" class="btn-b-g" (click)="registerCar()">Guardar <span class="material-icons">directions_car_filled</span></button>
+    <button mat-raised-button *ngIf="update"  class="btn-b-g" (click)="saveToList()">Guardar cambios <span class="material-icons">directions_car_filled</span></button>
+    <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Cancelar</button>
+</mat-dialog-actions>

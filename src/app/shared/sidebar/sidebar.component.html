@@ -1,0 +1,56 @@
+<div class="container">
+    <br><br>
+    <div *ngIf="_auth.loadUser" class="row m-4">
+        <div class="col-md-3 d-flex justify-content-center align-content-center">
+            <img class="img-user-sidebar" [src]="_auth.userActive.URL_photo">
+        </div>
+        <div class="col-md-7 mt-1"><b class="user-name">{{_auth.userActive.firts_name}}</b> usuario {{_auth.userActive.type_profile}}</div>
+        <div class="col-md-2 mt-2"><span class="material-icons c-icon-w">bookmark</span></div>
+    </div>
+    <div class="text-center mb-2"><span *ngIf="!_auth.loadUser" class="spinner-grow" role="status"></span></div>
+    <mat-divider></mat-divider>
+    <mat-list>
+        <mat-list-item class="cursor" routerLink="dashboard" routerLinkActive="menu-active">
+            <div class="item-menu">
+                <p class="menu-title">Dashboard</p>
+                <p><span class="material-icons c-icon-w">dashboard</span></p>
+            </div>
+        </mat-list-item>
+        <mat-list-item class="cursor" routerLink="portada-web" routerLinkActive="menu-active">
+            <div class="item-menu">
+                <p class="menu-title">Administrar portada</p>
+                <p><span class="material-icons c-icon-w">web</span></p>
+            </div>
+        </mat-list-item>
+        <mat-list-item class="cursor" routerLink="enterprice" routerLinkActive="menu-active">
+            <div class="item-menu">
+                <p class="menu-title">Empresas</p>
+                <p><span class="material-icons c-icon-w">domain</span></p>
+            </div>
+        </mat-list-item>
+        <mat-list-item class="cursor" routerLink="carriers" routerLinkActive="menu-active">
+            <div class="item-menu">
+                <p class="menu-title">Transportistas</p>
+                <p><span class="material-icons c-icon-w">directions_car</span></p>
+            </div>
+        </mat-list-item>
+        <mat-list-item class="cursor" routerLink="users" routerLinkActive="menu-active">
+            <div class="item-menu">
+                <p class="menu-title">Usuarios admin</p>
+                <p><span class="material-icons c-icon-w">group</span></p>
+            </div>
+        </mat-list-item>
+        <mat-list-item class="cursor" routerLink="my-profile" routerLinkActive="menu-active">
+            <div class="item-menu">
+                <p class="menu-title">Mi perfil</p>
+                <p><span class="material-icons c-icon-w">account_circle</span></p>
+            </div>
+        </mat-list-item>
+        <mat-list-item class="cursor" (click)="openLogout()">
+            <div class="item-menu">
+                <p class="menu-title">Cerrar sesión</p>
+                <p><span class="material-icons c-icon-w">logout</span></p>
+            </div>
+        </mat-list-item>
+    </mat-list>
+</div>
