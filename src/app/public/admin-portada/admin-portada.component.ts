@@ -15,7 +15,7 @@ import { PostComponent } from '../forms/post/post.component';
 })
 export class AdminPortadaComponent implements OnInit {
 
-  constructor(private mat:MatDialog, public _db:DatabaseService) { }
+  constructor(private mat:MatDialog, public _db:DatabaseService) {}
 
   ngOnInit(): void {
   }
@@ -37,14 +37,6 @@ export class AdminPortadaComponent implements OnInit {
     const ref = this.mat.open(OptionsComponent,{data:msg})
     ref.afterClosed().subscribe( res => {
       if(res) this._db.deleteDescription(data);
-    })
-  }
-
-  deletePost(post:Post){
-    const msg = new Message('Eliminar Post de portada','¿Estas seguro de eliminar el post de la portada?');
-    const ref = this.mat.open(OptionsComponent,{data:msg})
-    ref.afterClosed().subscribe( res => {
-      if(res) this._db.deletePost(post);
     })
   }
 

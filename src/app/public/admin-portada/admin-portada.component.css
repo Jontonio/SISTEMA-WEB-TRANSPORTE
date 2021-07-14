@@ -1,42 +1,8 @@
-.masonry-item { 
-    width: 33.3333%;
-    padding: 3px; 
-}
-.masonry-item img{ 
-    width: 100%; 
-}
-.img-list{
-    cursor: pointer;
-}
-.conten-info,
-.item-info,
-.tags,
-.info-photo {
-    display: flex;
-    font-size: 13px;
-    color: gray;
-  }
-.item-info{
-    margin: 10px;
-    justify-content: center;
-    align-items: center;
-}
-.tags{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.card{
+.card-post{
   background-image: linear-gradient(0deg, #ffffff 0%, #e5e5e5 100%);
-}
-/* media querys */
-@media (max-width: 575px) {
-  .masonry-item {
-    width: 100%;
-  }
-}
-@media (min-width: 576px) and (max-width: 767px) {
-  .masonry-item {
-    width: 50%;
-  }
+  height: 250px;
+  padding: 5px;
+  cursor: pointer;
+  background-image: url('../../../assets/img/Portada/combi4.png');
+  background-size: cover;
 }

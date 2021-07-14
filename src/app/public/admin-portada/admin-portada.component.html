@@ -24,12 +24,9 @@
     <button mat-button (click)="post()"><span class="material-icons">add</span> nuevo</button>
 </h2>
 
-<div class="container-fluid mt-4">
-    <ngx-masonry>
-        <div ngxMasonryItem class="masonry-item" *ngFor="let post of _db.listpost">
-            <mat-card class="card">
-                <img class="img-list" [src]="post.url"[routerLink]="[ '../view-post', post.id ]" >
-            </mat-card>
-        </div>
-    </ngx-masonry>
+<div class="row animate__animated animate__fadeIn">
+    <div class="col-md-4 mb-3" *ngFor="let post of _db.listpost">
+        <mat-card class="card-post" [routerLink]="[ '../view-post', post.id ]" [ngStyle]="{'background-image':'url('+post.url+')'}">
+        </mat-card>
+    </div>
 </div>

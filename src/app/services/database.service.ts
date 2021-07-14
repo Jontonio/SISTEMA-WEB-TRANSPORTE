@@ -26,6 +26,7 @@ export class DatabaseService {
   loadGetdescript  : boolean = false;
   loadGetDisable   : boolean = false;
   loadGetpost      : boolean = false;
+  
   imgURL           : string = "../../../assets/img/img-user/default-user.png";
   imgauxPost           : string = '';
   // instancias de las clases
@@ -34,7 +35,7 @@ export class DatabaseService {
   userRef       = this.fs.collection('users');
   enterpriseRef = this.fs.collection('enterprise');
   coverpageRef  = this.fs.collection('coverPage');
-  postRef       = this.fs.collection('post', ref => ref.orderBy('date','desc'));
+  postRef       = this.fs.collection('post');
   
   constructor(private fs: AngularFirestore, 
               private storage:AngularFireStorage, 
@@ -136,12 +137,15 @@ export class DatabaseService {
       this._msg.errorMsg(err.message,'Error empresa')
     })
   }
-
+  
   getPosts(){
+    this.loadGetpost = true;
     this.postRef.valueChanges().subscribe( res => {
       this.listpost = res as any;
+      this.loadGetpost = false;
     }, err =>{
       this._msg.errorMsg(err.message,'Error empresa')
+      this.loadGetpost = false;
     })
   }
 
@@ -307,8 +311,8 @@ export class DatabaseService {
     })
   }
 
-  deletePost(data:Post){
-    this.postRef.doc(data.id).delete().then( res => {
+  deletePost(id:string){
+    this.postRef.doc(id).delete().then( res => {
       this._msg.successMsg('Post eliminado correctamente','Eliminar post')
     }).catch( err => {
       this._msg.errorMsg('Error al eliminar Post','Error eliminar')
