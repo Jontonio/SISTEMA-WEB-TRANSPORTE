@@ -95,10 +95,9 @@
                 </div>
                 <div class="col-md-3">
                   <div class="upload-btn-wrapper">
-                    <button class="btn">
-                      <span *ngIf="!this._db.subiedoImg">Agregar foto</span>
+                      <span class="title-upload" *ngIf="!this._db.subiedoImg">
+                        <span class="material-icons">photo_camera</span></span>
                       <span *ngIf="this._db.subiedoImg" >{{this._db.porcentajeSFoto}}%</span>
-                    </button>
                     <input type="file" class="file-owner" (change)="_db.onImage($event,3)" [class.invalid]="photo" accept="image/*" formControlName="URL_photo" />
                   </div>
                   <div *ngIf="photo" class="mt-2 animate__animated animate__fadeInDown">
@@ -108,7 +107,7 @@
               </div>
               <div>
               <button  mat-raised-button type="button" class="button-search" (click)="openRegisterCar()">
-                <i class="fas fa-save"></i> + agregar <span class="material-icons">directions_car_filled</span>
+                 + agregar <span class="material-icons">directions_car_filled</span>
               </button>
               <mat-list role="list">
                   <div class="list-car animate__animated animate__fadeIn" *ngFor="let car of _trans.listCarOwner; let i=index">
@@ -129,14 +128,15 @@
                 <button  mat-raised-button type="button" class="button-search btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
                   <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Registrar
                 </button>
-                <button mat-raised-button type="reset" class="button-search m-2" color="warn" [disabled]="registerLoad">
+                <button mat-raised-button type="reset" (click)="resetForm()" class="button-search m-2" color="warn" [disabled]="registerLoad">
                   Cancelar
                 </button>
               </div>
         </form>
       </div>
       <div class="col-md-3">
-        <mat-card class="mat-card mt-4 card-preview">
+        <mat-progress-bar *ngIf="_db.subiedoImg" class="mt-4 progres-bar" mode="indeterminate"></mat-progress-bar>
+        <mat-card class="mat-card card-preview">
           <mat-card-header>
             <mat-card-title>Preview Register</mat-card-title>
             <mat-card-subtitle>Información</mat-card-subtitle>

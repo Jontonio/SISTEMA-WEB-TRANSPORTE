@@ -8,16 +8,19 @@
                 <div class="carousel-item active"> 
                     <div class="row">
                         <div class="col-md">
-                            <div class="card border border-warning">
+                            <div class="card border card-main">
                                 <img src="../../../assets/img/Portada/combi3.png" class="card-img-top" alt="...">
                                 <div class="d-inline-flex bd-highlight mt-5">
-                                    <div class=" square-valoration mx-auto my-auto text-center sm" style="width: 30%;">
+                                    <div class=" square-valoration mx-auto my-auto text-center">
                                         <p class="text-dark fs-5 pt-1">22</p>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i> 
+                                        <star-rating 
+                                                     [value]="3" 
+                                                     [totalstars]="5" 
+                                                     checkedcolor="black" 
+                                                     uncheckedcolor="gray" 
+                                                     [readonly]="true" 
+                                                     size="24px">
+                                        </star-rating>
                                     </div>
                                 </div>
                                 <div class="card-body ">
@@ -29,16 +32,19 @@
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="card border border-warning">
+                            <div class="card border card-main">
                                 <img src="../../../assets/img/Portada/combi3.png" class="card-img-top" alt="...">
                                 <div class="d-inline-flex bd-highlight mt-5">
-                                    <div class=" square-valoration mx-auto my-auto text-center" style="width: 30%;">
+                                    <div class=" square-valoration mx-auto my-auto text-center">
                                         <p class="text-dark fs-5 pt-1">23</p>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i> 
+                                        <star-rating 
+                                                     [value]="3" 
+                                                     [totalstars]="5" 
+                                                     checkedcolor="black" 
+                                                     uncheckedcolor="gray" 
+                                                     [readonly]="true" 
+                                                     size="24px">
+                                        </star-rating>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -50,21 +56,24 @@
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="card border border-warning">
+                            <div class="card border card-main">
                                 <img src="../../../assets/img/Portada/combi3.png" class="card-img-top" alt="...">
                                 <div class="d-inline-flex bd-highlight text-center mt-5">
-                                    <div class=" square-valoration mx-auto my-auto" style="width: 30%;">
+                                    <div class=" square-valoration mx-auto my-auto">
                                         <p class="text-dark fs-5 pt-1">24</p>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i>
-                                        <i class="material-icons">star</i> 
+                                       <star-rating 
+                                                    [value]="3" 
+                                                    [totalstars]="5" 
+                                                    checkedcolor="black" 
+                                                    uncheckedcolor="gray" 
+                                                    [readonly]="true" 
+                                                    size="24px">
+                                        </star-rating>
                                     </div>
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-title"> <strong>Emerson Loa Navarro</strong></h3>
-                                    <p class="card-text justify-content">Empresa de Transportes Aguilas S.A.C</p>
+                                    <p class="card-text justify-content">Empresa de Transportes Aguilas del sur de america S.A.C</p>
                                     <!-- <span *ngIf="mostrar3">Brinda transporte interdistrital de pasajeros. Fue creada el 18/03/2011</span> </p>
                                     <button class="btn btn-warning align-item-center" (click)="mostrar3 =! mostrar3"> {{mostrar3? 'Ocultar':'Leer más'}} </button> -->
                                 </div>
@@ -76,7 +85,7 @@
                 <div class="carousel-item">
                     <div class="row">
                         <div class="col-md">
-                            <div class="card border border-warning">
+                            <div class="card border border-warning card-main">
                                 <img src="../../../assets/img/Portada/combi3.png" class="card-img-top" alt="...">
                                 <div class="d-inline-flex bd-highlight mt-5">
                                     <div class=" square-valoration mx-auto my-auto text-center" style="width: 30%;">

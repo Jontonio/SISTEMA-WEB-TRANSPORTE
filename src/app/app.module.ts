@@ -73,6 +73,10 @@ import { AvatarModule } from 'ngx-avatar';
 //ngx-masonry
 import { NgxMasonryModule } from 'ngx-masonry';
 import { ViewPostComponent } from './public/view-post/view-post.component';
+import { PreviewOwnerComponent } from './profiles/preview-owner/preview-owner.component';
+
+//ngx-RatingModule
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -118,6 +122,7 @@ import { ViewPostComponent } from './public/view-post/view-post.component';
     AccessDeniedComponent,
     ImgPipe,
     ViewPostComponent,
+    PreviewOwnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -134,7 +139,8 @@ import { ViewPostComponent } from './public/view-post/view-post.component';
     NgxChartsModule,
     QRCodeModule,
     AvatarModule,
-    NgxMasonryModule
+    NgxMasonryModule,
+    RatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

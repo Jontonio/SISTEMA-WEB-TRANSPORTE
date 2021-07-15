@@ -1,0 +1,26 @@
+
+<mat-card class="mat-card card-preview">
+    <mat-card-header>
+    <mat-card-title>Propietario</mat-card-title>
+    <mat-card-subtitle>Información</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+    <div class="center"><img class="img-user-profile" [src]="data.URL_photo | img" alt="" srcset=""></div>
+    <mat-card-subtitle>Nombres</mat-card-subtitle>
+    <h3 class="text-center">{{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}</h3>
+    <mat-card-subtitle>Información de contacto</mat-card-subtitle>
+    <h3 class="text-center">{{data.email}} - {{data.celphone}}</h3>
+    <mat-card-subtitle>Cantidad de vehículos: {{data.cars.length}}</mat-card-subtitle>
+    <div class="text-center">
+        <qrcode [qrdata]="data.id" [width]="140" [errorCorrectionLevel]="'M'"></qrcode>
+        <small>Municipalidad provincial de Andahuaylas</small>
+    </div>
+    <div class="text-center mt-2">
+        <button 
+                mat-raised-button 
+                mat-dialog-close 
+                [routerLink]="[ 'panel-admin/owner-car', data.id ]" 
+                color="primary">Ver más</button>
+    </div>
+    </mat-card-content>
+</mat-card>

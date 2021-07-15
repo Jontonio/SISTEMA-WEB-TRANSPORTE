@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Owner } from 'src/app/models/owner';
+import { PreviewOwnerComponent } from 'src/app/profiles/preview-owner/preview-owner.component';
 import { DatabaseService } from 'src/app/services/database.service';
 import { TransportService } from 'src/app/services/transport.service';
 
@@ -16,7 +18,7 @@ export class ListCarriersComponent {
   hasta       : number = 9;
   ownerPreview: Owner;
 
-  constructor( public _trans:TransportService, public _db:DatabaseService) {}
+  constructor( public _trans:TransportService, public _db:DatabaseService, private dialog:MatDialog) {}
 
   pageEvent(e:PageEvent){
     console.log(e)
@@ -24,8 +26,8 @@ export class ListCarriersComponent {
     this.hasta = this.desde + e.pageSize;
   }
 
-  previewOwner(i:number){
-    this.ownerPreview = this._trans.listCarriers[i];
+  previewOwner(data:Owner){
+    this.dialog.open(PreviewOwnerComponent, {data:data, panelClass: 'dialog-container' })
   }
 
 }

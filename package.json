@@ -27,6 +27,7 @@
     "animate.css": "^4.1.1",
     "firebase": "^7.0 || ^8.0",
     "masonry-layout": "^4.2.2",
+    "ng-starrating": "^1.0.20",
     "ngx-avatar": "^4.1.0",
     "ngx-masonry": "^11.0.2",
     "ngx-toastr": "^14.0.0",

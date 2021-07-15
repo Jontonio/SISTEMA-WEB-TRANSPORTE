@@ -15,11 +15,14 @@ export class SliderComponent {
   numero:number = 10;
   Description: PortDescriotion;
   vista:boolean;
+
   constructor(public _db:DatabaseService) {
 
     this.Description = new PortDescriotion('Municipalidad de Andahuaylas','Por un servicio mejor a andahuaylas');
+
     this.vista = true;
     setInterval( () => this.vista = false, 10000)
+    
     setInterval(()=>{
       this.vista = true;
       if(_db.listCoverPage.length>0){
