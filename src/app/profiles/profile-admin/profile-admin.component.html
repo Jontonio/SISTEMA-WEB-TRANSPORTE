@@ -3,9 +3,9 @@
    <div class="text-center">
        <div class="row">
            <div class="col-md-3 d-flex justify-content-center flex-column">
-            <mat-card *ngIf="_auth.loadUser">
+            <mat-card *ngIf="_auth.loadUser" class="card-user">
                 <mat-card-header class="text-center">
-                    <mat-card-title>usuario <span class="user-active">Activo</span> </mat-card-title>
+                    <mat-card-title>usuario <span class="badge-s">Activo</span> </mat-card-title>
                     <mat-card-subtitle> Información</mat-card-subtitle>
                 </mat-card-header>
                 <div><img class="img-user-profile mt-3" [src]="_auth.userActive.URL_photo"></div>
@@ -16,7 +16,7 @@
                     <p>Celular: {{_auth.userActive.celphone}} - {{_auth.userActive.user}}</p>
                 </div>
                 <mat-card-actions>
-                    <button mat-button class="mb-3">Cambiar foto</button>
+                    <button mat-raised-button  class="mb-3">Cambiar foto</button>
                 </mat-card-actions>
             </mat-card>
             <div class="text-center mb-2"><span *ngIf="!_auth.loadUser" class="spinner-grow" role="status"></span></div>

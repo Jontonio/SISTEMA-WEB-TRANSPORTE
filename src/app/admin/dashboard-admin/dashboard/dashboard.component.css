@@ -3,7 +3,7 @@
     padding: 0;
     border: none;
     border-radius: 5px;
-    background: linear-gradient(to right,rgb(106, 106, 107), rgba(51, 51, 51, 0.288));
+    background-image: linear-gradient(90deg, #ff8c54 0%, #F7CE68 100%);
 }
 .card-img-absolute{
     height: 250px;

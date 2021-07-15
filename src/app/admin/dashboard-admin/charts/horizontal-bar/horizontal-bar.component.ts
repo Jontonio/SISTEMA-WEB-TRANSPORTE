@@ -36,7 +36,7 @@ export class HorizontalBarComponent {
   showYAxisLabel = true;
   yAxisLabel = 'Population';
 
-  colorScheme = 'nightLights'
+  colorScheme = { domain: ['#FAAF05', '#DE8504', '#F57710','#DE4704', '#FA2C05'] }
 
   constructor() {
     //Object.assign(this, { single })

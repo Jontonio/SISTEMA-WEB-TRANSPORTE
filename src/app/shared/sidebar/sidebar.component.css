@@ -13,10 +13,9 @@
     justify-content: space-between;
     align-items    : center;
     width          : 200px;
-    color: #FFF;
 }
 
 .menu-active{
-    background: linear-gradient(to right, #f87a63, #cc4831);
+    background: linear-gradient(to right, #C5C5C5, #AEAEAE);
     border-radius   : 5px;
 }

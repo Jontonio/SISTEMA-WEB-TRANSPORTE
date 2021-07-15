@@ -41,10 +41,10 @@ export class DatabaseService {
               private storage:AngularFireStorage, 
               private _msg:MessagesService) {
     this.getUsers();
-    // this.getUsersdisable();
+    this.getUsersdisable();
     this.getEnterprises();
     this.getDescriptions();
-    // this.getDesactEnterprises();
+    this.getDesactEnterprises();
     this.getPosts();
   }
   

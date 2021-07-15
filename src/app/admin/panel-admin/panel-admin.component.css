@@ -4,8 +4,6 @@
 }
 .panel-sidenav{
     width: 260px;
-    color: #FFF;
-    background:linear-gradient(to right,#e43434,#f56036);
 }
 mat-drawer-content {
     padding       : 12px;
@@ -30,7 +28,7 @@ mat-drawer-content {
     font-size: 18px;
 }
 .navbar-custom{
-    background:linear-gradient(to right,#e43434,#f56036);
+    background:#3F3F3F;
 }
 
 @media (max-width:760px) {
