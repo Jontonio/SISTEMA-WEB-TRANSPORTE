@@ -16,6 +16,8 @@ export class RegisterEnterpriceComponent implements OnInit {
   idUpdate: string | null;
   edit    : boolean = false;
   loadChage: boolean = false;
+  loadRuc  : boolean = false;
+  loadRegister: boolean = false;
 
   formEnterprise:FormGroup;
 
@@ -91,9 +93,12 @@ export class RegisterEnterpriceComponent implements OnInit {
   getRUC(){
     if(this.formEnterprise.controls['ruc'].valid){
       const ruc = this.formEnterprise.value.ruc;
+      this.loadRuc = true;
       this._api.enterprise(ruc).then( res => {
         this.completeData(res as Ruc);
+        this.loadRuc = false;
       }).catch( err => {
+        this.loadRuc = false;
         this._msg.errorMsg(err,'API ruc')
       })
     } 
@@ -130,11 +135,13 @@ export class RegisterEnterpriceComponent implements OnInit {
       })
       return;
     }
-
+    this.loadRegister = true;
     this._db.addEnterprise(this.formEnterprise.value).then( res => {
       this._msg.successMsg(res as any,'Registro empresa')
+      this.loadRegister = false;
       this.formEnterprise.reset();
     }).catch( err =>{
+      this.loadRegister = false;
       this._msg.errorMsg(err as any,'Registro empresa')
     })
   }

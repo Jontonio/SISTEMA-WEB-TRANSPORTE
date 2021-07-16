@@ -20,7 +20,9 @@
             </mat-form-field>
           </div>
           <div class="col-md-2">
-            <button mat-raised-button type="button" class="button-search btn-b-g" (click)="getRUC()"><i class="fas fa-search"></i> Buscar RUC</button>
+            <button mat-raised-button type="button" class="button-search btn-b-g" (click)="getRUC()" [disabled]="loadRuc">
+              <span *ngIf="loadRuc" class="spinner-border spinner-border-sm" role="status"></span> Buscar RUC
+            </button>
           </div>
         </div>
         <div class="row">
@@ -109,12 +111,15 @@
             </mat-form-field>
           </div>
         </div>
-            <button *ngIf="!edit" mat-raised-button type="button" class="button-search btn-b-g" (click)="register()" >
-              <span class="material-icons">save</span> Registrar
-            </button>
-            <button *ngIf="edit" mat-raised-button type="button" class="button-search  btn-b-g" (click)="saveChage()" [disabled]="loadChage">
-              <span class="material-icons">save</span> Guardar cambios
-            </button>
-            <button *ngIf="!edit" mat-raised-button type="button" class="button-search m-1" color="warn">Cancelar</button>
+
+        <button *ngIf="!edit" mat-raised-button type="button" class="button-search btn-b-g" (click)="register()" [disabled]="loadRegister">
+          <span *ngIf="loadRegister" class="spinner-border spinner-border-sm" role="status"></span>
+          <span *ngIf="!loadRegister" class="material-icons">save</span> Registrar
+        </button>
+        <button *ngIf="edit" mat-raised-button type="button" class="button-search  btn-b-g" (click)="saveChage()" [disabled]="loadChage">
+          <span class="material-icons">save</span> Guardar cambios
+        </button>
+        <button *ngIf="!edit" mat-raised-button type="button" class="button-search m-1" color="warn">Cancelar</button>
+
   </form>
 </div>

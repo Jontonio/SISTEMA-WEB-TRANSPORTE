@@ -64,7 +64,7 @@ export class VerticalBarChartComponent {
   yAxisLabel: string = 'Population';
   legendTitle: string = 'Years';
 
-   colorScheme = 'nightLights'
+  colorScheme = { domain: ['#FAAF05', '#DE8504', '#F57710','#DE4704', '#FA2C05'] }
 
   // colorScheme = {
   //   domain: ['#5AA454', '#C7B42C', '#AAAAAA']

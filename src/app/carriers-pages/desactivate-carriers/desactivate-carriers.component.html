@@ -11,15 +11,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let data of desCarriers | slice:desde:hasta; let i=index" class="cursor">
-              <td>{{i+1}}</td>
-              <td>47859268</td>
-              <td>José carlos quispe</td>
-              <td><span class="badge-e">desactivado</span></td>
-              <td><button mat-raised-button type="button" class="button-search" color="primary">Activar</button></td>
-            </tr>
         </tbody>
       </table>
+    </div>
+    <div class="alert" role="alert">
+      <span class="material-icons">sentiment_very_satisfied</span> Estamos en desarrollo
     </div>
     <mat-paginator [length]="desCarriers.length" [pageSize]="9" (page)="pageEvent($event)"> </mat-paginator>
   </div>

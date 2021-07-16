@@ -34,7 +34,7 @@ export class PieChartComponent{
   isDoughnut: boolean = false;
   position: any = 'below';
 
-  colorScheme = 'nightLights'
+  colorScheme = { domain: ['#FAAF05', '#DE8504', '#F57710','#DE4704', '#FA2C05'] }
 
   constructor() {}
 
