@@ -21,7 +21,7 @@ export class AdminPortadaComponent implements OnInit {
   }
 
   portDescrip(){
-    this.mat.open(FormDescripComponent, {disableClose:true,width:'50%'})
+    this.mat.open(FormDescripComponent, {disableClose:true,width:'70%'})
   }
   
   post(){

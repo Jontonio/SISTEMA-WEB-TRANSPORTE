@@ -25,4 +25,11 @@ export class EmpresaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onRate($event:any) {
+    alert(`Old Value:${$event.oldValue}, 
+      New Value: ${$event.newValue}, 
+      Checked Color: ${$event.starRating.checkedcolor}, 
+      Unchecked Color: ${$event.starRating.uncheckedcolor}`);
+  }
+
 }
