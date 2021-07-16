@@ -11,6 +11,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class SliderComponent {
 
+  pos2:number = 0;
   post:Post
   numero:number = 10;
   Description: PortDescriotion;
@@ -23,8 +24,13 @@ export class SliderComponent {
     setInterval(()=>{
       this.vista = true;
       if(_db.listCoverPage.length>0){
+        
         const pos = Math.floor((Math.random() * ((this._db.listCoverPage.length-1) - 0 + 1)) + 0);
-        this.Description = new PortDescriotion(_db.listCoverPage[pos].title, _db.listCoverPage[pos].description);
+        if(pos != this.pos2){
+          this.Description = new PortDescriotion(_db.listCoverPage[pos].title, _db.listCoverPage[pos].description);
+          this.pos2 = pos;
+        }
+        
       }else{
         this.Description = new PortDescriotion('Municipalidad de Andahuaylas','Por un servicio mejor a andahuaylas')
       }
