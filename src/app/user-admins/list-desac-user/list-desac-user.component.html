@@ -1,6 +1,7 @@
 <div class="mt-4">
 </div>
-<table class="table table-striped">
+<mat-card class="m-1 animate__animated animate__fadeIn">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -34,3 +35,4 @@
     <div>Cargando...</div>
   </div>
   <mat-paginator [length]="_db.listUsers.length" [pageSize]="8" (page)="pageEvent($event)"> </mat-paginator>
+</mat-card>

@@ -4,19 +4,21 @@
 
 <div class="row">
     <div class="col-md-4" *ngFor="let data of _db.listCoverPage">
-        <div class="card">
-            <div class="card-header">
-                Vista de portada principal
+        <mat-card class="descript-card mb-2">
+            <mat-card-header>
+              <mat-card-title>Descripción</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <h3><b>{{data.title}}</b></h3>
+              <div class="container-desc">
+                <p> {{data.description}}</p>
+              </div>
+            </mat-card-content>
+            <div class="stick-top">
+                <button mat-button (click)="editDescription(data)"><span class="material-icons">edit</span> Editar</button>
+                <button mat-button  (click)="deleteDescript(data)"><span class="material-icons">delete</span> Eliminar</button>
             </div>
-            <div class="card-body">
-                <h4 class="card-title text-center"><b>{{data.title}}</b></h4>
-                <p class="card-text text-center">{{data.description}}</p>
-                <div class="text-center">
-                    <button mat-raised-button (click)="editDescription(data)" class="btn-b-g"><span class="material-icons">edit</span> Editar</button>
-                    <button mat-raised-button class="m-2 btn-c" (click)="deleteDescript(data)"><span class="material-icons">delete</span> Eliminar</button>
-                </div>
-            </div>
-        </div>
+        </mat-card>
     </div>
 </div>
 

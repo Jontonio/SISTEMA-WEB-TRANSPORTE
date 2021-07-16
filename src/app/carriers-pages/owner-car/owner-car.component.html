@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 mb-4" *ngIf="owner!=null">
-      <mat-card class="mat-card mt-4 card-preview">
+      <mat-card class="mat-card mt-4 card-preview animate__animated animate__fadeInLeft">
         <mat-card-header>
           <mat-card-title>Propietario</mat-card-title>
           <mat-card-subtitle>Información</mat-card-subtitle>
@@ -14,16 +14,18 @@
           <mat-card-subtitle>Nombres</mat-card-subtitle>
           <h3 class="text-center">{{owner.firts_name}} {{owner.father_last_name}} {{owner.mother_last_name}}</h3>
           <mat-card-subtitle>Información de contacto</mat-card-subtitle>
-          <h3 class="text-center">{{owner.email}} - {{owner.celphone}}</h3>
+          <h3 class="text-center">{{owner.email}}</h3>
+          <mat-card-subtitle>Celular</mat-card-subtitle>
+          <h3 class="text-center">{{owner.celphone}}</h3>
           <mat-card-subtitle>Cantidad de vehículos: {{owner.cars.length}}</mat-card-subtitle>
-          <div class="text-center">
-            <qrcode [qrdata]="owner.id" [width]="140" [errorCorrectionLevel]="'M'"></qrcode>
+          <div class="text-center mt-5">
+            <!-- <qrcode [qrdata]="owner.id" [width]="140" [errorCorrectionLevel]="'M'"></qrcode> -->
             <small>Municipalidad provincial de Andahuaylas</small>
           </div>
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="col-md-9" *ngIf="owner!=null">
+    <div class="col-md-9 animate__animated animate__fadeIn" *ngIf="owner!=null">
         <h2>Lista de Vehículos registrados en la cuenta</h2>
         <div class="row">
             <div class="col-md-12 mb-4" *ngFor="let car of owner.cars; let i=index">

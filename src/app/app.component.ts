@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SISTEMATRANSPORTE';
+  constructor(public _sp:AuthService){}
 }

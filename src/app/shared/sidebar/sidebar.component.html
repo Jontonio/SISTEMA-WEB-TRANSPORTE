@@ -10,37 +10,37 @@
     <div class="text-center mb-2"><span *ngIf="!_auth.loadUser" class="spinner-grow" role="status"></span></div>
     <mat-divider></mat-divider>
     <mat-list>
-        <mat-list-item class="cursor" routerLink="dashboard" routerLinkActive="menu-active">
+        <mat-list-item class="cursor" routerLink="dashboard" routerLinkActive="menu-active" (click)="acction.toggle()">
             <div class="item-menu">
                 <p class="menu-title">Dashboard</p>
                 <p><span class="material-icons c-icon">dashboard</span></p>
             </div>
         </mat-list-item>
-        <mat-list-item class="cursor" routerLink="portada-web" routerLinkActive="menu-active">
+        <mat-list-item class="cursor" routerLink="portada-web" routerLinkActive="menu-active" (click)="acction.toggle()">
             <div class="item-menu">
                 <p class="menu-title">Administrar portada</p>
                 <p><span class="material-icons c-icon">web</span></p>
             </div>
         </mat-list-item>
-        <mat-list-item class="cursor" routerLink="enterprice" routerLinkActive="menu-active">
+        <mat-list-item class="cursor" routerLink="enterprice" routerLinkActive="menu-active" (click)="acction.toggle()">
             <div class="item-menu">
                 <p class="menu-title">Empresas</p>
                 <p><span class="material-icons c-icon">domain</span></p>
             </div>
         </mat-list-item>
-        <mat-list-item class="cursor" routerLink="carriers" routerLinkActive="menu-active">
+        <mat-list-item class="cursor" routerLink="carriers" routerLinkActive="menu-active" (click)="acction.toggle()">
             <div class="item-menu">
                 <p class="menu-title">Transportistas</p>
                 <p><span class="material-icons c-icon">directions_car</span></p>
             </div>
         </mat-list-item>
-        <mat-list-item class="cursor" routerLink="users" routerLinkActive="menu-active">
+        <mat-list-item class="cursor" routerLink="users" routerLinkActive="menu-active" (click)="acction.toggle()">
             <div class="item-menu">
                 <p class="menu-title">Usuarios admin</p>
                 <p><span class="material-icons c-icon">group</span></p>
             </div>
         </mat-list-item>
-        <mat-list-item class="cursor" routerLink="my-profile" routerLinkActive="menu-active">
+        <mat-list-item class="cursor" routerLink="my-profile" routerLinkActive="menu-active" (click)="acction.toggle()">
             <div class="item-menu">
                 <p class="menu-title">Mi perfil</p>
                 <p><span class="material-icons c-icon">account_circle</span></p>

@@ -12,6 +12,7 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class PanelAdminComponent implements OnInit {
 
   @ViewChild('drawer',{static:false}) drawer:any;
+
   modo: any = 'side';
   modePage: boolean = false;
   

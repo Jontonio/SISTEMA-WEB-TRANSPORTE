@@ -40,6 +40,8 @@ import { DesactivateCarriersComponent } from './carriers-pages/desactivate-carri
 import { VerticalBarChartComponent } from './admin/dashboard-admin/charts/vertical-bar-chart/vertical-bar-chart.component';
 import { DesactivateUserComponent } from './messages/desactivate-user/desactivate-user.component';
 import { RegisterCarComponent } from './carriers-pages/register-car/register-car.component';
+import { OwnerCarComponent } from './carriers-pages/owner-car/owner-car.component';
+import { ListDesacUserComponent } from './user-admins/list-desac-user/list-desac-user.component';
 
 // firebase config
 import { AngularFireModule } from '@angular/fire';
@@ -47,9 +49,6 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { OwnerCarComponent } from './carriers-pages/owner-car/owner-car.component';
-
-import { ListDesacUserComponent } from './user-admins/list-desac-user/list-desac-user.component';
 
 // toast
 import { ToastrModule } from 'ngx-toastr';
@@ -77,6 +76,9 @@ import { PreviewOwnerComponent } from './profiles/preview-owner/preview-owner.co
 
 //ngx-RatingModule
 import { RatingModule } from 'ng-starrating';
+
+// Import library module ngx-spinner
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -140,7 +142,8 @@ import { RatingModule } from 'ng-starrating';
     QRCodeModule,
     AvatarModule,
     NgxMasonryModule,
-    RatingModule
+    RatingModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
-<div class="table-responsive mt-4 animate__animated animate__fadeIn">
+<div class="table-responsive mt-4">
+  <mat-card class="m-1">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -32,5 +33,6 @@
       <div class="spinner-border text-secondary" role="status"></div>
       <div>Cargando...</div>
     </div>
+    <mat-paginator [length]="_db.listEnterpise.length" [pageSize]="9" (page)="pageEvent($event)"></mat-paginator>
+  </mat-card>
 </div>
-<mat-paginator [length]="_db.listEnterpise.length" [pageSize]="9" (page)="pageEvent($event)"></mat-paginator>

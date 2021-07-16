@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MsgLogoutComponent } from 'src/app/messages/msg-logout/msg-logout.component';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,7 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public _auth:AuthService) { }
+  @Input() acction:any;
+
+  constructor(public dialog: MatDialog, public _auth:AuthService) {
+  }
 
   ngOnInit(): void {
   }

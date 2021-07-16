@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +7,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  moveScroll:boolean = false;
+
+  @HostListener('window:scroll',['$event'])
+
+  onScroll(){
+    const pos = document.documentElement.scrollTop || document.body.scrollTop;
+    if(pos==0){
+      this.moveScroll = false;
+    }else{
+      this.moveScroll = true;
+    }
+  }
+
+  constructor() {
+    this.scroll();
+  }
 
 
   ngOnInit(): void {
   }
+
+  scroll(){
+  }
+
+  positionScroll(){
+    var y = window.scrollY;
+    console.log(y);
+  }
+ 
 
 }

@@ -47,10 +47,10 @@ export class FormDescripComponent implements OnInit {
     if(this.formDescrip.invalid){
       return;
     }
+    this.dialogRef.close();
     const data = new PortDescriotion(this.formDescrip.value.title,this.formDescrip.value.description);
     this._db.addDescripCover(data.toObject).then( res => {
       this._msg.successMsg(res as any,'Registro descripción')
-      this.dialogRef.close();
     }).catch( err => {
       this._msg.errorMsg(err,'Registro descripción')
     })
@@ -67,8 +67,8 @@ export class FormDescripComponent implements OnInit {
   saveChage(data:PortDescriotion){
     const descrip = new PortDescriotion(this.formDescrip.value.title,this.formDescrip.value.description)
     descrip.setId(data.id);
+    this.dialogRef.close();
     this._db.updateDescription(descrip).then( res => {
-      this.dialogRef.close();
       this._msg.successMsg(res as any,'Actualizar descripción')
     }).catch( err => {
       this._msg.errorMsg(err,'Error actualizar')

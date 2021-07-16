@@ -30,6 +30,7 @@
     "ng-starrating": "^1.0.20",
     "ngx-avatar": "^4.1.0",
     "ngx-masonry": "^11.0.2",
+    "ngx-spinner": "^11.0.2",
     "ngx-toastr": "^14.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

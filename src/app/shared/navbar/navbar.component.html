@@ -1,5 +1,5 @@
 <!-- Barra de navegacion -->
-<nav class="navbar navbar-expand-lg fixed-top border-bottom " id="navegacion">
+<nav class="navbar navbar-expand-lg fixed-top" [ngClass]="{'border-b':moveScroll,'border-none':!moveScroll}" id="navegacion">
     <div class="container-fluid" id="item-navbar">
         <a class="navbar-brand fs-5" href="#">
           <img src="../../../assets/img/muni.png" alt="Car" height="38" class="ms-4">  CarSoft

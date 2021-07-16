@@ -1,6 +1,7 @@
 <div class="mt-4">
 </div>
-<table class="table">
+<mat-card class="m-2">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -43,3 +44,4 @@
     <div>Cargando...</div>
   </div>
   <mat-paginator [length]="_db.listUsers.length" [pageSize]="8" (page)="pageEvent($event)"> </mat-paginator>
+</mat-card>

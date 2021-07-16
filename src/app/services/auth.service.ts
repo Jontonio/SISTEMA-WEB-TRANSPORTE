@@ -20,6 +20,7 @@ export class AuthService {
   loadding: boolean = false;
   userActive: User;
   loadUser  :boolean = false;
+  message: string = "Cargando";
 
   constructor(public auth: AngularFireAuth, 
               private ruta: Router, 
@@ -48,7 +49,7 @@ export class AuthService {
           this.auth.signInWithEmailAndPassword(email, password ).then( res =>{
             this.ruta.navigateByUrl('panel-admin/dashboard');
             this.loadding = false;
-            resolve(res);
+            resolve(true);
           }).catch( err =>{
             this.loadding = false;
             reject(err);
