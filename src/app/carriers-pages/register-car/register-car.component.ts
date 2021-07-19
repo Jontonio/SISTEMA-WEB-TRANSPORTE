@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Car } from 'src/app/models/Car';
 import { DatabaseService } from 'src/app/services/database.service';
@@ -37,7 +37,7 @@ export class RegisterCarComponent {
       foto:['',[Validators.required]],
       idEmpresa:['',[Validators.required]],
       soyConductor:[this.soyconductor,[Validators.required]],
-
+      valoration: new FormArray([]),
       dniconductor:['',[Validators.required]],
       nombresConductor:['',[Validators.required]],
       apellidoPaterno:['',[Validators.required]],

@@ -8,6 +8,7 @@ import { EnterpriceComponent } from './enterprice-pages/enterprice/enterprice.co
 import { RegisterEnterpriceComponent } from './enterprice-pages/register-enterprice/register-enterprice.component';
 import { AccessUserGuard } from './guards/access-user.guard';
 import { ProfileAdminComponent } from './profiles/profile-admin/profile-admin.component';
+import { ProfileCarrierComponent } from './profiles/profile-carrier/profile-carrier.component';
 import { AdminPortadaComponent } from './public/admin-portada/admin-portada.component';
 import { HomeComponent } from './public/home/home.component';
 import { ViewPostComponent } from './public/view-post/view-post.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path:'forgot-password', component: RecoveryPasswordComponent },
   { path:'access-denied', component: AccessDeniedComponent },
+  { path:'conductor/:uid/:id:', component: ProfileCarrierComponent },
   { path:'panel-admin', component: PanelAdminComponent, canActivate: [ AccessUserGuard ],
         children:[
           { path:'dashboard', component:DashboardComponent },

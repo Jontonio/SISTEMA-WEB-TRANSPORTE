@@ -36,7 +36,7 @@ export class DatabaseService {
   enterpriseRef = this.fs.collection('enterprise');
   coverpageRef  = this.fs.collection('coverPage');
   postRef       = this.fs.collection('post');
-  
+
   constructor(private fs: AngularFirestore, 
               private storage:AngularFireStorage, 
               private _msg:MessagesService) {
@@ -47,7 +47,7 @@ export class DatabaseService {
     this.getDesactEnterprises();
     this.getPosts();
   }
-  
+
   getUsers(){
     this.loadGet = true;
     this.fs.collection('users', ref => ref.where('status','==',true)).valueChanges().subscribe( res => {
@@ -263,7 +263,6 @@ export class DatabaseService {
           }
       })
   }
-  
 
   verfyUserdb(email:string){
     return new Promise( (resolve, reject) =>{

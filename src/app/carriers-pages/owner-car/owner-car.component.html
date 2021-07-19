@@ -48,6 +48,7 @@
                   </div>
                   <div class="col-md-4 text-center">
                     <mat-card-subtitle>Código QR</mat-card-subtitle>
+                    <a [routerLink]="[ '/conductor', owner.id, i]" target="_blank">link</a>
                     <qrcode [qrdata]="'http://localhost:4200/#/home'" [width]="170" [errorCorrectionLevel]="'M'"></qrcode>
                   </div>
                 </div>

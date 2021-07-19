@@ -12,6 +12,7 @@ export class TransportService {
   listCarOwner   : Object[] = [];
   loadGetcarriers: boolean = false;
   carriersRef = this.fs.collection('carriers');
+  carsRef = this.fs.collection('carriers/BejZJN7FE7PDrLwjm3N8/cars');
 
   listCarriers: Owner[] = [];
 
@@ -20,7 +21,7 @@ export class TransportService {
               private storage:AngularFireStorage) {
               this.getCarriers();
   }
-
+  
   addListCar(data:Object){
     return new Promise((resolve, reject) => {
       this.listCarOwner.push(data);

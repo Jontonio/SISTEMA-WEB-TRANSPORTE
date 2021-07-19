@@ -93,7 +93,7 @@ export class RegisterCarriersComponent {
                           this.formMain.value.celphone,
                           this.formMain.value.email,
                           this._trans.listCarOwner);
-
+                          
     this._trans.addCarrier(data.toObject).then( res => {
       this._msg.successMsg(res as any,'Registro de transportista');
       this.registerLoad = false;

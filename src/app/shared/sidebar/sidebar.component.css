@@ -14,6 +14,9 @@
     align-items    : center;
     width          : 200px;
 }
+.user-name{
+    font-size: 13px;
+}
 
 .menu-active{
     background: linear-gradient(to right, #C5C5C5, #AEAEAE);

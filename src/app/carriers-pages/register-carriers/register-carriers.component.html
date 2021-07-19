@@ -97,8 +97,12 @@
                   <div class="upload-btn-wrapper">
                       <span class="title-upload" *ngIf="!this._db.subiedoImg">
                         <span class="material-icons">photo_camera</span></span>
-                      <span *ngIf="this._db.subiedoImg" >{{this._db.porcentajeSFoto}}%</span>
-                    <input type="file" class="file-owner" (change)="_db.onImage($event,3)" [class.invalid]="photo" accept="image/*" formControlName="URL_photo" />
+                      <span *ngIf="_db.subiedoImg" >{{this._db.porcentajeSFoto}}%</span>
+                    <input type="file" class="file-owner" 
+                          (change)="this._db.onImage($event,3)" 
+                          [class.invalid]="photo" 
+                          accept="image/*" 
+                          formControlName="URL_photo"/>
                   </div>
                   <div *ngIf="photo" class="mt-2 animate__animated animate__fadeInDown">
                     <span class="message-invalid">El campo foto del propietario es <strong>requerido</strong></span>
