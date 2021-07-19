@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Owner } from 'src/app/models/owner';
+import { AuthService } from 'src/app/services/auth.service';
 import { MessagesService } from 'src/app/services/messages.service';
 import { TransportService } from 'src/app/services/transport.service';
 
@@ -55,7 +57,11 @@ export class ProfileCarrierComponent implements OnInit {
     console.log(event);
   }
 
-  constructor(private ruta:ActivatedRoute, private _trans:TransportService, private _msg:MessagesService) {
+  constructor(private ruta:ActivatedRoute, 
+              private _trans:TransportService, 
+              private _auth:AuthService,
+              private _msg:MessagesService,
+              private _sp:NgxSpinnerService) {
     this.verifcarData();
   }
 
@@ -64,11 +70,15 @@ export class ProfileCarrierComponent implements OnInit {
   }
 
   verifcarData(){
+    this._sp.show();
+    this._auth.message = 'Cargando Perfil'
     this.ruta.params.subscribe( res => {
       this.uid = res.uid;
       this.id = res.id;
       this._trans.getCarrier(this.uid).then( res => {
         this.owner = res as any;
+        this._auth.message = 'Cargando'
+        this._sp.hide();
       }).catch(err => {
         this._msg.errorMsg(err,'Error al obtener data');
       })

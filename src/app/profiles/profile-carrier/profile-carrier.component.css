@@ -25,7 +25,25 @@
 .comment{
     margin-left: 53px;
 }
-
+.mat-card{
+    background-color: #fc7d5a;
+    background-image: linear-gradient(180deg, #fc7d5a 0%, #F7CE68 100%);
+}
+.img-logo{
+    height: 45px !important;
+    width: 40px !important;
+}
+.navbar-custom{
+    background:#3F3F3F;
+}
+.navbar-brand{
+    color: #FFF;
+    font-size: 16px;
+    font-family: 'K2D', sans-serif;
+}
+.container-profile{
+    margin-top: 50px !important;
+}
 @media (max-width:760px){
     .img-view{
         height: 200px;
@@ -33,5 +51,8 @@
     }
     .img-profile{
         border-radius: 50%;
+    }
+    .name-driver{
+        font-size: 18px;
     }
 }

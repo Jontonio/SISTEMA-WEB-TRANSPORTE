@@ -106,7 +106,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .card-preview{
     color: rgb(54, 54, 54);
-    background: linear-gradient(0deg, rgba(235,108,66,0.8883928571428571) 23%, rgba(253,198,45,1) 100%);
+    background-color: #fc7d5a;
+background-image: linear-gradient(180deg, #fc7d5a 0%, #F7CE68 100%);
+
 }
 .img-user-profile{
     border-radius: 50%;

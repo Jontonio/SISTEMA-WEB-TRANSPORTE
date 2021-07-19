@@ -1,17 +1,18 @@
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-custom fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand">Andahuaylas</a>
+    <img class="img-logo" src="../../../assets/img/muni.png" alt="" srcset="">
+    <a class="navbar-brand">Municipalidad provincial de Andahuaylas</a>
   </div>
 </nav>
 
-<div class="container">
-  <div class="row">
+<div class="container mt-4 container-profile">
+  <div class="row mt">
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <mat-card *ngIf="owner" class="mt-4 card-preview animate__animated animate__fadeInLeft">
             <mat-card-header>
-              <mat-card-title>Información</mat-card-title>
+              <mat-card-title><b>Información</b></mat-card-title>
             </mat-card-header>
             <mat-card-content>
               <div class="row">
@@ -19,11 +20,11 @@
                   <div class="center"><img class="img-profile" [src]="owner.URL_photo | img" alt="" srcset=""></div>
                 </div>
                 <div class="col-md-8">
-                  <h1>Fancis Romero Leguía</h1>
+                  <h1 class="name-driver"><b>{{owner.firts_name}} {{owner.father_last_name}} {{owner.mother_last_name}}</b></h1>
                   <div class="row">
                     <mat-card-subtitle>Información vehicular</mat-card-subtitle>
                     <div class="col-md-6 d-flex">
-                      <span class="material-icons">business</span> <p class="info">Cristo Morado</p>
+                      <span class="material-icons">business</span> <p class="info"><b>Cristo Morado</b></p>
                     </div>
                     <div class="col-md-6">
                       <div class="d-flex">
@@ -42,7 +43,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6 d-flex">
-                      <span class="material-icons">directions_car_filled</span> <p class="info">DFR-525</p>
+                      <span class="material-icons">directions_car_filled</span> <p class="info"><b>DFR-525</b></p>
                     </div>
                     <div class="col-md-6"></div>
                   </div>    
@@ -54,7 +55,7 @@
               </div>
               <div class="row">
                 <mat-card-header>
-                  <mat-card-title>Reseña</mat-card-title>
+                  <mat-card-title><b>Reseña</b></mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
                   <div class="row">
@@ -86,7 +87,7 @@
                   </div>
                 </mat-card-content>
               </div>
-              <div class="text-center"><button mat-raised-button>Añadir un comentario</button></div>
+              <div class="text-center mb-2"><button mat-raised-button>Añadir un comentario</button></div>
               <div class="comment-people" *ngFor="let data of users">
                 <div class="d-flex justify-content-space-between">
                   <div>

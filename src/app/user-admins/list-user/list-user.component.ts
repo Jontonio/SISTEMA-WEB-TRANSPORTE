@@ -30,7 +30,7 @@ export class ListUserComponent {
 
   desactivateUser(id:string,sta:boolean){
     const msg = new Message('Eliminar usuario','¿Estas seguro de elimimar al usuario?');
-    const ref = this.dialog.open(OptionsComponent,{data:msg, width:'35%'})
+    const ref = this.dialog.open(OptionsComponent,{data:msg})
 
     ref.afterClosed().subscribe( res => {
       if(res){
