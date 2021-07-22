@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { commonUser } from 'src/app/models/commonUser';
 import { Owner } from 'src/app/models/owner';
 import { AuthService } from 'src/app/services/auth.service';
 import { MessagesService } from 'src/app/services/messages.service';
@@ -11,11 +12,14 @@ import { TransportService } from 'src/app/services/transport.service';
   templateUrl: './profile-carrier.component.html',
   styleUrls: ['./profile-carrier.component.css']
 })
-export class ProfileCarrierComponent implements OnInit {
+
+export class ProfileCarrierComponent {
 
   uid:string;
   id:string;
   owner:Owner;
+  existUser:boolean = false;
+  common:commonUser
   users:string[] = ['José Angel','Angel','María Quispe','Juan Pedro','Santos Damian','Dany Lua'];
 
   results: any[] = [
@@ -57,24 +61,23 @@ export class ProfileCarrierComponent implements OnInit {
     console.log(event);
   }
 
-  constructor(private ruta:ActivatedRoute, 
+  constructor(private rutaActiva:ActivatedRoute, 
               private _trans:TransportService, 
               private _auth:AuthService,
+              private ruta:Router,
               private _msg:MessagesService,
               private _sp:NgxSpinnerService) {
     this.verifcarData();
-  }
-
-  ngOnInit(): void {
-  
+    this.isSesion();
   }
 
   verifcarData(){
+
     this._sp.show();
     this._auth.message = 'Cargando Perfil'
-    this.ruta.params.subscribe( res => {
-      this.uid = res.uid;
-      this.id = res.id;
+    this.rutaActiva.params.subscribe( rutaActiva => {
+      this.uid = rutaActiva.uid;
+      this.id = rutaActiva.id;
       this._trans.getCarrier(this.uid).then( res => {
         this.owner = res as any;
         this._auth.message = 'Cargando'
@@ -83,7 +86,40 @@ export class ProfileCarrierComponent implements OnInit {
         this._msg.errorMsg(err,'Error al obtener data');
       })
     })
+
   }
 
+  isSesion(){
+
+    this._auth.userGoogle().then( res => {
+      if(res){ 
+        this.existUser = true 
+        this.common = res as any;
+      }
+    })
+
+  }
+
+  googleSesion(){
+
+    this._auth.signInGoogle().then( res => {
+      console.log(res)
+    }).catch( err => {
+      console.log(err)
+    })
+
+  }
+
+  logout(){
+    this._auth.logout();
+    this.ruta.navigateByUrl('home');
+  }
+
+  /*
+    displayName
+    email
+    photoURL
+    uid
+  */
 
 }

@@ -34,15 +34,24 @@
     width: 40px !important;
 }
 .navbar-custom{
-    background:#3F3F3F;
+    background:#FFF;
 }
 .navbar-brand{
-    color: #FFF;
+    color: #3F3F3F;
     font-size: 16px;
     font-family: 'K2D', sans-serif;
 }
 .container-profile{
-    margin-top: 50px !important;
+    margin-top: 40px;
+}
+.svg-google{
+    height: 15px;
+    width: 15px;
+}
+.user-img{
+    border-radius: 50%;
+    height: 40px;
+    width:  40px;
 }
 @media (max-width:760px){
     .img-view{
@@ -50,9 +59,14 @@
         width: 300px !important;
     }
     .img-profile{
+        height: 150px;
+        width: 150px;
         border-radius: 50%;
     }
     .name-driver{
         font-size: 18px;
+    }
+    .navbar-brand{
+        font-size: 13px;
     }
 }

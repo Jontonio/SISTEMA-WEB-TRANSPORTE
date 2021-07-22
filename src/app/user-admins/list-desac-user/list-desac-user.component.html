@@ -10,7 +10,7 @@
         <th scope="col">Email</th>
         <th scope="col">Rol usuario</th>
         <th scope="col">Estado</th>
-        <th scope="col">Eliminar</th>
+        <th scope="col">Restaurar</th>
       </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
         <td>{{data.user}}</td>
         <td>{{data.type_profile}}</td>
         <td><span class="badge-e">Desactivado</span></td>
-        <td><button mat-raised-button color="primary" (click)="desactivateUser(data.id,data.status)"><span class="material-icons">check</span> Habiltar</button></td>
+        <td><button mat-raised-button color="primary" (click)="desactivateUser(data.id,data.status)"><span class="material-icons">check</span> Restaurar</button></td>
       </tr>
     </tbody>
   </table>

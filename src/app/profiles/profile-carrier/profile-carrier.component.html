@@ -1,12 +1,22 @@
 
 <nav class="navbar navbar-custom fixed-top">
   <div class="container-fluid">
-    <img class="img-logo" src="../../../assets/img/muni.png" alt="" srcset="">
-    <a class="navbar-brand">Municipalidad provincial de Andahuaylas</a>
+    <div>
+      <img class="img-logo" src="../../../assets/img/muni.png" alt="" srcset="">
+      <a class="navbar-brand m-1">Municipalidad provincial de Andahuaylas</a>
+    </div>
+    <div *ngIf="common">
+
+      <img [matMenuTriggerFor]="menu" class="user-img cursor" [src]="common.photoURL" [alt]="common.displayName">
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Home</button>
+        <button mat-menu-item (click)="logout()">Cerrar sesión</button>
+      </mat-menu>
+    </div>
   </div>
 </nav>
 
-<div class="container mt-4 container-profile">
+<div class="container container-profile">
   <div class="row mt">
     <div class="col-md-2"></div>
     <div class="col-md-8">
@@ -20,7 +30,9 @@
                   <div class="center"><img class="img-profile" [src]="owner.URL_photo | img" alt="" srcset=""></div>
                 </div>
                 <div class="col-md-8">
-                  <h1 class="name-driver"><b>{{owner.firts_name}} {{owner.father_last_name}} {{owner.mother_last_name}}</b></h1>
+                  <h2 class="name-driver">
+                    <b>{{owner.firts_name}} {{owner.father_last_name}} {{owner.mother_last_name}}</b>
+                  </h2>
                   <div class="row">
                     <mat-card-subtitle>Información vehicular</mat-card-subtitle>
                     <div class="col-md-6 d-flex">
@@ -49,11 +61,11 @@
                   </div>    
                 </div>
               </div>
-              <mat-divider class="mt-3"></mat-divider>
-              <div class="d-flex justify-content-center align-item-center">
+              <!-- <mat-divider class="mt-3"></mat-divider> -->
+              <!-- <div class="d-flex justify-content-center align-item-center">
                 <img src="../../../assets/img/Portada/combi4.png" class="d-block w-100 img-view" alt="...">
-              </div>
-              <div class="row">
+              </div> -->
+              <div class="row mt-4">
                 <mat-card-header>
                   <mat-card-title><b>Reseña</b></mat-card-title>
                 </mat-card-header>
@@ -87,7 +99,17 @@
                   </div>
                 </mat-card-content>
               </div>
-              <div class="text-center mb-2"><button mat-raised-button>Añadir un comentario</button></div>
+              <div *ngIf="!existUser; else form" class="text-center">
+                <p class="m-2">Inicio sesión para comentar </p>
+                <div class="text-center mb-2">
+                  <button mat-raised-button (click)="googleSesion()">
+                    <img class="svg-google" src="../../../assets/img/svg/google.svg" alt="" srcset=""> google
+                  </button>
+                </div>
+              </div>
+              <ng-template #form>
+                <app-comment [data]="this.common"></app-comment>
+              </ng-template>
               <div class="comment-people" *ngFor="let data of users">
                 <div class="d-flex justify-content-space-between">
                   <div>

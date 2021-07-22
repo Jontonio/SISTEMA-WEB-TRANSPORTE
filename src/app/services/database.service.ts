@@ -6,6 +6,9 @@ import { MessagesService } from './messages.service';
 import { Ruc } from '../models/ruc';
 import { PortDescriotion } from '../models/portdaDes';
 import { Post } from '../models/post';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +41,8 @@ export class DatabaseService {
   postRef       = this.fs.collection('post');
 
   constructor(private fs: AngularFirestore, 
+              private ruta:Router,
+              private _auth:AngularFireAuth,
               private storage:AngularFireStorage, 
               private _msg:MessagesService) {
     this.getUsers();
@@ -265,13 +270,40 @@ export class DatabaseService {
   }
 
   verfyUserdb(email:string){
+
+    return new Promise( (resolve, reject) =>{
+      this.fs.collection('users', ref => ref.where('user','==',email))
+             .valueChanges().subscribe( resEmail => {
+              if(resEmail.length!=0){ 
+                this.fs.collection('users', ref => ref.where('status','==',true)
+                                                      .where('user','==',email)).valueChanges().subscribe( resStatus => {
+                  if(resStatus.length!=0){
+                    resolve(true)
+                  } else {
+                    resolve(false);
+                    this._auth.signOut();
+                    this.ruta.navigateByUrl('login');
+                    this._msg.errorMsg('Accesso denegado comuniquese con el administrador','Usuario denegado') 
+                  }
+                })
+              } else {
+                resolve(false) 
+                this._msg.warningMsg('Password o usuario son incorrectos','Acceso usuario') 
+              }
+      }, err => {
+        reject(err)
+      })
+    })
+
+  }
+
+  Userdb(email:string){
     return new Promise( (resolve, reject) =>{
       this.fs.collection('users', ref => ref.where('user','==',email).where('status','==',true) )
              .valueChanges().subscribe( res => {
               if(res.length!=0){ 
                 resolve(true) 
               }else{
-                this._msg.errorMsg('Acceso denegado verifique sus datos o comuniquese  con administrador','Acceso usuario') 
                 resolve(false) 
               }
       }, err => {
