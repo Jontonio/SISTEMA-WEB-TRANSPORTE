@@ -1,11 +1,11 @@
 export class Post{
     id:string;
     url:string;
-    date:Date;
+    date:number;
     constructor(url:string){
         this.id = '';
         this.url = url;
-        this.date = new Date();
+        this.date = new Date().getTime();
     }
 
     get toObject(){

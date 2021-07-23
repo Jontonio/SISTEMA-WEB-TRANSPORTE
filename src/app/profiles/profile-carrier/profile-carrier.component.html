@@ -114,7 +114,6 @@
                     <span class="material-icons">edit</span> Añadir comentario
                   </button>
                 </div>
-                <!-- <app-comment [data]="this.common" [car]="car"></app-comment> -->
               </ng-template>
               <div *ngIf="_trans.car">
                 <div class="comment-people" *ngFor="let data of _trans.car.valoration; let i=index">
@@ -129,9 +128,10 @@
                                   [totalstars]="5" 
                                   checkedcolor="black" 
                                   uncheckedcolor="gray" 
-                                  [readonly]="false" 
+                                  [readonly]="true" 
                                   size="15px">
                       </star-rating> 
+                      {{data.dateComent | date}}
                     </div>
                   </div>
                   <div>

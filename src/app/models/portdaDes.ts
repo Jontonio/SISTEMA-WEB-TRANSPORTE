@@ -3,13 +3,13 @@ export class PortDescriotion{
     id:string;
     title:string;
     description:string;
-    dateDescription:Date;
+    dateDescription:number;
 
     constructor(title:string, description:string){
         this.id = '';
         this.title = title;
         this.description = description;
-        this.dateDescription = new Date();
+        this.dateDescription = new Date().getTime();
     }
 
     // et methods

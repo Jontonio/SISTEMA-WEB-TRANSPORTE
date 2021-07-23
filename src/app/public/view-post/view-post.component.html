@@ -1,8 +1,11 @@
 <div>
     <button mat-button routerLink="../../portada-web" ><span class="material-icons">west</span></button>
-    <h2 class="text-center"><b>Vista de post</b></h2>
 </div>
 <div *ngIf="post" class="container animate__animated animate__fadeInUp">
+    <div class="d-flex justify-content-between">
+        <h2 class="text-center"><b>Poster</b></h2>
+        <p><b>Fecha:</b> {{post.date |  date:'medium'}}</p>
+    </div>
     <img class="post" [src]="post.url" alt="" srcset="">
 </div>
 <nav class="navbar fixed-bottom">
