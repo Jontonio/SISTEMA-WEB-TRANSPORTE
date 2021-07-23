@@ -1,6 +1,7 @@
 import { Valoration } from "./valoration"
 
 export class Car{
+    id:string
     placa:string
     serie:string
     modelo:string
@@ -9,7 +10,7 @@ export class Car{
     idEmpresa:string
     targetaCirculacion: string
     soyConductor:string
-    valoration: Object[];
+    valoration: any[];
 
     dniconductor?: string
     nombresConductor?: string
@@ -31,6 +32,7 @@ export class Car{
                 apellidoMaterno?:string,
                 estadoConductor?:string){
 
+        this.id = '';
         this.placa = placa;
         this.serie = serie;
         this.modelo = modelo;

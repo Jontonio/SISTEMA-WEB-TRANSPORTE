@@ -9,7 +9,6 @@ export class Owner{
     URL_photo: string;
     celphone: string;
     email: string;
-    cars: Object[];
     update_at: Date;
     created_at: Date;
 
@@ -19,8 +18,7 @@ export class Owner{
                 mother_last_name: string,
                 URL_photo: string,
                 celphone: string,
-                email: string,
-                listCars: Object[]){
+                email: string){
 
         this.id = ''
         this.ID_card = ID_card
@@ -31,7 +29,6 @@ export class Owner{
         this.URL_photo = URL_photo
         this.celphone = celphone
         this.email = email
-        this.cars = listCars
         this.update_at = new Date()
         this.created_at = new Date()
     }
@@ -47,7 +44,6 @@ export class Owner{
             URL_photo: this.URL_photo,
             celphone: this.celphone,
             email: this.email,
-            cars: this.cars,
             update_at: this.update_at,
             created_at: this.created_at
         }

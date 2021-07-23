@@ -91,10 +91,8 @@ export class RegisterCarriersComponent {
                           this.formMain.value.mother_last_name,
                           this._db.imgauxPost,
                           this.formMain.value.celphone,
-                          this.formMain.value.email,
-                          this._trans.listCarOwner);
-                          
-    this._trans.addCarrier(data.toObject).then( res => {
+                          this.formMain.value.email);
+    this._trans.addCarrier(data.toObject,this._trans.listCarOwner).then( res => {
       this._msg.successMsg(res as any,'Registro de transportista');
       this.registerLoad = false;
       this.resetForm();
@@ -137,7 +135,6 @@ export class RegisterCarriersComponent {
   resetForm(){
     this.formMain.reset();
     this._db.imgauxPost = '';
-    this._trans.listCarOwner = [];
   }
 
   

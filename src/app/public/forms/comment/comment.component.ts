@@ -1,7 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Car } from 'src/app/models/Car';
 import { commonUser } from 'src/app/models/commonUser';
 import { Valoration } from 'src/app/models/valoration';
+import { MessagesService } from 'src/app/services/messages.service';
 import { TransportService } from 'src/app/services/transport.service';
 
 @Component({
@@ -11,12 +14,14 @@ import { TransportService } from 'src/app/services/transport.service';
 })
 export class CommentComponent implements OnInit {
 
-  @Input() data:commonUser;
-
   Comment:FormGroup;
   star:number = 0;
 
-  constructor(private fb:FormBuilder, private _trans:TransportService) {
+  constructor(private fb:FormBuilder, 
+              private _trans:TransportService,
+              private dialogRef: MatDialogRef<CommentComponent>,
+              @Inject(MAT_DIALOG_DATA) public Data: any,
+              private _msg:MessagesService) {
     this.formComment();
   }
 
@@ -37,18 +42,25 @@ export class CommentComponent implements OnInit {
   }
 
   saveComment(){
+
     if(this.Comment.invalid){
       Object.keys(this.Comment.controls).forEach( input =>{
         this.Comment.controls[input].markAllAsTouched()
       })
       return;
     }
+    
     const valoration = new Valoration(this.Comment.value.comment, 
                                       this.Comment.value.star, 
-                                      this.data.displayName, 
-                                      this.data.email)
-    this._trans.RegisterComment('smm6HvzAJ4Ilg1iSb5Nt',valoration.toObject);
+                                      this.Data.displayName, 
+                                      this.Data.photo,
+                                      this.Data.email)
 
+    this._trans.RegisterComment(this.Data.uid, this.Data.idcar,valoration.toObject).then( res => {
+      this._msg.successMsg(res as any,'Reseña guardada exitosamente');
+      this.dialogRef.close();
+      this.cancel();
+    })
   }
 
   get comment(){
@@ -58,8 +70,12 @@ export class CommentComponent implements OnInit {
   cancel(){
     this.Comment.reset();
     this.star = 0;
-    console.log(this.star)
   }
   
+  // const data = { 
+  //   'uid':this.uid, 
+  //   'idcar':this.idcar,
+  //   'displayName':this.common.displayName
+  // };
 
 }

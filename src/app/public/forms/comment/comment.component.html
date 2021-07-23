@@ -1,14 +1,13 @@
 <div class="container">
     <h2 class="text-center" mat-dialog-title>
-        <b>Reseña de {{data.displayName | lowercase}}</b>
+        <b>Reseña de {{Data.displayName}}</b>
     </h2>
     <div mat-dialog-content>
         <form [formGroup]="Comment" class="example-form">
             <mat-form-field class="full-width" appearance="fill">
-              <textarea matInput rows="6" formControlName="comment" placeholder="Cuenta a los demás qué opinas del servicio. ¿Lo recomendarías? ¿Por qué?">
+              <textarea matInput rows="12" formControlName="comment" placeholder="Cuenta a los demás qué opinas del servicio. ¿Lo recomendarías? ¿Por qué?">
               </textarea>
               <mat-hint align="start"><strong>Las reseñas más útiles tienen menos de 150 palabras</strong> </mat-hint>
-              <mat-hint align="end">0 / 150</mat-hint>
               <mat-error *ngIf="comment.hasError('required')">
                 El comentario es <strong>requerido</strong>
               </mat-error>
@@ -29,7 +28,7 @@
     <div class="d-flex justify-content-between">
         <div></div>
         <mat-dialog-actions align="end">
-            <button mat-stroked-button (click)="cancel()">Cancelar</button>
+            <button mat-stroked-button mat-dialog-close (click)="cancel()">Cancelar</button>
             <button mat-raised-button class="m-1" (click)="saveComment()" [disabled]="Comment.invalid">Guardar</button>
         </mat-dialog-actions>
     </div>

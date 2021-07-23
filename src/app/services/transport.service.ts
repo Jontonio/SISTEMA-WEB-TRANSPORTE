@@ -4,6 +4,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Owner } from '../models/owner';
 import { MessagesService } from './messages.service';
 import firestore from 'firebase/app';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Car } from '../models/Car';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,7 @@ export class TransportService {
   loadGetcarriers: boolean = false;
   carriersRef = this.fs.collection('carriers');
   listCarriers: Owner[] = [];
+  car:Car;
 
   constructor(private _msg:MessagesService, 
               private fs: AngularFirestore,
@@ -35,15 +38,28 @@ export class TransportService {
     })
   }
 
-  addCarrier(data:any){
+  addCarrier(data:any,dataCar:any){
     return new Promise((resolve,reject) => {
       this.carriersRef.add(data).then( res => {
-        this.updateId('carriers',res.id);
-        resolve('Datos registrado correctamente');
+          this.updateId('carriers',res.id);
+          this.addCar(dataCar,res.id)
+          this.listCarOwner = [];
+          resolve('Datos registrado correctamente');
       }).catch( err => {
         reject('Error al registrar la data')
       })
     })
+  }
+
+  addCar(data:[],id:string){
+    for(let i = 0; i < data.length; i++){
+      this.fs.collection('/carriers/'+id+'/cars').add(data[i]).then( res => {
+        this.updateId('/carriers/'+id+'/cars',res.id);
+        console.log('car registrado correctamente');
+      }).catch( err => {
+        this._msg.errorMsg('Error al registrar el vehiculo','Error al registrar la data')
+      })
+    }
   }
 
   getCarriers(){
@@ -67,27 +83,47 @@ export class TransportService {
     })
   }
 
+  getCar(idOwner:string, idCar:string){
+    return new Promise((resolve,reject) =>{
+      this.fs.collection('/carriers/'+idOwner+'/cars').doc(idCar)
+             .valueChanges().subscribe( res => {
+              this.car = res as Car;
+        resolve(res);
+      }, err => {
+        reject('Error al obtener datoa del vehículo');
+      })
+    })
+  }
+
+  // /carriers/0BSMvGTMqhphqbvnDxon/cars/Nsy0RiPOfBnER8qXksem
+
+  getCarrierCars(id:string){
+    return new Promise((resolve,reject) =>{
+      this.fs.collection('carriers/'+id+'/cars').valueChanges().subscribe( res => {
+        resolve(res);
+      }, err => {
+        reject('Error al obtener datos del transportista');
+      })
+    })
+  }
+
   updateId(doc:string, id:string){
     this.fs.collection(doc).doc(id).update({id:id}).then( res =>{
     }).catch( err => {
       this._msg.warningMsg('err update id doc','actualizar usuario');
     })
   }
-
-  RegisterComment(id:string,data:any){
-    this._msg.warningMsg('Estamos en desarrollo','En desarrollo');
+  // /carriers/0BSMvGTMqhphqbvnDxon/cars/Nsy0RiPOfBnER8qXksem
+  RegisterComment(idOwner:string,idcar:string,data:any){
+    return new Promise((resolve,reject) => {
+      this.fs.collection('carriers/'+idOwner+'/cars').doc(idcar).update({
+        valoration: firestore.firestore.FieldValue.arrayUnion(data)
+      }).then( res => {
+        resolve('Datos registrado correctamente');
+      }).catch( err => {
+        reject('Error al registrar la data')
+      })
+    })
   }
-  // codigo para aumentar vehiculos
-  // RegisterComment(id:string,data:any){
-  //   return new Promise((resolve,reject) => {
-  //     this.carriersRef.doc(id).update({
-  //       cars: firestore.firestore.FieldValue.arrayUnion(data)
-  //     }).then( res => {
-  //       resolve('Datos registrado correctamente');
-  //     }).catch( err => {
-  //       reject('Error al registrar la data')
-  //     })
-  //   })
-  // }
  
 }

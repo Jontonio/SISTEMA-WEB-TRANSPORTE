@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-md-3 mb-4" *ngIf="owner!=null">
-      <mat-card class="mat-card mt-4 card-preview animate__animated animate__fadeInLeft">
+      <mat-card class="mat-card mt-2 card-preview animate__animated animate__fadeInLeft">
         <mat-card-header>
           <mat-card-title>Propietario</mat-card-title>
           <mat-card-subtitle>Información</mat-card-subtitle>
@@ -17,7 +17,7 @@
           <h3 class="text-center">{{owner.email}}</h3>
           <mat-card-subtitle>Celular</mat-card-subtitle>
           <h3 class="text-center">{{owner.celphone}}</h3>
-          <mat-card-subtitle>Cantidad de vehículos: {{owner.cars.length}}</mat-card-subtitle>
+          <mat-card-subtitle>Cantidad de vehículos: 0</mat-card-subtitle>
           <div class="text-center mt-5">
             <!-- <qrcode [qrdata]="owner.id" [width]="140" [errorCorrectionLevel]="'M'"></qrcode> -->
             <small>Municipalidad provincial de Andahuaylas</small>
@@ -26,33 +26,42 @@
       </mat-card>
     </div>
     <div class="col-md-9 animate__animated animate__fadeIn" *ngIf="owner!=null">
-        <h2>Lista de Vehículos registrados en la cuenta</h2>
+        <h2>Lista de Vehículos registrados</h2>
         <div class="row">
-            <div class="col-md-12 mb-4" *ngFor="let car of owner.cars; let i=index">
-              <mat-card class="car-card">
-                <mat-card-header>
-                  <img class="header-image" src="../../../assets/img/muni.png" alt="">
-                  <mat-card-title>Vehículo {{i+1}}</mat-card-title>
-                  <mat-card-subtitle>Andahuaylas</mat-card-subtitle>
-                </mat-card-header>
-                <div class="row">
-                  <div class="col-md-4">
-                    <mat-card-subtitle>Información del vehículo</mat-card-subtitle>
-                    <h4><b>Placa: </b> SDD-55A</h4>
-                    <h3><b>Modelo:</b> modelo-2015</h3>
-                    <h3><b>Empresa:</b> Empresa los angeles</h3>
-                  </div>
-                  <div class="col-md-4">
-                    <mat-card-subtitle>Vehículo</mat-card-subtitle>
-                    <img class="img-car" src="../../../assets/img/Portada/combi4.png" alt="" srcset="">
-                  </div>
-                  <div class="col-md-4 text-center">
-                    <mat-card-subtitle>Código QR</mat-card-subtitle>
-                    <a [routerLink]="[ '/conductor', owner.id, i]" target="_blank">link</a>
-                    <qrcode [qrdata]="'http://localhost:4200/#/home'" [width]="170" [errorCorrectionLevel]="'M'"></qrcode>
+            <div class="col-md-6 mb-4" *ngFor="let car of listCars; let i=index">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <h5 class="card-title">
+                        <img class="header-image" src="../../../assets/img/muni.png" alt="">
+                        <b class="m-1 title-muni">Municipalidad de Andahuaylas</b>
+                      </h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Vehículo {{i+1}}</h6>
+                      <p class="card-text">
+                        <b>Placa: </b> {{car.placa}} <br>
+                        <b>Modelo:</b> {{car.modelo}} <br>
+                        <b>Serie:</b> {{car.serie}}
+                      </p>
+                      <button mat-raised-button>ver más</button>
+                      <button mat-raised-button class="m-1">Editar</button>
+                    </div>
+                    <div class="col-md-5 text-center">
+                      <a [routerLink]="[ '/conductor', owner.id, car.id ]" target="_blank">Esto va esta en el QR</a>
+                      <qrcode [qrdata]="'http://localhost:4200/#/home'" [width]="180" [errorCorrectionLevel]="'M'"></qrcode>
+                    </div>
                   </div>
                 </div>
-              </mat-card>
+              </div>
+            </div>
+            <div *ngIf="listCars.length==0 && !loadCars">
+              <div class="alert" role="alert">
+                <span class="material-icons">folder</span> Lista de transportistas vacia
+              </div>
+            </div>
+            <div *ngIf="loadCars" class="text-center mt-4">
+              <div class="spinner-grow" role="status"></div>
+              <div>Cargando...</div>
             </div>
         </div> 
     </div>

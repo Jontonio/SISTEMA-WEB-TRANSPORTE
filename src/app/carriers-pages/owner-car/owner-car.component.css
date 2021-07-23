@@ -14,5 +14,8 @@
 }
 .header-image{
     background-size: cover;
-    height: 50px;
+    height: 30px;
+}
+.title-muni{
+    font-size: 14px;
 }

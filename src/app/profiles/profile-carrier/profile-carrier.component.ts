@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Car } from 'src/app/models/Car';
 import { commonUser } from 'src/app/models/commonUser';
 import { Owner } from 'src/app/models/owner';
+import { Valoration } from 'src/app/models/valoration';
+import { CommentComponent } from 'src/app/public/forms/comment/comment.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { MessagesService } from 'src/app/services/messages.service';
 import { TransportService } from 'src/app/services/transport.service';
@@ -16,9 +20,10 @@ import { TransportService } from 'src/app/services/transport.service';
 export class ProfileCarrierComponent {
 
   uid:string;
-  id:string;
+  idcar:string;
   owner:Owner;
   existUser:boolean = false;
+  listComment:Valoration[] = []
   common:commonUser
   users:string[] = ['José Angel','Angel','María Quispe','Juan Pedro','Santos Damian','Dany Lua'];
 
@@ -62,9 +67,10 @@ export class ProfileCarrierComponent {
   }
 
   constructor(private rutaActiva:ActivatedRoute, 
-              private _trans:TransportService, 
+              public _trans:TransportService, 
               private _auth:AuthService,
               private ruta:Router,
+              private dialog:MatDialog,
               private _msg:MessagesService,
               private _sp:NgxSpinnerService) {
     this.verifcarData();
@@ -77,16 +83,28 @@ export class ProfileCarrierComponent {
     this._auth.message = 'Cargando Perfil'
     this.rutaActiva.params.subscribe( rutaActiva => {
       this.uid = rutaActiva.uid;
-      this.id = rutaActiva.id;
-      this._trans.getCarrier(this.uid).then( res => {
-        this.owner = res as any;
-        this._auth.message = 'Cargando'
-        this._sp.hide();
-      }).catch(err => {
-        this._msg.errorMsg(err,'Error al obtener data');
-      })
+      this.idcar = rutaActiva.idcar;
+      this.getOwner(this.uid)
+      this.getcar(this.uid, this.idcar);
     })
 
+  }
+
+  getOwner(id:string){
+    this._trans.getCarrier(this.uid).then( res => {
+      this.owner = res as any;
+      this._auth.message = 'Cargando'
+      this._sp.hide();
+    }).catch(err => {
+      this._msg.errorMsg(err,'Error al obtener data');
+    })
+  }
+
+  getcar(idOwner:string, idCar:string){
+    this._trans.getCar(idOwner,idCar).then( res => { })
+    .catch( err => {
+      console.log(err)
+    })
   }
 
   isSesion(){
@@ -115,6 +133,18 @@ export class ProfileCarrierComponent {
     this.ruta.navigateByUrl('home');
   }
 
+  openComment(){
+
+    const data = { 
+      'uid':this.uid, 
+      'idcar':this.idcar,
+      'displayName':this.common.displayName,
+      'photo':this.common.photoURL,
+      'email':this.common.email
+    };
+
+    this.dialog.open(CommentComponent,{ panelClass:'container-comment', width:'600px', data:data})
+  }
   /*
     displayName
     email

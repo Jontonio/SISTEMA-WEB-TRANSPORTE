@@ -55,7 +55,8 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6 d-flex">
-                      <span class="material-icons">directions_car_filled</span> <p class="info"><b>DFR-525</b></p>
+                      <span class="material-icons">directions_car_filled</span> 
+                      <p class="info" *ngIf="_trans.car"><b>{{_trans.car.placa}}</b></p>
                     </div>
                     <div class="col-md-6"></div>
                   </div>    
@@ -108,30 +109,40 @@
                 </div>
               </div>
               <ng-template #form>
-                <app-comment [data]="this.common"></app-comment>
+                <div class="text-center">
+                  <button mat-raised-button (click)="openComment()" class="mb-3">
+                    <span class="material-icons">edit</span> Añadir comentario
+                  </button>
+                </div>
+                <!-- <app-comment [data]="this.common" [car]="car"></app-comment> -->
               </ng-template>
-              <div class="comment-people" *ngFor="let data of users">
-                <div class="d-flex justify-content-space-between">
-                  <div>
-                    <ngx-avatar [name]="data" size="50"></ngx-avatar>
+              <div *ngIf="_trans.car">
+                <div class="comment-people" *ngFor="let data of _trans.car.valoration; let i=index">
+                  <div class="d-flex justify-content-space-between">
+                    <div>
+                      <ngx-avatar [name]="data.userName" [src]="data.photo" size="50"></ngx-avatar>
+                    </div>
+                    <div class="d-flex justify-content-center align-content-center flex-column">
+                      <p class="autor"><b>{{data.userName}}</b></p>
+                      <star-rating class="calificado" 
+                                  [value]="data.valoration" 
+                                  [totalstars]="5" 
+                                  checkedcolor="black" 
+                                  uncheckedcolor="gray" 
+                                  [readonly]="false" 
+                                  size="15px">
+                      </star-rating> 
+                    </div>
                   </div>
-                  <div class="d-flex justify-content-center align-content-center flex-column">
-                    <p class="autor"><b>{{data}}</b></p>
-                    <star-rating class="calificado" 
-                                [value]="3" 
-                                [totalstars]="5" 
-                                checkedcolor="black" 
-                                uncheckedcolor="gray" 
-                                [readonly]="true" 
-                                size="15px">
-                    </star-rating> 
+                  <div>
+                    <p class="comment">
+                      {{data.comment}}
+                    </p>
                   </div>
                 </div>
-                <div>
-                  <p class="comment">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus mollitia perferendis minima beatae, sit ullam harum, ex molestias
-                    voluptatem eveniet delectus impedit ab inventore cupiditate in quasi quidem? Esse, vitae?
-                  </p>
+                <div class="text-center" *ngIf="_trans.car.valoration.length==0">
+                  <span class="material-icons">contact_support</span> 
+                  Se el primero en calificar el servicio de transporte
                 </div>
               </div>
             </mat-card-content>

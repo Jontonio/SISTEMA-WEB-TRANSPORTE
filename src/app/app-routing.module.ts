@@ -23,7 +23,7 @@ const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path:'forgot-password', component: RecoveryPasswordComponent },
   { path:'access-denied', component: AccessDeniedComponent },
-  { path:'conductor/:uid/:id:', component: ProfileCarrierComponent },
+  { path:'conductor/:uid/:idcar', component: ProfileCarrierComponent },
   { path:'panel-admin', component: PanelAdminComponent, canActivate: [ AccessUserGuard ],
         children:[
           { path:'dashboard', component:DashboardComponent },
