@@ -32,6 +32,7 @@ export class SliderComponent {
         if(pos != this.pos2){
           this.Description = new PortDescriotion(_db.listCoverPage[pos].title, _db.listCoverPage[pos].description);
           this.pos2 = pos;
+          console.log(this.pos2);
         }
         
       }else{
