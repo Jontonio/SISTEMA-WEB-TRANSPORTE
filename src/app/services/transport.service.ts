@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Owner } from '../models/owner';
 import { MessagesService } from './messages.service';
+import firestore from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,10 @@ export class TransportService {
   listCarOwner   : Object[] = [];
   loadGetcarriers: boolean = false;
   carriersRef = this.fs.collection('carriers');
-  carsRef = this.fs.collection('carriers/BejZJN7FE7PDrLwjm3N8/cars');
-
   listCarriers: Owner[] = [];
 
   constructor(private _msg:MessagesService, 
-              private fs: AngularFirestore, 
+              private fs: AngularFirestore,
               private storage:AngularFireStorage) {
               this.getCarriers();
   }
@@ -74,5 +73,21 @@ export class TransportService {
       this._msg.warningMsg('err update id doc','actualizar usuario');
     })
   }
+
+  RegisterComment(id:string,data:any){
+    this._msg.warningMsg('Estamos en desarrollo','En desarrollo');
+  }
+  // codigo para aumentar vehiculos
+  // RegisterComment(id:string,data:any){
+  //   return new Promise((resolve,reject) => {
+  //     this.carriersRef.doc(id).update({
+  //       cars: firestore.firestore.FieldValue.arrayUnion(data)
+  //     }).then( res => {
+  //       resolve('Datos registrado correctamente');
+  //     }).catch( err => {
+  //       reject('Error al registrar la data')
+  //     })
+  //   })
+  // }
  
 }

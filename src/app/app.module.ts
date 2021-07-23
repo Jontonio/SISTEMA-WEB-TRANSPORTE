@@ -49,7 +49,6 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-
 // toast
 import { ToastrModule } from 'ngx-toastr';
 import { AdminPortadaComponent } from './public/admin-portada/admin-portada.component';
@@ -79,6 +78,7 @@ import { RatingModule } from 'ng-starrating';
 
 // Import library module ngx-spinner
 import { NgxSpinnerModule } from "ngx-spinner";
+import { CommentComponent } from './public/forms/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -125,12 +125,13 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ImgPipe,
     ViewPostComponent,
     PreviewOwnerComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({preventDuplicates: true}),
     AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,

@@ -8,6 +8,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   moveScroll:boolean = false;
+  iconMenu:boolean = true;
 
   @HostListener('window:scroll',['$event'])
 
@@ -20,15 +21,10 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  constructor() {
-    this.scroll();
-  }
+  constructor() { }
 
 
   ngOnInit(): void {
-  }
-
-  scroll(){
   }
 
   positionScroll(){

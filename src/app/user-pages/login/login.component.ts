@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { MessagesService } from 'src/app/services/messages.service';
 
@@ -50,7 +51,7 @@ export class LoginComponent {
       if(res) this._sp.hide();
       this._auth.message = 'Cargando';
     }).catch( err => {
-      this._sp.hide();
+      this._sp.hide() ;
       this._msg.warningMsg(err.message,'Acceso usuario');
     })
 
@@ -65,6 +66,9 @@ export class LoginComponent {
         this.ruta.navigateByUrl('login');
       }
     }).catch( err =>{ })
+  }
+
+  ngOnDestroy(): void {
   }
 
 }

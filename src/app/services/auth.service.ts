@@ -4,6 +4,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import firebase from 'firebase/app';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
+import { commonUser } from '../models/commonUser';
 import { User } from '../models/user';
 import { DatabaseService } from './database.service';
 import { MessagesService } from './messages.service';
@@ -17,17 +20,22 @@ export class AuthService {
   apiKey : string = 'AIzaSyBMmlDoes6AYQ5inG33o6StCM7S4EFUzoQ'
   vista  : boolean = false;
   hiddenReset: boolean = false;
-  loadding: boolean = false;
   userActive: User;
+  usergoogle: commonUser;
   loadUser  :boolean = false;
   message: string = "Cargando";
 
+  //destroy
+  dataisActiveUser = Subscription;
+
   constructor(public auth: AngularFireAuth, 
               private ruta: Router, 
-              private http:HttpClient, 
+              private http:HttpClient,
+              private _ps:NgxSpinnerService, 
               private fs:AngularFirestore, 
               private _msg:MessagesService,
               private _db:DatabaseService) {
+
     this.isActiveUser().subscribe( (res:any) => {
       if(res){
         this._db.getUser(res.email).then( res =>{
@@ -39,23 +47,23 @@ export class AuthService {
         this.vista = true;
       }
     }, err => { console.log(err) });
+
   }
 
   loggin(email:string, password:string){
-    this.loadding = true;
+
     return new Promise( (resolve, reject) =>{
       this._db.verfyUserdb(email).then( v => {
         if(v){
           this.auth.signInWithEmailAndPassword(email, password ).then( res =>{
-            this.ruta.navigateByUrl('panel-admin/dashboard');
-            this.loadding = false;
             resolve(true);
+            this.ruta.navigateByUrl('panel-admin/dashboard');
           }).catch( err =>{
-            this.loadding = false;
+            this._ps.hide();
             reject(err);
           })
         }else{
-          this.loadding = false;
+          this._ps.hide();
         }
       }).catch( err =>{
         console.log(err)
@@ -71,10 +79,6 @@ export class AuthService {
         reject(err)
       })
     })
-  }
-  
-  signInGoogle(){
-    return this.auth.signInWithRedirect( new firebase.auth.GoogleAuthProvider()); 
   }
 
   createUserAPI(data:User){
@@ -111,7 +115,9 @@ export class AuthService {
     return new Promise( (resolve, reject) => {
       this.auth.authState.subscribe( res => {
         if(res) { 
-          resolve(true); 
+          this._db.Userdb(res.email as any).then ( res => {
+            resolve(res); 
+          })
         }else {
           resolve(false);
         }
@@ -121,4 +127,27 @@ export class AuthService {
     })
   }
 
+  signInGoogle(){
+    return this.auth.signInWithRedirect( new firebase.auth.GoogleAuthProvider()); 
+  }
+
+  userGoogle(){
+    return new Promise((resolve, reject) => {
+      this.auth.authState.subscribe( res => {
+        if(res){
+          const data = {
+            displayName: res?.displayName,
+            email: res?.email,
+            photoURL: res?.photoURL,
+            uid:res?.updateProfile
+          }
+          resolve(data)
+        } else {
+          resolve('')
+        }
+      }, err => {
+        reject('Error al obtener usuario de google');
+      })
+    })
+  }
 }
