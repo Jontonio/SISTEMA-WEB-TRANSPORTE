@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -64,6 +64,18 @@ export class ProfileCarrierComponent {
 
   onSelect(event:any) {
     console.log(event);
+  }
+
+  moveScroll:boolean = false;  
+  @HostListener('window:scroll',['$event'])
+
+  onScroll(){
+    const pos = document.documentElement.scrollTop || document.body.scrollTop;
+    if(pos==0){
+      this.moveScroll = false;
+    }else{
+      this.moveScroll = true;
+    }
   }
 
   constructor(private rutaActiva:ActivatedRoute, 

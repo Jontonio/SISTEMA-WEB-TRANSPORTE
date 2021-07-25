@@ -13,6 +13,7 @@ import { AdminPortadaComponent } from './public/admin-portada/admin-portada.comp
 import { HomeComponent } from './public/home/home.component';
 import { ViewPostComponent } from './public/view-post/view-post.component';
 import { AccessDeniedComponent } from './redirect/access-denied/access-denied.component';
+import { Page404Component } from './redirect/page404/page404.component';
 import { RegisterUserComponent } from './user-admins/register-user/register-user.component';
 import { UserComponent } from './user-admins/user/user.component';
 import { LoginComponent } from './user-pages/login/login.component';
@@ -38,7 +39,8 @@ const routes: Routes = [
           { path:'owner-car/:id', component: OwnerCarComponent}
         ]
   },
-  { path:'**', pathMatch:'full', redirectTo:'home' }
+  { path:'page-NotFound', component: Page404Component },
+  { path:'**', pathMatch:'full', redirectTo:'page-NotFound' }
 ];
 
 @NgModule({

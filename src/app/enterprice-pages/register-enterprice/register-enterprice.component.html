@@ -20,7 +20,7 @@
             </mat-form-field>
           </div>
           <div class="col-md-2">
-            <button mat-raised-button type="button" class="button-search btn-b-g" (click)="getRUC()" [disabled]="loadRuc">
+            <button mat-raised-button type="button" class="button-search" (click)="getRUC()" [disabled]="loadRuc">
               <span *ngIf="loadRuc" class="spinner-border spinner-border-sm" role="status"></span> Buscar RUC
             </button>
           </div>
@@ -119,7 +119,7 @@
         <button *ngIf="edit" mat-raised-button type="button" class="button-search  btn-b-g" (click)="saveChage()" [disabled]="loadChage">
           <span class="material-icons">save</span> Guardar cambios
         </button>
-        <button *ngIf="!edit" mat-raised-button type="button" class="button-search m-1" color="warn">Cancelar</button>
+        <button *ngIf="!edit" mat-raised-button type="reset" class="button-search m-1" color="warn">Cancelar</button>
 
   </form>
 </div>

@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-custom fixed-top">
+<nav class="navbar navbar-custom  fixed-top" [ngClass]="{'custom-scroll':moveScroll,'navbar-custom':moveScroll}">
   <div class="container-fluid">
     <div>
       <img class="img-logo" src="../../../assets/img/muni.png" alt="" srcset="">
@@ -9,7 +9,7 @@
 
       <img [matMenuTriggerFor]="menu" class="user-img cursor" [src]="common.photoURL" [alt]="common.displayName">
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Home</button>
+        <button mat-menu-item routerLink="home">Home</button>
         <button mat-menu-item (click)="logout()">Cerrar sesión</button>
       </mat-menu>
     </div>
@@ -17,7 +17,7 @@
 </nav>
 
 <div class="container container-profile">
-  <div class="row mt">
+  <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <mat-card *ngIf="owner" class="mt-4 card-preview animate__animated animate__fadeInLeft">
@@ -117,21 +117,45 @@
               </ng-template>
               <div *ngIf="_trans.car">
                 <div class="comment-people" *ngFor="let data of _trans.car.valoration; let i=index">
-                  <div class="d-flex justify-content-space-between">
-                    <div>
-                      <ngx-avatar [name]="data.userName" [src]="data.photo" size="50"></ngx-avatar>
+                  <div class="container-fluid d-flex justify-content-between centent-user-comment">
+                    <div class="d-flex justify-content-between">
+                      <div>
+                        <ngx-avatar [name]="data.userName" [src]="data.photo" size="50"></ngx-avatar>
+                      </div>
+                      <div class="d-flex justify-content-center align-content-center flex-column">
+                        <p class="autor"><b>{{data.userName}}</b></p>
+                        <div class="content-star">
+                          <star-rating class="calificado" 
+                                      [value]="data.valoration" 
+                                      [totalstars]="5" 
+                                      checkedcolor="black" 
+                                      uncheckedcolor="gray" 
+                                      [readonly]="true" 
+                                      size="15px">
+                          </star-rating> 
+                          <p class="date-comment">{{data.dateComent | date}}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="d-flex justify-content-center align-content-center flex-column">
-                      <p class="autor"><b>{{data.userName}}</b></p>
-                      <star-rating class="calificado" 
-                                  [value]="data.valoration" 
-                                  [totalstars]="5" 
-                                  checkedcolor="black" 
-                                  uncheckedcolor="gray" 
-                                  [readonly]="true" 
-                                  size="15px">
-                      </star-rating> 
-                      {{data.dateComent | date}}
+                    <div>
+                      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                          <mat-icon><span class="material-icons">delete</span></mat-icon>
+                          <span>Eliminar</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon>
+                            <span class="material-icons">edit</span></mat-icon>
+                          <span>Editar</span>
+                        </button>
+                        <button mat-menu-item disabled>
+                          <mat-icon>notifications_off</mat-icon>
+                          <span>Span</span>
+                        </button>
+                      </mat-menu>
                     </div>
                   </div>
                   <div>
@@ -151,3 +175,4 @@
     <div class="col-md-2"></div>
   </div>
 </div>
+<app-footer *ngIf="owner"></app-footer>

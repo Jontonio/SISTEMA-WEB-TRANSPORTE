@@ -4,3 +4,19 @@
 .header-content-left h1, p{
     color: white;
 }
+.conten-description{
+    height: 400px;
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width:760px){
+    .conten-description{
+        height: 200px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
