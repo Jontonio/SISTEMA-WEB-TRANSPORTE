@@ -2,12 +2,9 @@
     <div class="row">
       <div class="col-md-9">
         <div class="d-flex justify-content-between">
-          <button *ngIf="updateData" type="button" mat-button class="m-1" routerLink="../../carriers">
-            <span class="material-icons">west</span> Regresar
+          <button *ngIf="updateData" mat-icon-button routerLink="../../carriers">
+            <mat-icon><span class="material-icons">west</span></mat-icon>
           </button>
-          <h2 *ngIf="updateData">Actualizar propietario </h2>
-          <h2 *ngIf="!updateData">Registro propietario </h2>
-          <p></p>
         </div>
         <form [formGroup]="formMain" class="form-sample">
               <div class="row">
@@ -27,7 +24,7 @@
                   </mat-form-field>
                 </div>
                 <div class="col-md-2 mt-2">
-                  <button mat-raised-button type="button" class="button-search btn-b-g" (click)="completeData()" [disabled]="loadComlete">
+                  <button mat-raised-button type="button" class="button-search" (click)="completeData()" [disabled]="loadComlete">
                     <span *ngIf="loadComlete" class="spinner-border spinner-border-sm" role="status"></span> Buscar por DNI
                   </button>
                 </div>

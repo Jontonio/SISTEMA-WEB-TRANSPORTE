@@ -7,6 +7,7 @@ import { OwnerCarComponent } from './carriers-pages/owner-car/owner-car.componen
 import { RegisterCarriersComponent } from './carriers-pages/register-carriers/register-carriers.component';
 import { EnterpriceComponent } from './enterprice-pages/enterprice/enterprice.component';
 import { RegisterEnterpriceComponent } from './enterprice-pages/register-enterprice/register-enterprice.component';
+import { AccessAdminGuard } from './guards/access-admin.guard';
 import { AccessUserGuard } from './guards/access-user.guard';
 import { ProfileAdminComponent } from './profiles/profile-admin/profile-admin.component';
 import { ProfileCarrierComponent } from './profiles/profile-carrier/profile-carrier.component';
@@ -36,7 +37,7 @@ const routes: Routes = [
           { path:'carriers', component:CarrierComponent },
           { path:'edit-carriers/:id', component:RegisterCarriersComponent },
           { path:'my-profile', component:ProfileAdminComponent },
-          { path:'users', component:UserComponent },
+          { path:'users', component:UserComponent, canActivate:[AccessAdminGuard] },
           { path:'edit-user/:id', component:RegisterUserComponent },
           { path:'owner-car/:id', component: OwnerCarComponent}
         ]

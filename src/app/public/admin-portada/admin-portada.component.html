@@ -1,5 +1,10 @@
 <h2><span class="material-icons">title</span> Añade una descripción a la portada 
-    <button mat-button (click)="portDescrip()"><mat-icon><span class="material-icons">add</span></mat-icon> nuevo</button>
+    <button mat-button (click)="portDescrip()" *ngIf="_db.listCoverPage.length<9; else info">
+        <mat-icon><span class="material-icons">add</span></mat-icon> nuevo
+    </button>
+    <ng-template #info>
+        <span class="h6 badge-b">Como máximo se permite solo 9 descripciones</span>
+    </ng-template>
 </h2>
 
 <div class="row">
@@ -7,7 +12,7 @@
         <mat-card class="descript-card mb-2">
             <mat-card-header class="d-flex justify-content-between">
                 <mat-card-title>Descripción</mat-card-title>
-                <p>fecha: {{data.dateDescription | date }}</p>
+                <p>Fecha: {{data.dateDescription | date }}</p>
             </mat-card-header>
             <mat-card-content>
               <h3><b>{{data.title}}</b></h3>

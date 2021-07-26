@@ -41,8 +41,8 @@
                     <td (click)="previewOwner(data)" class="cursor">
                       {{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}
                     </td>
-                    <td><span class="badge-s">activo</span></td>
-                    <td><a [routerLink]="[ '../owner-car', data.id ]">ver más</a></td>
+                    <td><span class="badge-b">activo</span></td>
+                    <td><a [routerLink]="[ '../owner-car', data.id ]" class="link-success">ver más</a></td>
                     <td>
                         <button mat-raised-button type="button" class="button-search" [routerLink]="[ '../edit-carriers', data.id]">
                             <span class="material-icons">edit</span> Editar

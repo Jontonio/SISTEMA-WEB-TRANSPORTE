@@ -1,7 +1,9 @@
 <div class="container mt-4 mb-2 animate__animated animate__fadeIn"> 
-  <button *ngIf="edit" mat-button class="mb-3" type="button" routerLink="../../enterprice">
-    <span class="material-icons">keyboard_backspace</span> Regresar
-  </button>
+  <div class="d-flex justify-content-between mt-2 mb-2">
+    <button *ngIf="edit" mat-icon-button routerLink="../../enterprice">
+      <mat-icon><span class="material-icons">keyboard_backspace</span></mat-icon>
+    </button>
+  </div>
   <form [formGroup]="formEnterprise" class="form-sample">
         <div class="row">
           <div class="col-md-10" >

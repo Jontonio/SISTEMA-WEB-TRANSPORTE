@@ -34,7 +34,11 @@
                 <p><span class="material-icons c-icon">directions_car</span></p>
             </div>
         </mat-list-item>
-        <mat-list-item class="cursor" routerLink="users" routerLinkActive="menu-active" (click)="acction.toggle()">
+        <mat-list-item class="cursor"
+                       *ngIf="_auth.userActive.type_profile=='root'" 
+                       routerLink="users" 
+                       routerLinkActive="menu-active" 
+                       (click)="acction.toggle()">
             <div class="item-menu">
                 <p class="menu-title">Usuarios admin</p>
                 <p><span class="material-icons c-icon">group</span></p>
@@ -54,3 +58,6 @@
         </mat-list-item>
     </mat-list>
 </div>
+<!-- <div>
+    {{_auth.userActive | json}}
+</div> -->

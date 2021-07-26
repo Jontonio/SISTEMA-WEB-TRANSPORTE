@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MsgLogoutComponent } from 'src/app/messages/msg-logout/msg-logout.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
+import { MessagesService } from 'src/app/services/messages.service';
 
 @Component({
   selector: 'app-panel-admin',

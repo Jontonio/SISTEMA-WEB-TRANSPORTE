@@ -22,13 +22,14 @@
         <td>{{data.user}}</td>
         <td>{{data.type_profile}}</td>
         <td><span class="badge-b">Activo</span></td>
-        <td><button mat-raised-button [routerLink]="['../edit-user',data.id]"><span class="material-icons">edit</span> Editar</button></td>
         <td>
-          <button *ngIf="data.type_profile!='root'" mat-raised-button color="warn" (click)="desactivateUser(data.id,data.status)">
+            <button mat-raised-button [routerLink]="['../edit-user',data.id]">
+              <span class="material-icons">edit</span> Editar
+            </button>
+        </td>
+        <td>
+          <button mat-raised-button color="warn" (click)="desactivateUser(data.id,data.status)">
             <span class="material-icons">delete</span> Eliminar
-          </button>
-          <button *ngIf="data.type_profile!='normal'"  mat-raised-button color="primary">
-            <span class="material-icons">admin_panel_settings</span> Admin &nbsp; 
           </button>
         </td>
       </tr>
