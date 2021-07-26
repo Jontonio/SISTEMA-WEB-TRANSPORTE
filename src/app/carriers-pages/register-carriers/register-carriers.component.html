@@ -1,7 +1,14 @@
 <div class="container-fluid mt-4 mb-2 animate__animated animate__fadeIn"> 
     <div class="row">
       <div class="col-md-9">
-        <h2>Registro propietario </h2>
+        <div class="d-flex justify-content-between">
+          <button *ngIf="updateData" type="button" mat-button class="m-1" routerLink="../../carriers">
+            <span class="material-icons">west</span> Regresar
+          </button>
+          <h2 *ngIf="updateData">Actualizar propietario </h2>
+          <h2 *ngIf="!updateData">Registro propietario </h2>
+          <p></p>
+        </div>
         <form [formGroup]="formMain" class="form-sample">
               <div class="row">
                 <div class="col-md-9" >

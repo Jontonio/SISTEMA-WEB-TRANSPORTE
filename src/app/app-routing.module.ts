@@ -4,6 +4,7 @@ import { DashboardComponent } from './admin/dashboard-admin/dashboard/dashboard.
 import { PanelAdminComponent } from './admin/panel-admin/panel-admin.component';
 import { CarrierComponent } from './carriers-pages/carrier/carrier.component';
 import { OwnerCarComponent } from './carriers-pages/owner-car/owner-car.component';
+import { RegisterCarriersComponent } from './carriers-pages/register-carriers/register-carriers.component';
 import { EnterpriceComponent } from './enterprice-pages/enterprice/enterprice.component';
 import { RegisterEnterpriceComponent } from './enterprice-pages/register-enterprice/register-enterprice.component';
 import { AccessUserGuard } from './guards/access-user.guard';
@@ -33,6 +34,7 @@ const routes: Routes = [
           { path:'enterprice', component:EnterpriceComponent },
           { path:'edit-enterprise/:id', component: RegisterEnterpriceComponent },
           { path:'carriers', component:CarrierComponent },
+          { path:'edit-carriers/:id', component:RegisterCarriersComponent },
           { path:'my-profile', component:ProfileAdminComponent },
           { path:'users', component:UserComponent },
           { path:'edit-user/:id', component:RegisterUserComponent },

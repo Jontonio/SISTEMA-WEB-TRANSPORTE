@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Owner } from 'src/app/models/owner';
 import { Person } from 'src/app/models/person';
 import { ApiService } from 'src/app/services/api.service';
@@ -18,18 +19,34 @@ export class RegisterCarriersComponent {
 
   @ViewChild('avatar',{static:false}) avatar:ElementRef;
 
-  formMain   :FormGroup;
-  loadComlete: boolean = false;
+  formMain     :FormGroup;
+  loadComlete  : boolean = false;
   urlPhotoOwner: string = '';
-  registerLoad: boolean = false;
+  registerLoad : boolean = false;
+  updateData   : boolean = false
+  idUpdate     :string
 
   constructor(private dialog:MatDialog, 
+              private rutaActiva:ActivatedRoute,
               private fb:FormBuilder, 
               public _trans:TransportService, 
               public _db:DatabaseService,
               private _msg:MessagesService,
               private _api:ApiService) { 
     this.formCarriers();
+    this.dataEdit();
+  }
+
+  dataEdit(){
+    if(this.rutaActiva.snapshot.paramMap.get('id')){
+      this.idUpdate = this.rutaActiva.snapshot.paramMap.get('id') as any;
+      this.updateData = true;
+      this._trans.getCarrier(this.idUpdate).then( res => {
+        this.compleForm(res as any);
+      }).catch( err => {
+        this._msg.errorMsg(err, 'Error get data');
+      })
+    }
   }
 
   openRegisterCar(){
@@ -38,15 +55,26 @@ export class RegisterCarriersComponent {
 
   formCarriers(){
     this.formMain = this.fb.group({
-      id:[''],
-      ID_card: ['', [Validators.required,Validators.minLength(8),Validators.pattern(/^([0-9])*$/)]],         
-      first_name: ['', [Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],      
-      father_last_name:['' ,[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
-      mother_last_name:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
-      URL_photo: ['', [Validators.required]],       
-      celphone: ['', [Validators.required,Validators.minLength(9),Validators.pattern(/^([0-9])*$/)]],        
-      email: ['', [Validators.required, Validators.email]]         
+        id:[''],
+        ID_card: ['', [Validators.required,Validators.minLength(8),Validators.pattern(/^([0-9])*$/)]],         
+        first_name: ['', [Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],      
+        father_last_name:['' ,[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+        mother_last_name:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+        URL_photo: ['', [Validators.required]],       
+        celphone: ['', [Validators.required,Validators.minLength(9),Validators.pattern(/^([0-9])*$/)]],        
+        email: ['', [Validators.required, Validators.email]]         
     })
+  }
+
+  compleForm(data:Owner){
+    //this.formMain.controls['id'].setValue(data.id)
+    // this.formMain.controls['ID_card'].setValue(data.ID_card)         
+    // this.formMain.controls['first_name'].setValue(data.firts_name)     
+    // this.formMain.controls['father_last_name'].setValue(data.father_last_name)
+    // this.formMain.controls['mother_last_name'].setValue(data.mother_last_name)
+    // this.formMain.controls['URL_photo'].setValue('data.URL_photo.jpg')      
+    // this.formMain.controls['celphone'].setValue(data.celphone)      
+    // this.formMain.controls['email'].setValue(data.email) 
   }
 
   get id_card(){
@@ -86,12 +114,12 @@ export class RegisterCarriersComponent {
 
     this.registerLoad = true;
     const data = new Owner(this.formMain.value.ID_card, 
-                          this.formMain.value.first_name, 
-                          this.formMain.value.father_last_name,
-                          this.formMain.value.mother_last_name,
-                          this._db.imgauxPost,
-                          this.formMain.value.celphone,
-                          this.formMain.value.email);
+                           this.formMain.value.first_name, 
+                           this.formMain.value.father_last_name,
+                           this.formMain.value.mother_last_name,
+                           this._db.imgauxPost,
+                           this.formMain.value.celphone,
+                           this.formMain.value.email);
     this._trans.addCarrier(data.toObject,this._trans.listCarOwner).then( res => {
       this._msg.successMsg(res as any,'Registro de transportista');
       this.registerLoad = false;
@@ -136,9 +164,6 @@ export class RegisterCarriersComponent {
     this.formMain.reset();
     this._db.imgauxPost = '';
   }
-
-  
-  // const avatarColors = ["#FFB6C1", "#2c3e50", "#95a5a6", "#f39c12", "#1abc9c"];
 
 
 }

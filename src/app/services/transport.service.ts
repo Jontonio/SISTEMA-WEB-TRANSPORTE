@@ -4,7 +4,6 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Owner } from '../models/owner';
 import { MessagesService } from './messages.service';
 import firestore from 'firebase/app';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Car } from '../models/Car';
 
 @Injectable({

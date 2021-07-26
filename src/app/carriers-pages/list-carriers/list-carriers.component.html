@@ -28,7 +28,6 @@
                     <th scope="col">Nro</th>
                     <th scope="col">DNI propietario</th>
                     <th scope="col">Nombres y apellidos</th>
-                    <!-- <th scope="col"><span class="material-icons">directions_car</span></th> -->
                     <th scope="col">Estado</th>
                     <th scope="col">Más</th>
                     <th scope="col">Editar</th>
@@ -39,11 +38,16 @@
                   <tr *ngFor="let data of _trans.listCarriers | slice:desde:hasta; let i=index">
                     <td>{{i+1}}</td>
                     <td>{{data.ID_card}}</td>
-                    <td (click)="previewOwner(data)" class="cursor">{{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}</td>
-                    <!-- <td><span class="badge-b">0</span></td> -->
+                    <td (click)="previewOwner(data)" class="cursor">
+                      {{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}
+                    </td>
                     <td><span class="badge-s">activo</span></td>
                     <td><a [routerLink]="[ '../owner-car', data.id ]">ver más</a></td>
-                    <td><button mat-raised-button type="button" class="button-search"><span class="material-icons">edit</span> Editar</button></td>
+                    <td>
+                        <button mat-raised-button type="button" class="button-search" [routerLink]="[ '../edit-carriers', data.id]">
+                            <span class="material-icons">edit</span> Editar
+                        </button>
+                    </td>
                     <td><button mat-raised-button type="button" class="button-search" color="warn">Desactivar</button></td>
                   </tr>
                 </tbody>
