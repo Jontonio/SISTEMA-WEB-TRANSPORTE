@@ -59,7 +59,6 @@ export class ProfileCarrierComponent {
   xAxisLabel = 'Country';
   showYAxisLabel = true;
   yAxisLabel = 'Population';
-
   colorScheme = { domain: ['#FAAF05', '#DE8504', '#F57710','#DE4704', '#FA2C05'] }
 
   onSelect(event:any) {

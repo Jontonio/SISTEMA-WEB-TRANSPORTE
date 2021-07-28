@@ -14,8 +14,10 @@ export class TransportService {
   listCarOwner   : Object[] = [];
   loadGetcarriers: boolean = false;
   carriersRef = this.fs.collection('carriers');
-  listCarriers: Owner[] = [];
-  car:Car;
+  listCarriers   : Owner[] = [];
+  listcars       = new Array<any>();
+  car            : Car;
+  url            : string = 'http://localhost:4200/conductor/'
 
   constructor(private _msg:MessagesService, 
               private fs: AngularFirestore,
@@ -66,6 +68,7 @@ export class TransportService {
     this.carriersRef.valueChanges().subscribe( res => {
       this.listCarriers = res as any;
       this.loadGetcarriers = false;
+      this.getcars();
     }, err =>{
       this.loadGetcarriers = false;
       this._msg.warningMsg('err al obtener lista de transportistas','Error 504');
@@ -106,6 +109,17 @@ export class TransportService {
     })
   }
 
+  getcars(){
+    if(this.listCarriers.length>0){
+      this.listCarriers.forEach( carrier => {
+        this.getCarrierCars(carrier.id).then( res => {
+          this.getElementCar(res as any, carrier.id);
+        })
+      });
+      console.log(this.listcars)
+    }
+  }
+
   updateId(doc:string, id:string){
     this.fs.collection(doc).doc(id).update({id:id}).then( res =>{
     }).catch( err => {
@@ -123,6 +137,16 @@ export class TransportService {
         reject('Error al registrar la data')
       })
     })
+  }
+
+  async getElementCar(data:[],idOwner:string){
+    if(data.length > 0){
+      data.forEach( (car:Car) => {
+        const link = `${this.url}${idOwner}/${car.id}`
+        let newData = {...(car as object), idOwner, link}
+        this.listcars.push(newData as any)
+      });
+    }
   }
  
 }

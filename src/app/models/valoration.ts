@@ -16,14 +16,52 @@ export class Valoration{
         this.email = email;
     }
 
+    getvaloration(){
+        if(this.valoration){
+            return this.valoration;
+        }
+        return 0;
+    }
+    getcomment(){
+        if(this.comment){
+            return this.comment;
+        }
+        return 'sin comentarios';
+    }
+    getdateComent(){
+        if(this.dateComent){
+            return this.dateComent;
+        }
+        const date = new Date().getTime();
+        return date;
+    }
+    getuserName(){
+        if(this.userName){
+            return this.userName;
+        }
+        return 'Anómimo';
+    }
+    getphoto(){
+        if(this.photo){
+            return this.photo;
+        }
+        return '';
+    }
+    getemail(){
+        if(this.email){
+            return this.email
+        }
+        return 'fakeemail@gmail.com'
+    }
+
     get toObject(){
         return {
-            comment: this.comment,
-            valoration: this.valoration, 
-            dateComent: this.dateComent,
-            userName: this.userName,
-            photo:this.photo,
-            email: this.email,
+            comment: this.getcomment(),
+            valoration: this.getvaloration(), 
+            dateComent: this.getdateComent(),
+            userName: this.getuserName(),
+            photo:this.getphoto(),
+            email: this.getemail(),
         }
     }
 }

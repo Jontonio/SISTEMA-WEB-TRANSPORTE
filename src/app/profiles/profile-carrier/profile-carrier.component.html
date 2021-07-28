@@ -7,7 +7,7 @@
     </div>
     <div *ngIf="common">
 
-      <img [matMenuTriggerFor]="menu" class="user-img cursor" [src]="common.photoURL" [alt]="common.displayName">
+      <img [matMenuTriggerFor]="menu" class="user-img cursor" [src]="common.photoURL | img" [alt]="common.displayName">
       <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/home">
           <mat-icon>home</mat-icon>

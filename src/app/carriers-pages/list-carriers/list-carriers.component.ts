@@ -18,7 +18,7 @@ export class ListCarriersComponent {
   hasta       : number = 9;
   ownerPreview: Owner;
 
-  constructor( public _trans:TransportService, public _db:DatabaseService, private dialog:MatDialog) {}
+  constructor(public _trans:TransportService, public _db:DatabaseService, private dialog:MatDialog) {}
 
   pageEvent(e:PageEvent){
     console.log(e)

@@ -22,6 +22,7 @@ import { LoginComponent } from './user-pages/login/login.component';
 import { RecoveryPasswordComponent } from './user-pages/recovery-password/recovery-password.component';
 
 const routes: Routes = [
+  { path:'', component: HomeComponent },
   { path:'home', component: HomeComponent },
   { path:'login', component: LoginComponent },
   { path:'forgot-password', component: RecoveryPasswordComponent },
@@ -47,7 +48,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 

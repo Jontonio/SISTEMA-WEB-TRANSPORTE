@@ -50,7 +50,6 @@ export class LoginComponent {
     this._auth.loggin(this.formLogin.value.user, this.formLogin.value.password).then( res => {
       if(res) this._sp.hide();
       this._auth.message = 'Cargando';
-      this._msg.successMsg('',`Bienvenido ${this._auth.userActive.firts_name}`)
     }).catch( err => {
       this._sp.hide() ;
       this._msg.warningMsg(err.message,'Acceso usuario');

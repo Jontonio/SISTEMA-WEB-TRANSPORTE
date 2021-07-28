@@ -79,6 +79,10 @@ import { RatingModule } from 'ng-starrating';
 // Import library module ngx-spinner
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CommentComponent } from './public/forms/comment/comment.component';
+import { ListQrCarriersComponent } from './carriers-pages/list-qr-carriers/list-qr-carriers.component';
+
+// Ngx - print
+
 
 @NgModule({
   declarations: [
@@ -126,6 +130,7 @@ import { CommentComponent } from './public/forms/comment/comment.component';
     ViewPostComponent,
     PreviewOwnerComponent,
     CommentComponent,
+    ListQrCarriersComponent,
   ],
   imports: [
     BrowserModule,
@@ -144,7 +149,7 @@ import { CommentComponent } from './public/forms/comment/comment.component';
     AvatarModule,
     NgxMasonryModule,
     RatingModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

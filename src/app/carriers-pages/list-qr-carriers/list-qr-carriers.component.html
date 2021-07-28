@@ -1,0 +1,55 @@
+<div class="container-fluid mt-3">
+    <mat-card>
+      <div class="row">
+        <div class="col-md-3">
+          <mat-form-field class="full-width" appearance="legacy">
+            <mat-label>Empresa de transporte</mat-label>
+            <mat-select>
+              <div *ngFor="let enterprise of _db.listEnterpise">
+                <mat-option [value]="enterprise.id">{{enterprise.razonSocial}}</mat-option>
+              </div>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <mat-form-field class="full-width" appearance="legacy">
+            <mat-label>Buscar</mat-label>
+            <mat-icon matSuffix><i class="fas fa-search"></i></mat-icon>
+            <input type="text" matInput autocomplete="off">
+            <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="col-md-1">
+          <!-- <button printSectionId="list" [useExistingCss]="true" ngxPrint>print</button>  -->
+        </div>
+      </div>
+      <div class="row" id="list">
+          <div class="col-md-6 mb-4" *ngFor="let car of _trans.listcars; let i=index">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-7">
+                    <h5 class="card-title">
+                      <img class="header-image" src="../../../assets/img/muni.png" alt="">
+                      <b class="m-1 title-muni">Municipalidad de Andahuaylas</b>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Vehículo {{i+1}}</h6>
+                    <p class="card-text">
+                      <b>Placa: </b> {{car.placa}} <br>
+                      <b>Modelo:</b> {{car.modelo}} <br>
+                      <b>Serie:</b> {{car.serie}}
+                    </p>
+                  </div>
+                  <div class="col-md-5 text-center">
+                    <qrcode [qrdata]="car.link" [width]="180" [errorCorrectionLevel]="'M'"></qrcode>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <mat-paginator [length]="_trans.listCarriers.length" [pageSize]="9" (page)="pageEvent($event)"> </mat-paginator>
+      </div>
+    </mat-card>
+</div>
+  
