@@ -20,35 +20,66 @@
             <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
           </mat-form-field>
         </div>
-        <div class="col-md-1">
-          <!-- <button printSectionId="list" [useExistingCss]="true" ngxPrint>print</button>  -->
+        <div class="col-md-1 d-flex justify-content-center align-items-center">
+          <button mat-mini-fab color="primary"
+                  [useExistingCss]="true"
+                  printSectionId="list"
+                  ngxPrint>
+                  <span class="material-icons">print</span>
+          </button>
         </div>
       </div>
-      <div class="row" id="list">
-          <div class="col-md-6 mb-4" *ngFor="let car of _trans.listcars; let i=index">
+      <div class="m-2" id="list">
+        <div class="row mb-2" *ngFor="let car of _trans.listcars; let i=index">
+          <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-7">
-                    <h5 class="card-title">
-                      <img class="header-image" src="../../../assets/img/muni.png" alt="">
-                      <b class="m-1 title-muni">Municipalidad de Andahuaylas</b>
-                    </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Vehículo {{i+1}}</h6>
-                    <p class="card-text">
-                      <b>Placa: </b> {{car.placa}} <br>
-                      <b>Modelo:</b> {{car.modelo}} <br>
-                      <b>Serie:</b> {{car.serie}}
+                    <img class="header-image" src="../../../assets/img/muni.png" alt="" srcset="">
+                    <b class="m-1">Municipalidad de Andahuaylas</b>
+                    <p class="mt-2">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis dignissimos earum libero ipsum ad magni in laudantium labore est 
                     </p>
+                    <div class="d-flex align-items-center">
+                      <span class="material-icons">directions_car</span> {{car.placa}}
+                    </div>
                   </div>
-                  <div class="col-md-5 text-center">
-                    <qrcode [qrdata]="car.link" [width]="180" [errorCorrectionLevel]="'M'"></qrcode>
+                  <div class="col-md-5">
+                    <div class="text-center"><b>QR - {{i}}</b></div>
+                    <div class="text-center">
+                      <qrcode elementType="img" [qrdata]="car.link" [width]="178" [errorCorrectionLevel]="'M'"></qrcode>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <mat-paginator [length]="_trans.listCarriers.length" [pageSize]="9" (page)="pageEvent($event)"> </mat-paginator>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-7">
+                    <img class="header-image" src="../../../assets/img/muni.png" alt="" srcset="">
+                    <b class="m-1">Municipalidad de Andahuaylas</b>
+                    <p class="mt-2">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis dignissimos earum libero ipsum ad magni in laudantium labore est 
+                    </p>
+                    <div class="d-flex align-items-center">
+                      <span class="material-icons">directions_car</span> {{car.placa}}
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="text-center"><b>QR - {{i}}</b></div>
+                    <div class="text-center">
+                      <qrcode elementType="img" [qrdata]="car.link" [width]="178" [errorCorrectionLevel]="'M'"></qrcode>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </mat-card>
 </div>

@@ -12,7 +12,7 @@ export class ListQrCarriersComponent{
 
   desde       : number = 0;
   hasta       : number = 9;
-  
+
   constructor(public _trans:TransportService, public _db:DatabaseService) {}
 
   pageEvent(e:PageEvent){
@@ -20,5 +20,4 @@ export class ListQrCarriersComponent{
     this.desde = e.pageIndex * e.pageSize;
     this.hasta = this.desde + e.pageSize;
   }
-
 }

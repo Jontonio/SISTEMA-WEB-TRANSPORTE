@@ -82,7 +82,7 @@ import { CommentComponent } from './public/forms/comment/comment.component';
 import { ListQrCarriersComponent } from './carriers-pages/list-qr-carriers/list-qr-carriers.component';
 
 // Ngx - print
-
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -150,6 +150,7 @@ import { ListQrCarriersComponent } from './carriers-pages/list-qr-carriers/list-
     NgxMasonryModule,
     RatingModule,
     NgxSpinnerModule,
+    NgxPrintModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,7 +15,7 @@ export class TransportService {
   loadGetcarriers: boolean = false;
   carriersRef = this.fs.collection('carriers');
   listCarriers   : Owner[] = [];
-  listcars       = new Array<any>();
+  listcars       : Array<any>;
   car            : Car;
   url            : string = 'http://localhost:4200/conductor/'
 
@@ -110,6 +110,7 @@ export class TransportService {
   }
 
   getcars(){
+    this.listcars = new Array<any>();
     if(this.listCarriers.length>0){
       this.listCarriers.forEach( carrier => {
         this.getCarrierCars(carrier.id).then( res => {
