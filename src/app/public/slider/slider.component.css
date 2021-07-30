@@ -1,4 +1,5 @@
 .cabecera{
+    height: 94vh;
     background:linear-gradient(to right,#e43434,#f56036);
 }
 .header-content-left h1, p{
@@ -10,6 +11,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.content-post{
+    height: 500px;
+}
+.img-post{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 @media (max-width:760px){
     .conten-description{

@@ -1,6 +1,6 @@
-<header class="mt-5 cabecera">
+<header class="mt-5 cabecera d-flex justify-content-center align-items-center">
     <div class="container-fluid mt-3">
-        <div class="row">
+        <div class="row mt-5">
             <div class="container-fluid col-md-6 d-flex align-items-center">
                 <div class="header-content-left mx-auto" *ngIf="!_db.loadGetdescript">
                     <div class="conten-description">
@@ -20,18 +20,13 @@
                 </div>
             </div>
             <div class="container-fluid col-md-6">
-                <div id="carouselExampleDark" class="carousel carousel-light slide" data-bs-ride="carousel">
-                    <!-- <div class="carousel-indicators border border-warning">
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div> -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="10000">
-                          <img src="../../../assets/img/Portada/combi4.png" class="d-block w-100 img-fluid" alt="...">
-                        </div>
+              <div class="content-post">
+                  <div *ngIf="this._db.listpost.length>0">
+                    <div *ngIf="vistaPost">
+                      <div class="content-post animate__animated animate__zoomIn" [ngStyle]="{'background-image':'url('+img+')'}"></div>
                     </div>
-                </div>
+                  </div>
+              </div>
             </div>
         </div>
     </div>

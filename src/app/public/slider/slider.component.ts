@@ -1,4 +1,6 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { PortDescriotion } from 'src/app/models/portdaDes';
 import { Post } from 'src/app/models/post';
 import { DatabaseService } from 'src/app/services/database.service';
@@ -15,20 +17,33 @@ export class SliderComponent {
   indice:number = 0;
   Description: PortDescriotion;
   vista:boolean;
+<<<<<<< HEAD
   
   constructor(public _db:DatabaseService) {
+=======
+  vistaPost:boolean;
 
+  countPost: number = 0
+  img:string = '../../../assets/img/Portada/combi4.png';
+>>>>>>> df7f4a1cd11257c20d32f19063ea382f77a901c6
+
+  constructor(public _db:DatabaseService, private _sp:NgxSpinnerService) {
+    this.viewDescription();
+    this.viewPost();
+    this.spinner();
+  }
+
+  viewDescription(){
     this.Description = new PortDescriotion('Municipalidad de Andahuaylas','Por un servicio mejor a Andahuaylas');
-
     this.vista = true;
     setInterval( () => this.vista = false, 10000)
-    
+
     setInterval(()=>{
       this.vista = true;
-      if(_db.listCoverPage.length>0){
-        this.Description = new PortDescriotion(_db.listCoverPage[this.indice].title, _db.listCoverPage[this.indice].description);
+      if(this._db.listCoverPage.length > 0){
+        this.Description = new PortDescriotion(this._db.listCoverPage[this.indice].title, this._db.listCoverPage[this.indice].description);
         this.indice = this.indice + 1;
-        if(this.indice>=_db.listCoverPage.length){
+        if(this.indice>=this._db.listCoverPage.length){
           this.indice = 0;
         }
       }else{
@@ -36,6 +51,28 @@ export class SliderComponent {
       }
     }, 10000)
 
+  }
+
+  viewPost(){
+    this.vistaPost = true;
+    setInterval( () => this.vistaPost = false, 25000)
+    setInterval(()=>{
+      this.vistaPost = true;
+      if(this._db.listpost.length > 0 ){
+        if(this.countPost >= this._db.listpost.length){ this.countPost = 0 }
+        this.img = this._db.listpost[this.countPost].url;
+        this.countPost = this.countPost + 1;
+      }else{
+        this.img = '../../../assets/img/Portada/combi4.png';
+      }
+    },25000)
+  }
+
+  spinner(){
+    this._sp.show();
+    setTimeout(() => {
+      this._sp.hide();
+    }, 2000);
   }
 
 }
