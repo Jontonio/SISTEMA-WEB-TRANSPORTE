@@ -16,9 +16,8 @@
 }
 
 #navbarNav a:hover{
-    color:purple;
+    color:rgb(41, 41, 41);
 }
-
 .border-b{
     animation: 0.5s;
     box-shadow: 2px 11px 12px -7px rgba(0,0,0,0.59);

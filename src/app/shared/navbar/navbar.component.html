@@ -1,8 +1,9 @@
 <!-- Barra de navegacion -->
 <nav class="navbar navbar-expand-lg fixed-top" [ngClass]="{'border-b':moveScroll,'border-none':!moveScroll}" id="navegacion">
     <div class="container-fluid" id="item-navbar">
-        <a class="navbar-brand fs-5">
-          <img src="../../../assets/img/muni.png" alt="Car" height="38" class="ms-4">  Muni Andahuaylas
+        <a class="navbar-brand fs-5 d-flex justify-content-center align-items-center">
+          <img src="../../../assets/img/muni.png" alt="Car" height="38" class="ms-4">
+          <p class="title">Muni Andahuaylas</p>
         </a>
         <button mat-button class="navbar-toggler"  data-bs-toggle="collapse" data-bs-target="#navbarNav" (click)="iconMenu = !iconMenu">
             <span *ngIf="iconMenu" class="material-icons text-white">menu</span>
