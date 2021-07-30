@@ -15,7 +15,7 @@ export class SliderComponent {
   indice:number = 0;
   Description: PortDescriotion;
   vista:boolean;
-
+  
   constructor(public _db:DatabaseService) {
 
     this.Description = new PortDescriotion('Municipalidad de Andahuaylas','Por un servicio mejor a Andahuaylas');
