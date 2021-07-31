@@ -17,15 +17,9 @@ export class SliderComponent {
   indice:number = 0;
   Description: PortDescriotion;
   vista:boolean;
-<<<<<<< HEAD
-  
-  constructor(public _db:DatabaseService) {
-=======
   vistaPost:boolean;
-
   countPost: number = 0
   img:string = '../../../assets/img/Portada/combi4.png';
->>>>>>> df7f4a1cd11257c20d32f19063ea382f77a901c6
 
   constructor(public _db:DatabaseService, private _sp:NgxSpinnerService) {
     this.viewDescription();
