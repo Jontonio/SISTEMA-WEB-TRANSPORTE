@@ -1,6 +1,11 @@
-._card2{
-    margin-top: 100px;
+._card1{
+    border-radius: 3%;
+    background-color: #11375C;
 }
-._card3{
-    margin-top: 200px;
+._txtcard1,p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: azure;
+}
+._contcali{
+    border-radius:10px;
 }
