@@ -1,31 +1,37 @@
 <header class="mt-5 cabecera d-flex justify-content-center align-items-center">
     <div class="container-fluid mt-3">
         <div class="row mt-5">
-            <div class="container-fluid col-md-6 d-flex align-items-center">
+            <div class="container-fluid col-md-5 d-flex justify-content-center align-items-center">
                 <div class="header-content-left mx-auto" *ngIf="!_db.loadGetdescript">
                     <div class="conten-description">
                       <div *ngIf="vista" class="p-4 animate__animated animate__fadeInDown">
                         <div class="d-flex justify-content-sm-center">
-                          <h1 class="display-4 fs-1">
-                            <span class="mx-auto description" 
+                          <h1 class="display-4">
+                            <span class="mx-auto description title-d" 
                                   *ngIf="Description.title">{{Description.title}}</span>
                           </h1>
                         </div>
                         <div class="d-flex justify-content-sm-center">
-                          <p class="fs-5 mx-auto description" 
-                             *ngIf="Description.description">{{Description.description}}</p>
+                          <span class="fs-5 mx-auto description" 
+                                *ngIf="Description.description">{{Description.description}}</span>
                         </div>
                       </div>
                     </div>
                 </div>
+                <div *ngIf="_db.loadGetdescript">
+                  <span class="spinner-grow" style="width: 3rem; height: 3rem;" role="status"></span>
+                </div>
             </div>
-            <div class="container-fluid col-md-6">
-              <div class="content-post">
-                  <div *ngIf="this._db.listpost.length>0">
-                    <div *ngIf="vistaPost">
-                      <div class="content-post animate__animated animate__zoomIn" [ngStyle]="{'background-image':'url('+img+')'}"></div>
-                    </div>
+            <div class="container-fluid col-md-7">
+              <div class="content-post d-flex justify-content-center align-items-center">
+                <div *ngIf="this._db.listpost.length>0">
+                  <div class="content-post" *ngIf="vistaPost">
+                    <img class="img-post animate__animated animate__zoomIn" [src]="img" alt="" srcset="">
                   </div>
+                </div>
+                <div *ngIf="_db.loadGetdescript">
+                  <span class="spinner-grow" style="width: 3rem; height: 3rem;" role="status"></span>
+                </div>
               </div>
             </div>
         </div>

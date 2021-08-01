@@ -7,18 +7,20 @@
 }
 .conten-description{
     height: 400px;
-    width: 700px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .content-post{
     height: 500px;
+    width: 100%;
+    overflow: hidden;
 }
 .img-post{
-    background-size: cover;
+    height: 100%;
+    width: 100%;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
 }
 @media (max-width:760px){
     .conten-description{
@@ -27,5 +29,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .title-d{
+        font-size: 28px;
+    }
+    .content-post{
+        height: 400px;
+        margin-top: 10px;
     }
 }

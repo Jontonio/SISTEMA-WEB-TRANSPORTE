@@ -3,7 +3,9 @@
   <div class="container-fluid">
     <div>
       <img class="img-logo" src="../../../assets/img/muni.png" alt="" srcset="">
-      <a class="navbar-brand m-1">Municipalidad provincial de Andahuaylas</a>
+      <a class="navbar-brand m-1 title" [ngClass]="{'navbar-brand':moveScroll,'navbar-other':moveScroll}">
+        Municipalidad provincial de Andahuaylas
+      </a>
     </div>
     <div *ngIf="common">
 
@@ -22,11 +24,10 @@
   </div>
 </nav>
 
-<div class="container container-profile">
+<div class="container-fluid container-profile">
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <mat-card *ngIf="owner" class="mt-4 card-preview animate__animated animate__fadeInLeft">
+    <div class="col-md-12">
+        <mat-card *ngIf="owner" class="mt-4 animate__animated animate__fadeInLeft">
             <mat-card-header>
               <mat-card-title><b>Información</b></mat-card-title>
             </mat-card-header>
@@ -178,7 +179,7 @@
             </mat-card-content>
         </mat-card>
     </div>
-    <div class="col-md-2"></div>
   </div>
 </div>
+
 <app-footer *ngIf="owner"></app-footer>

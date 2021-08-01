@@ -38,6 +38,7 @@ export class RegisterCarriersComponent {
   }
 
   dataEdit(){
+    // verificar si viene id para actualizar
     if(this.rutaActiva.snapshot.paramMap.get('id')){
       this.idUpdate = this.rutaActiva.snapshot.paramMap.get('id') as any;
       this.updateData = true;
@@ -46,14 +47,20 @@ export class RegisterCarriersComponent {
       }).catch( err => {
         this._msg.errorMsg(err, 'Error get data');
       })
+    } else {
+      // en caso que no venga id, inicializar imgAux en vacio
+      this._db.imgauxPost = '';
+      this._trans.listCarOwner = [];
     }
   }
 
   openRegisterCar(){
+    // abrir componente register carrier modal
     this.dialog.open(RegisterCarComponent, { width:'100%', disableClose:true })
   }
 
   formCarriers(){
+    // creación de modelo formulario
     this.formMain = this.fb.group({
         id:[''],
         ID_card: ['', [Validators.required,Validators.minLength(8),Validators.pattern(/^([0-9])*$/)]],         
@@ -67,16 +74,28 @@ export class RegisterCarriersComponent {
   }
 
   compleForm(data:Owner){
-    //this.formMain.controls['id'].setValue(data.id)
-    // this.formMain.controls['ID_card'].setValue(data.ID_card)         
-    // this.formMain.controls['first_name'].setValue(data.firts_name)     
-    // this.formMain.controls['father_last_name'].setValue(data.father_last_name)
-    // this.formMain.controls['mother_last_name'].setValue(data.mother_last_name)
-    // this.formMain.controls['URL_photo'].setValue('data.URL_photo.jpg')      
-    // this.formMain.controls['celphone'].setValue(data.celphone)      
-    // this.formMain.controls['email'].setValue(data.email) 
+    // completar formulario para actualizar
+    this.formMain.controls['id'].setValue(data.id)
+    this.formMain.controls['ID_card'].setValue(data.ID_card)         
+    this.formMain.controls['first_name'].setValue(data.firts_name)     
+    this.formMain.controls['father_last_name'].setValue(data.father_last_name)
+    this.formMain.controls['mother_last_name'].setValue(data.mother_last_name)
+    this.formMain.controls['email'].setValue(data.email) 
+    this.formMain.controls['celphone'].setValue(data.celphone) 
+    // aquí eliminamos los validadores para el campo foto
+    this.formMain.controls['URL_photo'].clearValidators();
+    this.formMain.controls['URL_photo'].updateValueAndValidity();
+    // mostrar la foto actual    
+    this._db.imgauxPost = data.URL_photo;
+    // cargar lista de arreglos
+    this._trans.getCarrierCars(data.id).then( res => {
+      this._trans.listCarOwner = res as any;
+    }).catch( err => {
+      this._msg.errorMsg(err,'Error al obtener vehículos');
+    })
   }
 
+  // metodos get para simplicar la validación de datos
   get id_card(){
     return this.formMain.controls['ID_card'];
   }
@@ -99,9 +118,8 @@ export class RegisterCarriersComponent {
     return this.formMain.controls['email'];
   }
 
-
   registerOwner(){
-    
+    // verificación si el formulario es correcto
     if(this.formMain.invalid){
       Object.keys(this.formMain.controls).forEach( input => {
         this.formMain.controls[input].markAllAsTouched();
@@ -111,27 +129,47 @@ export class RegisterCarriersComponent {
       this._msg.warningMsg('Registre al menos un vehículo para guardar al conductor','Registre un vehiculo');
       return;
     } 
-
-    this.registerLoad = true;
+    
+    // creamos el objeto data 
     const data = new Owner(this.formMain.value.ID_card, 
-                           this.formMain.value.first_name, 
-                           this.formMain.value.father_last_name,
-                           this.formMain.value.mother_last_name,
-                           this._db.imgauxPost,
-                           this.formMain.value.celphone,
-                           this.formMain.value.email);
-    this._trans.addCarrier(data.toObject,this._trans.listCarOwner).then( res => {
-      this._msg.successMsg(res as any,'Registro de transportista');
-      this.registerLoad = false;
-      this.resetForm();
-    }).catch( err => {
-      this.registerLoad = false;
-      this._msg.errorMsg(err,'Error');
-    })
+      this.formMain.value.first_name, 
+      this.formMain.value.father_last_name,
+      this.formMain.value.mother_last_name,
+      this._db.imgauxPost,
+      this.formMain.value.celphone,
+      this.formMain.value.email);
+
+    // validamos si es para actualizar la data o registrar
+    if(this.updateData){
+      data.setId(this.idUpdate);
+      //console.log(data, this._trans.listCarOwner)
+      this.registerLoad = true;
+      this._trans.updateCarrier(data.toObject).then( res =>{
+        this._msg.successMsg(res as any,'Actualizar datos')
+        this.registerLoad = false;
+      }).catch( err =>{
+        this.registerLoad = false;
+        this._msg.errorMsg(err,'Ocurrio un error')
+      })
+    } else {
+      // caso que pase la validación crear un obejto dueño 
+      this.registerLoad = true;
+      this._trans.addCarrier(data.toObject,this._trans.listCarOwner).then( res => {
+        this._msg.successMsg(res as any,'Registro de transportista');
+        this.registerLoad = false;
+        this.resetForm();
+      }).catch( err => {
+        this.registerLoad = false;
+        this._msg.errorMsg(err,'Error');
+      })
+
+    }
 
   }
 
+  // metodo para completar data mediante api Perú
   completeData(){
+    // verificamos si el campo idcard esta compelto y válido
     if(this.formMain.controls['ID_card'].valid){
       const idcard = this.formMain.value.ID_card;
       let person = new Person();
@@ -139,6 +177,7 @@ export class RegisterCarriersComponent {
       this._api.person(idcard).then( res => {
         this.loadComlete = false;
         person = res as Person;
+        // si dni existe, entonces existe toda la data
         if(person.dni){
           this.formMain.controls['first_name'].setValue(person.nombres)
           this.formMain.controls['father_last_name'].setValue(person.apellidoPaterno)

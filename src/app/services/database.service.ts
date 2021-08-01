@@ -244,7 +244,6 @@ export class DatabaseService {
         dir = 'photo-carriers/';
       }
     
-    
       this.subiedoImg = true;
       const time = new Date().getTime();
       const file = event.target.files[0];

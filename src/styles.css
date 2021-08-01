@@ -74,7 +74,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background   : linear-gradient(to right, rgb(54, 167, 219),rgba(0, 33, 94, 0.74));
 }
 .description{
-    font-family: 'K2D', sans-serif;
+    font-family: 'Mitr', sans-serif;
+    color:rgb(223, 223, 223);
+}
+.title-d{
+    font-size: 35px;
 }
 /* custom-input-file */
 .letterFile{

@@ -97,8 +97,6 @@ export class TransportService {
     })
   }
 
-  // /carriers/0BSMvGTMqhphqbvnDxon/cars/Nsy0RiPOfBnER8qXksem
-
   getCarrierCars(id:string){
     return new Promise((resolve,reject) =>{
       this.fs.collection('carriers/'+id+'/cars').valueChanges().subscribe( res => {
@@ -117,7 +115,6 @@ export class TransportService {
           this.getElementCar(res as any, carrier.id);
         })
       });
-      console.log(this.listcars)
     }
   }
 
@@ -127,7 +124,18 @@ export class TransportService {
       this._msg.warningMsg('err update id doc','actualizar usuario');
     })
   }
-  // /carriers/0BSMvGTMqhphqbvnDxon/cars/Nsy0RiPOfBnER8qXksem
+
+  updateCarrier(data:any){
+    return new Promise((resolve,reject) => {
+      this.carriersRef.doc(data.id).update(data).then( res => {
+          // this.addCar(dataCar,res.id)
+          resolve('Datos actualizados correctamente');
+      }).catch( err => {
+        reject('Error al actualizar los datos')
+      })
+    })
+  }
+  
   RegisterComment(idOwner:string,idcar:string,data:any){
     return new Promise((resolve,reject) => {
       this.fs.collection('carriers/'+idOwner+'/cars').doc(idcar).update({
@@ -135,7 +143,7 @@ export class TransportService {
       }).then( res => {
         resolve('Datos registrado correctamente');
       }).catch( err => {
-        reject('Error al registrar la data')
+        reject('Error al registrar los datos')
       })
     })
   }

@@ -113,30 +113,33 @@
                   </div>
                 </div>
               </div>
-              <div>
-              <button  mat-raised-button type="button" class="button-search" (click)="openRegisterCar()">
-                 + agregar <span class="material-icons">directions_car_filled</span>
-              </button>
-              <mat-list role="list">
-                  <div class="list-car animate__animated animate__fadeIn" *ngFor="let car of _trans.listCarOwner; let i=index">
-                      <mat-list-item role="listitem">Vehiculo {{i+1}}</mat-list-item> 
-                      <div class="content-button">
-                          <button mat-button type="button" (click)="editCar(i)">
-                              <span class="material-icons">edit</span> Editar
-                          </button>
-                          <button mat-button class="m-1" (click)="_trans.deleteCar(i)">
-                              <span class="material-icons">delete</span> Eliminar
-                          </button>
+              <div *ngIf="!updateData">
+                <button  mat-raised-button type="button" class="button-search" (click)="openRegisterCar()">
+                  + agregar <span class="material-icons">directions_car_filled</span>
+                </button>
+                <mat-list role="list">
+                    <div class="list-car animate__animated animate__fadeIn" *ngFor="let car of _trans.listCarOwner; let i=index">
+                        <mat-list-item role="listitem">Vehiculo {{i+1}}</mat-list-item> 
+                        <div class="content-button">
+                            <button mat-button type="button" (click)="editCar(i)">
+                                <span class="material-icons">edit</span> Editar
+                            </button>
+                            <button mat-button class="m-1" (click)="_trans.deleteCar(i)">
+                                <span class="material-icons">delete</span> Eliminar
+                            </button>
+                        </div>
                       </div>
-                    </div>
-              </mat-list>
+                </mat-list>
               </div>
           
               <div class="mt-3">
-                <button  mat-raised-button type="button" class="button-search btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
+                <button *ngIf="!updateData"   mat-raised-button type="button" class="button-search btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
                   <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Registrar
                 </button>
-                <button mat-raised-button type="reset" (click)="resetForm()" class="button-search m-2" color="warn" [disabled]="registerLoad">
+                <button *ngIf="updateData"  mat-raised-button type="button" class="btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
+                  <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Guardar cambios
+                </button>
+                <button *ngIf="!updateData" mat-raised-button type="reset" (click)="resetForm()" class="button-search m-2" color="warn" [disabled]="registerLoad">
                   Cancelar
                 </button>
               </div>

@@ -20,16 +20,15 @@ export class SliderComponent {
   vistaPost:boolean;
 
   countPost: number = 0
-  img:string = '../../../assets/img/Portada/combi4.png';
+  img:string = '../../../assets/img/svg/order_a_car.svg';
 
   constructor(public _db:DatabaseService, private _sp:NgxSpinnerService) {
     this.viewDescription();
     this.viewPost();
-    this.spinner();
   }
 
   viewDescription(){
-    this.Description = new PortDescriotion('Municipalidad de Andahuaylas','Por un servicio mejor a Andahuaylas');
+    this.Description = new PortDescriotion('Municipalidad provincial de Andahuaylas','Por un servicio mejor a Andahuaylas');
     this.vista = true;
     setInterval( () => this.vista = false, 10000)
 
@@ -58,16 +57,9 @@ export class SliderComponent {
         this.img = this._db.listpost[this.countPost].url;
         this.countPost = this.countPost + 1;
       }else{
-        this.img = '../../../assets/img/Portada/combi4.png';
+        this.img = '../../../assets/img/svg/order_a_car.svg';
       }
     },25000)
-  }
-
-  spinner(){
-    this._sp.show();
-    setTimeout(() => {
-      this._sp.hide();
-    }, 2000);
   }
 
 }

@@ -34,7 +34,8 @@
 
 <div class="row animate__animated animate__fadeIn">
     <div class="col-md-4 mb-3" *ngFor="let post of _db.listpost">
-        <mat-card class="card-post" [routerLink]="[ '../view-post', post.id ]" [ngStyle]="{'background-image':'url('+post.url+')'}">
+        <mat-card class="card-post" [routerLink]="[ '../view-post', post.id ]">
+            <img class="img-post" [src]="post.url" alt="">
         </mat-card>
     </div>
 </div>

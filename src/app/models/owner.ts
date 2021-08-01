@@ -9,8 +9,8 @@ export class Owner{
     URL_photo: string;
     celphone: string;
     email: string;
-    update_at: Date;
-    created_at: Date;
+    update_at: number;
+    created_at: number;
 
     constructor(ID_card: string,
                 firts_name: string,
@@ -20,17 +20,21 @@ export class Owner{
                 celphone: string,
                 email: string){
 
-        this.id = ''
-        this.ID_card = ID_card
-        this.firts_name = firts_name
-        this.father_last_name = father_last_name
-        this.mother_last_name = mother_last_name
-        this.status = true
-        this.URL_photo = URL_photo
-        this.celphone = celphone
-        this.email = email
-        this.update_at = new Date()
-        this.created_at = new Date()
+        this.id = '';
+        this.ID_card = ID_card;
+        this.firts_name = firts_name;
+        this.father_last_name = father_last_name;
+        this.mother_last_name = mother_last_name;
+        this.status = true;
+        this.URL_photo = URL_photo;
+        this.celphone = celphone;
+        this.email = email;
+        this.update_at = new Date().getTime();
+        this.created_at = new Date().getTime();
+    }
+
+    setId(id:string){
+        this.id = id
     }
 
     get toObject(){
