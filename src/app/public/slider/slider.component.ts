@@ -18,7 +18,6 @@ export class SliderComponent {
   Description: PortDescriotion;
   vista:boolean;
   vistaPost:boolean;
-
   countPost: number = 0
   img:string = '../../../assets/img/svg/order_a_car.svg';
 
