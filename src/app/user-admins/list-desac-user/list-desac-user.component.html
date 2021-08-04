@@ -1,38 +1,42 @@
-<div class="mt-4">
-</div>
-<mat-card class="m-1 animate__animated animate__fadeIn">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Photo</th>
-        <th scope="col">Nombres y apellidos</th>
-        <th scope="col">Email</th>
-        <th scope="col">Rol usuario</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Restaurar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of _db.listUsersdisable | slice:desde:hasta; let i=index">
-        <th >{{i+1}}</th>
-        <td><img class="default-user" [src]="data.URL_photo" alt=""></td>
-        <td>{{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}</td>
-        <td>{{data.user}}</td>
-        <td>{{data.type_profile}}</td>
-        <td><span class="badge-e">Desactivado</span></td>
-        <td><button mat-raised-button color="primary" (click)="desactivateUser(data.id,data.status)"><span class="material-icons">check</span> Restaurar</button></td>
-      </tr>
-    </tbody>
-  </table>
-  <div *ngIf="_db.listUsersdisable.length==0 && !_db.loadGetDisable">
-    <div class="alert alert-info" role="alert">
-      <span class="material-icons">folder</span> Lista de usuarios vacia
+<div class="container-fluid mt-4 contend-card">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Usuarios desactivados</mat-card-title>
+      <mat-card-subtitle><span class="badge-e">desactivados</span></mat-card-subtitle>
+    </mat-card-header>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Photo</th>
+          <th scope="col">Nombres y apellidos</th>
+          <th scope="col">Email</th>
+          <th scope="col">Rol usuario</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Restaurar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of _db.listUsersdisable | slice:desde:hasta; let i=index">
+          <th >{{i+1}}</th>
+          <td><img class="default-user" [src]="data.URL_photo" alt=""></td>
+          <td>{{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}</td>
+          <td>{{data.user}}</td>
+          <td>{{data.type_profile}}</td>
+          <td><span class="badge-e">Desactivado</span></td>
+          <td><button mat-raised-button color="primary" (click)="desactivateUser(data.id,data.status)"><span class="material-icons">check</span> Restaurar</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="_db.listUsersdisable.length==0 && !_db.loadGetDisable">
+      <div class="alert alert-info" role="alert">
+        <span class="material-icons">folder</span> Lista de usuarios vacia
+      </div>
     </div>
-  </div>
-  <div *ngIf="_db.loadGetDisable" class="text-center mt-4">
-    <div class="spinner-border text-secondary" role="status"></div>
-    <div>Cargando...</div>
-  </div>
-  <mat-paginator [length]="_db.listUsers.length" [pageSize]="8" (page)="pageEvent($event)"> </mat-paginator>
-</mat-card>
+    <div *ngIf="_db.loadGetDisable" class="text-center mt-4">
+      <div class="spinner-border text-secondary" role="status"></div>
+      <div>Cargando...</div>
+    </div>
+    <mat-paginator [length]="_db.listUsers.length" [pageSize]="8" (page)="pageEvent($event)"> </mat-paginator>
+  </mat-card>
+</div>

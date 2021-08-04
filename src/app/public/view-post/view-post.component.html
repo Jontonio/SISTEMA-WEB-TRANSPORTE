@@ -5,7 +5,7 @@
 <div *ngIf="post" class="container animate__animated animate__fadeIn">
     <div class="d-flex justify-content-between">
         <h2 class="text-center"><b>Poster</b></h2>
-        <p><b>Fecha:</b> {{post.date |  date:'medium'}}</p>
+        <p><span class="badge-s"><b>Fecha:</b> {{post.date |  date:'medium'}}</span></p>
     </div>
     <div class="container content-post">
         <img class="post" [src]="post.url" alt="" srcset="">

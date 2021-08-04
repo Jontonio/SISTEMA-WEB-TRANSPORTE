@@ -1,6 +1,10 @@
-<mat-card class="m-1">
-  <div class="table-responsive mt-4 animate__animated animate__fadeIn">
-    <table class="table table-striped">
+<div class="table-responsive mt-4">
+  <mat-card class="m-1">
+    <mat-card-header>
+      <mat-card-title>Empresas registradas</mat-card-title>
+      <mat-card-subtitle><span class="badge-e">Desactivadas</span></mat-card-subtitle>
+    </mat-card-header>
+    <table class="table table-hover cursor">
       <thead>
         <tr>
           <th scope="col" class="text-center">Nro</th>
@@ -26,15 +30,15 @@
         </tr>
       </tbody>
     </table>
-    <div *ngIf="_db.listEnterpiseDes.length==0 && !_db.loadDesacEnter">
+    <div *ngIf="_db.listEnterpise.length==0 && !_db.loadGetenterprise">
       <div class="alert" role="alert">
-        <span class="material-icons">folder</span> Lista de empresas desactivadas vacia
+        <span class="material-icons">folder</span> Lista de empresas vacia
       </div>
     </div>
-    <div *ngIf="_db.loadDesacEnter" class="text-center mt-4">
+    <div *ngIf="_db.loadGetenterprise" class="text-center mt-4">
       <div class="spinner-border text-secondary" role="status"></div>
       <div>Cargando...</div>
     </div>
-  </div>
-  <mat-paginator [length]="_db.listEnterpiseDes.length" [pageSize]="9" (page)="pageEvent($event)"></mat-paginator>
-</mat-card>
+    <mat-paginator [length]="_db.listEnterpise.length" [pageSize]="9" (page)="pageEvent($event)"></mat-paginator>
+  </mat-card>
+</div>

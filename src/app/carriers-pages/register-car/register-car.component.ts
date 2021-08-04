@@ -13,11 +13,26 @@ import { TransportService } from 'src/app/services/transport.service';
 })
 export class RegisterCarComponent {
 
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  isEditable = true;
+  isLinear = false; 
+  
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
+
   formCar:FormGroup;
   soyconductor: string = 'si';
   update: boolean = false;
 
-  constructor(public _db:DatabaseService, 
+  constructor(public _db:DatabaseService,
+    private _formBuilder: FormBuilder, 
               private fb:FormBuilder, 
               private _msg:MessagesService,
               private _trans:TransportService, 

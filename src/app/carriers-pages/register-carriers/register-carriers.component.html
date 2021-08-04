@@ -1,170 +1,176 @@
-<div class="container-fluid mt-4 mb-2 animate__animated animate__fadeIn"> 
-    <div class="row">
-      <div class="col-md-9">
-        <div class="d-flex justify-content-between">
-          <button *ngIf="updateData" mat-icon-button routerLink="../../carriers">
+<div class="container-fluid mt-4 mb-2 content-card"> 
+    <mat-card>
+      <mat-card-header>
+        <div *ngIf="updateData" mat-card-avatar>
+          <button mat-icon-button routerLink="../../carriers">
             <mat-icon><span class="material-icons">west</span></mat-icon>
           </button>
         </div>
-        <form [formGroup]="formMain" class="form-sample">
-              <div class="row">
-                <div class="col-md-9" >
-                  <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>DNI propietario</mat-label>
-                      <input type="text" matInput autocomplete="off" formControlName="ID_card" maxlength="8">
-                      <mat-error *ngIf="id_card.hasError('pattern') && !id_card.hasError('required')">
-                        Por favor digíte un número de DNI <strong>válido</strong>
-                      </mat-error>
-                      <mat-error *ngIf="id_card.hasError('required')">
-                        El campo DNI es <strong>requerido</strong>
-                      </mat-error>
-                      <mat-error *ngIf="id_card.errors?.minlength && !id_card.hasError('pattern')">
-                        El campo DNI debe ser contener<strong> 8 carácteres</strong>
-                      </mat-error>
-                  </mat-form-field>
+        <mat-card-title>Registro de transportistas</mat-card-title>
+        <mat-card-subtitle><span class="badge-s">Activos</span></mat-card-subtitle>
+      </mat-card-header>
+      <div class="row">
+        <div class="col-md-9">
+          <form [formGroup]="formMain" class="form-sample">
+                <div class="row">
+                  <div class="col-md-9" >
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>DNI propietario</mat-label>
+                        <input type="text" matInput autocomplete="off" formControlName="ID_card" maxlength="8">
+                        <mat-error *ngIf="id_card.hasError('pattern') && !id_card.hasError('required')">
+                          Por favor digíte un número de DNI <strong>válido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="id_card.hasError('required')">
+                          El campo DNI es <strong>requerido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="id_card.errors?.minlength && !id_card.hasError('pattern')">
+                          El campo DNI debe ser contener<strong> 8 carácteres</strong>
+                        </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2 mt-2">
+                    <button mat-raised-button type="button" class="button-search" (click)="completeData()" [disabled]="loadComlete">
+                      <span *ngIf="loadComlete" class="spinner-border spinner-border-sm" role="status"></span> Buscar por DNI
+                    </button>
+                  </div>
                 </div>
-                <div class="col-md-2 mt-2">
-                  <button mat-raised-button type="button" class="button-search" (click)="completeData()" [disabled]="loadComlete">
-                    <span *ngIf="loadComlete" class="spinner-border spinner-border-sm" role="status"></span> Buscar por DNI
+                <div class="row">
+                  <div class="col-md-4">
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>Nombres propietario</mat-label>
+                        <input type="text" matInput autocomplete="off" formControlName="first_name">
+                        <mat-error *ngIf="first_name.hasError('pattern') && !first_name.hasError('required')">
+                        Por favor digíte un nombre <strong>válido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="first_name.hasError('required')">
+                          El campo nombre es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-4">
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>Apellido paterno propietario</mat-label>
+                        <input type="text" matInput autocomplete="off" formControlName="father_last_name">
+                        <mat-error *ngIf="father_ln.hasError('pattern') && !father_ln.hasError('required')">
+                        Por favor digíte un nombre <strong>válido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="father_ln.hasError('required')">
+                          El campo nombre es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-4">
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>Apellido materno propietario</mat-label>
+                        <input type="text" matInput autocomplete="off" formControlName="mother_last_name">
+                        <mat-error *ngIf="mother_ln.hasError('pattern') && !mother_ln.hasError('required')">
+                        Por favor digíte un nombre <strong>válido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="mother_ln.hasError('required')">
+                          El campo nombre es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>Email propietario</mat-label>
+                        <input type="email" matInput autocomplete="off" formControlName="email">
+                        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                        Por favor digíte un email <strong>válido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="email.hasError('required')">
+                          El campo email es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-9">
+                    <mat-form-field class="full-width" appearance="legacy">
+                        <mat-label>Celular propietario</mat-label>
+                        <input type="text" matInput autocomplete="off" formControlName="celphone" maxlength="9">
+                        <mat-error *ngIf="celphone.hasError('pattern') && !celphone.hasError('required')">
+                        Por favor digíte un número de celular <strong>válido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="celphone.hasError('required')">
+                          El campo celular es <strong>requerido</strong>
+                        </mat-error>
+                        <mat-error *ngIf="celphone.errors?.minlength && !celphone.hasError('pattern')">
+                          El campo celular debe ser contener<strong> 9 carácteres</strong>
+                        </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="upload-btn-wrapper">
+                        <span class="title-upload" *ngIf="!this._db.subiedoImg">
+                          <span class="material-icons">photo_camera</span></span>
+                        <span *ngIf="_db.subiedoImg" >{{this._db.porcentajeSFoto}}%</span>
+                      <input type="file" class="file-owner" 
+                            (change)="this._db.onImage($event,3)" 
+                            [class.invalid]="photo" 
+                            accept="image/*" 
+                            formControlName="URL_photo"/>
+                    </div>
+                    <div *ngIf="photo" class="mt-2 animate__animated animate__fadeInDown">
+                      <span class="message-invalid">El campo foto del propietario es <strong>requerido</strong></span>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!updateData">
+                  <button  mat-raised-button type="button" class="button-search" (click)="openRegisterCar()">
+                    + agregar <span class="material-icons">directions_car_filled</span>
+                  </button>
+                  <mat-list role="list">
+                      <div class="list-car animate__animated animate__fadeIn" *ngFor="let car of _trans.listCarOwner; let i=index">
+                          <mat-list-item role="listitem">Vehiculo {{i+1}}</mat-list-item> 
+                          <div class="content-button">
+                              <button mat-button type="button" (click)="editCar(i)">
+                                  <span class="material-icons">edit</span> Editar
+                              </button>
+                              <button mat-button class="m-1" (click)="_trans.deleteCar(i)">
+                                  <span class="material-icons">delete</span> Eliminar
+                              </button>
+                          </div>
+                        </div>
+                  </mat-list>
+                </div>
+            
+                <div class="mt-3">
+                  <button *ngIf="!updateData"   mat-raised-button type="button" class="button-search btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
+                    <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Registrar
+                  </button>
+                  <button *ngIf="updateData"  mat-raised-button type="button" class="btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
+                    <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Guardar cambios
+                  </button>
+                  <button *ngIf="!updateData" mat-raised-button type="reset" (click)="resetForm()" class="button-search m-2" color="warn" [disabled]="registerLoad">
+                    Cancelar
                   </button>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>Nombres propietario</mat-label>
-                      <input type="text" matInput autocomplete="off" formControlName="first_name">
-                      <mat-error *ngIf="first_name.hasError('pattern') && !first_name.hasError('required')">
-                      Por favor digíte un nombre <strong>válido</strong>
-                      </mat-error>
-                      <mat-error *ngIf="first_name.hasError('required')">
-                        El campo nombre es <strong>requerido</strong>
-                      </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>Apellido paterno propietario</mat-label>
-                      <input type="text" matInput autocomplete="off" formControlName="father_last_name">
-                      <mat-error *ngIf="father_ln.hasError('pattern') && !father_ln.hasError('required')">
-                      Por favor digíte un nombre <strong>válido</strong>
-                      </mat-error>
-                      <mat-error *ngIf="father_ln.hasError('required')">
-                        El campo nombre es <strong>requerido</strong>
-                      </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>Apellido materno propietario</mat-label>
-                      <input type="text" matInput autocomplete="off" formControlName="mother_last_name">
-                      <mat-error *ngIf="mother_ln.hasError('pattern') && !mother_ln.hasError('required')">
-                      Por favor digíte un nombre <strong>válido</strong>
-                      </mat-error>
-                      <mat-error *ngIf="mother_ln.hasError('required')">
-                        El campo nombre es <strong>requerido</strong>
-                      </mat-error>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>Email propietario</mat-label>
-                      <input type="email" matInput autocomplete="off" formControlName="email">
-                      <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-                      Por favor digíte un email <strong>válido</strong>
-                      </mat-error>
-                      <mat-error *ngIf="email.hasError('required')">
-                        El campo email es <strong>requerido</strong>
-                      </mat-error>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-9">
-                  <mat-form-field class="full-width" appearance="outline">
-                      <mat-label>Celular propietario</mat-label>
-                      <input type="text" matInput autocomplete="off" formControlName="celphone" maxlength="9">
-                      <mat-error *ngIf="celphone.hasError('pattern') && !celphone.hasError('required')">
-                      Por favor digíte un número de celular <strong>válido</strong>
-                      </mat-error>
-                      <mat-error *ngIf="celphone.hasError('required')">
-                        El campo celular es <strong>requerido</strong>
-                      </mat-error>
-                      <mat-error *ngIf="celphone.errors?.minlength && !celphone.hasError('pattern')">
-                        El campo celular debe ser contener<strong> 9 carácteres</strong>
-                      </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-md-3">
-                  <div class="upload-btn-wrapper">
-                      <span class="title-upload" *ngIf="!this._db.subiedoImg">
-                        <span class="material-icons">photo_camera</span></span>
-                      <span *ngIf="_db.subiedoImg" >{{this._db.porcentajeSFoto}}%</span>
-                    <input type="file" class="file-owner" 
-                          (change)="this._db.onImage($event,3)" 
-                          [class.invalid]="photo" 
-                          accept="image/*" 
-                          formControlName="URL_photo"/>
-                  </div>
-                  <div *ngIf="photo" class="mt-2 animate__animated animate__fadeInDown">
-                    <span class="message-invalid">El campo foto del propietario es <strong>requerido</strong></span>
-                  </div>
-                </div>
-              </div>
-              <div *ngIf="!updateData">
-                <button  mat-raised-button type="button" class="button-search" (click)="openRegisterCar()">
-                  + agregar <span class="material-icons">directions_car_filled</span>
-                </button>
-                <mat-list role="list">
-                    <div class="list-car animate__animated animate__fadeIn" *ngFor="let car of _trans.listCarOwner; let i=index">
-                        <mat-list-item role="listitem">Vehiculo {{i+1}}</mat-list-item> 
-                        <div class="content-button">
-                            <button mat-button type="button" (click)="editCar(i)">
-                                <span class="material-icons">edit</span> Editar
-                            </button>
-                            <button mat-button class="m-1" (click)="_trans.deleteCar(i)">
-                                <span class="material-icons">delete</span> Eliminar
-                            </button>
-                        </div>
-                      </div>
-                </mat-list>
-              </div>
-          
-              <div class="mt-3">
-                <button *ngIf="!updateData"   mat-raised-button type="button" class="button-search btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
-                  <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Registrar
-                </button>
-                <button *ngIf="updateData"  mat-raised-button type="button" class="btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
-                  <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Guardar cambios
-                </button>
-                <button *ngIf="!updateData" mat-raised-button type="reset" (click)="resetForm()" class="button-search m-2" color="warn" [disabled]="registerLoad">
-                  Cancelar
-                </button>
-              </div>
-        </form>
+          </form>
+        </div>
+        <div class="col-md-3">
+          <mat-progress-bar *ngIf="_db.subiedoImg" class="mt-4 progres-bar" mode="indeterminate"></mat-progress-bar>
+          <mat-card class="mat-card card-preview">
+            <mat-card-header>
+              <mat-card-title>Preview Register</mat-card-title>
+              <mat-card-subtitle>Información</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div *ngIf="_db.imgauxPost; else avat" class="center"><img class="img-user-profile" [src]="_db.imgauxPost" alt="" srcset=""></div>
+              <ng-template #avat><div class="center">
+                <ngx-avatar [name]="formMain.value.first_name" size="80"></ngx-avatar></div>
+              </ng-template>
+              <mat-card-subtitle>Nombres</mat-card-subtitle>
+              <h3 class="text-center">{{formMain.value.first_name}} {{formMain.value.father_last_name}} {{formMain.value.mother_last_name}}</h3>
+              <mat-card-subtitle>Información de contacto</mat-card-subtitle>
+              <h3 class="text-center">{{formMain.value.email}} - {{formMain.value.celphone}}</h3>
+              <mat-card-subtitle>Cantidad de vehículos</mat-card-subtitle>
+              <h3 class="text-center">{{_trans.listCarOwner.length}}</h3>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
-      <div class="col-md-3">
-        <mat-progress-bar *ngIf="_db.subiedoImg" class="mt-4 progres-bar" mode="indeterminate"></mat-progress-bar>
-        <mat-card class="mat-card card-preview">
-          <mat-card-header>
-            <mat-card-title>Preview Register</mat-card-title>
-            <mat-card-subtitle>Información</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <div *ngIf="_db.imgauxPost; else avat" class="center"><img class="img-user-profile" [src]="_db.imgauxPost" alt="" srcset=""></div>
-            <ng-template #avat><div class="center">
-              <ngx-avatar [name]="formMain.value.first_name" size="100"></ngx-avatar></div>
-            </ng-template>
-            <mat-card-subtitle>Nombres</mat-card-subtitle>
-            <h2 class="text-center">{{formMain.value.first_name}} {{formMain.value.father_last_name}} {{formMain.value.mother_last_name}}</h2>
-            <mat-card-subtitle>Información de contacto</mat-card-subtitle>
-            <h3 class="text-center">{{formMain.value.email}} - {{formMain.value.celphone}}</h3>
-            <mat-card-subtitle>Cantidad de vehículos</mat-card-subtitle>
-            <h3 class="text-center">{{_trans.listCarOwner.length}}</h3>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </div>
+    </mat-card>
 </div>

@@ -14,18 +14,18 @@
 
   align-items: center;
 }
-
 .qr{
   height: 120px;
   width:  120px;
 }
-
 table {
   width: 100%;
 }
-  
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+}
+.container-card{
+  padding: 2px;
 }
   

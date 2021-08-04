@@ -1,4 +1,62 @@
-<h2 mat-dialog-title><i class="fas fa-car"></i><span class="material-icons">directions_car_filled</span> Registro vehículo</h2>
+<ng-template #step1Template>
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="Last name, First name" required>
+      </mat-form-field>
+    </form>
+  </ng-template>
+  
+  <ng-template #step2Template>
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="Address" required>
+      </mat-form-field>
+    </form>
+  </ng-template>
+  
+  <mat-horizontal-stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <!-- stepper title !-->
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <!-- end stepper title !-->
+  
+      <!-- stepper content !-->
+      <ng-container *ngTemplateOutlet="step1Template"></ng-container>
+      <!-- end stepper content !-->
+  
+      <!-- stepper footer !-->
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+      <!-- end stepper footer !-->
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <!-- stepper title !-->
+      <ng-template matStepLabel>Fill out your address</ng-template>
+      <!-- end stepper title !-->
+  
+      <!-- stepper content !-->
+      <ng-container *ngTemplateOutlet="step2Template"></ng-container>
+      <!-- end stepper content !-->
+  
+      <!-- stepper footer !-->
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+      <!-- end stepper footer !-->
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button >Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
+<!-- <h2 mat-dialog-title><i class="fas fa-car"></i><span class="material-icons">directions_car_filled</span> Registro vehículo</h2>
 <mat-dialog-content class="mat-typography">
     <div class="container-fluid">
         <form [formGroup]="formCar">
@@ -173,4 +231,5 @@
     <button mat-raised-button *ngIf="!update" class="btn-b-g" (click)="registerCar()">Guardar <span class="material-icons">directions_car_filled</span></button>
     <button mat-raised-button *ngIf="update"  class="btn-b-g" (click)="saveToList()">Guardar cambios <span class="material-icons">directions_car_filled</span></button>
     <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Cancelar</button>
-</mat-dialog-actions>
+</mat-dialog-actions> -->
+
