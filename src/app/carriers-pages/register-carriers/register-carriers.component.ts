@@ -56,7 +56,7 @@ export class RegisterCarriersComponent {
 
   openRegisterCar(){
     // abrir componente register carrier modal
-    this.dialog.open(RegisterCarComponent, { width:'100%', disableClose:true })
+    this.dialog.open(RegisterCarComponent, { width:'100%' })
   }
 
   formCarriers(){
