@@ -139,13 +139,13 @@
             </div>
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <button *ngIf="!update" type="button" mat-raised-button class="btn-b-g" (click)="registerUser()" [disabled]="_db.subiedoImg || loadregister">
+                    <button *ngIf="!update" type="button" mat-raised-button color="primary" (click)="registerUser()" [disabled]="_db.subiedoImg || loadregister">
                       <span *ngIf="loadregister" class="spinner-border spinner-border-sm" role="status"></span> Registrar
                     </button>
-                    <button *ngIf="update" type="button" mat-raised-button class="btn-b-g" (click)="updateUser()" [disabled]="!update">
+                    <button *ngIf="update" type="button" mat-raised-button color="primary" (click)="updateUser()" [disabled]="!update">
                       <i class="fas fa-save"></i> Guardar cambios
                     </button>
-                    <button *ngIf="!update" type="reset" mat-raised-button class="m-1">Cancelar</button>
+                    <button *ngIf="!update" type="reset" mat-raised-button color="warn" class="m-1">Cancelar</button>
                 </div>
                 <div class="col-md-6">
                 </div>

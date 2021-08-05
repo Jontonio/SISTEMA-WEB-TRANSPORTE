@@ -99,11 +99,13 @@ export class TransportService {
 
   getCarrierCars(id:string){
     return new Promise((resolve,reject) =>{
-      this.fs.collection('carriers/'+id+'/cars').valueChanges().subscribe( res => {
-        resolve(res);
-      }, err => {
-        reject('Error al obtener datos del transportista');
-      })
+      if(id){
+        this.fs.collection('/carriers/'+id+'/cars').valueChanges().subscribe( res => {
+          resolve(res);
+        }, err => {
+          reject('Error al obtener datos del transportista');
+        })
+      }
     })
   }
 

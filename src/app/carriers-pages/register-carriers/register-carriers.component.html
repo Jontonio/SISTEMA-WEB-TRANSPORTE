@@ -138,10 +138,10 @@
                 </div>
             
                 <div class="mt-3">
-                  <button *ngIf="!updateData"   mat-raised-button type="button" class="button-search btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
+                  <button *ngIf="!updateData" color="primary" mat-raised-button type="button" (click)="registerOwner()" [disabled]="registerLoad">
                     <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Registrar
                   </button>
-                  <button *ngIf="updateData"  mat-raised-button type="button" class="btn-b-g" (click)="registerOwner()" [disabled]="registerLoad">
+                  <button *ngIf="updateData" color="primary" mat-raised-button type="button" (click)="registerOwner()" [disabled]="registerLoad">
                     <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Guardar cambios
                   </button>
                   <button *ngIf="!updateData" mat-raised-button type="reset" (click)="resetForm()" class="button-search m-2" color="warn" [disabled]="registerLoad">

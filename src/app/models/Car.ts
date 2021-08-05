@@ -1,4 +1,3 @@
-import { Valoration } from "./valoration"
 
 export class Car{
     id:string
@@ -48,6 +47,26 @@ export class Car{
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.estadoConductor = estadoConductor;
+    }
+
+    get toObjet(){
+        return {
+            id: this.id, 
+            placa: this.placa, 
+            serie: this.serie, 
+            modelo: this.modelo, 
+            color: this.color, 
+            fotoConductor: this.fotoConductor, 
+            idEmpresa: this.idEmpresa, 
+            targetaCirculacion: this.targetaCirculacion, 
+            soyConductor: this.soyConductor, 
+            valoration: this.valoration, 
+            dniconductor: this.dniconductor, 
+            nombresConductor: this.nombresConductor, 
+            apellidoPaterno: this.apellidoPaterno, 
+            apellidoMaterno: this.apellidoMaterno, 
+            estadoConductor: this.estadoConductor, 
+        }
     }
 
 

@@ -57,7 +57,7 @@ export class CommentComponent implements OnInit {
                                       this.Data.email)
 
     this._trans.RegisterComment(this.Data.uid, this.Data.idcar,valoration.toObject).then( res => {
-      this._msg.successMsg(res as any,'Reseña guardada exitosamente');
+      this._msg.messageMaterial('Reseña guardada exitosamente');
       this.dialogRef.close();
       this.cancel();
     })

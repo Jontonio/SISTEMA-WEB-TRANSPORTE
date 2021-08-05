@@ -106,45 +106,41 @@ export class RegisterCarComponent {
   }
 
   registerCar(){
-
-    console.table(this.formCarRegister.value)
-    console.table(this.formDriver.value)
-
-    // this._trans.addListCar(this.formCar.value).then( res => {
-    //   if(res){
-    //     this._msg.successMsg('Automóvil añadido a la lista','Automóvil añadido');
-    //     this.dialogRef.close();
-    //   }
-    // })
-
+    const data = {...this.formCarRegister.value, ...this.formDriver.value};
+    this._trans.addListCar(data).then( res => {
+      if(res){
+        this._msg.successMsg('Automóvil añadido a la lista','Automóvil añadido');
+        this.dialogRef.close();
+      }
+    })
   }
 
   loadEdit(){
     if(this.data!=null){
       this.update = true;
       const value = this._trans.listCarOwner[this.data] as Car;
-      this.formCar.controls['placa'].setValue(value.placa);
-      this.formCar.controls['serie'].setValue(value.serie);
-      this.formCar.controls['modelo'].setValue(value.modelo);
-      this.formCar.controls['color'].setValue(value.color);
-      this.formCar.controls['foto'].setValue(value.fotoConductor);
-      this.formCar.controls['idEmpresa'].setValue(value.idEmpresa);
-      this.formCar.controls['soyConductor'].setValue(value.soyConductor);
-
+      this.formCarRegister.controls['placa'].setValue(value.placa);
+      this.formCarRegister.controls['serie'].setValue(value.serie);
+      this.formCarRegister.controls['modelo'].setValue(value.modelo);
+      this.formCarRegister.controls['color'].setValue(value.color);
+      this.formCarRegister.controls['foto'].setValue(value.fotoConductor);
+      this.formCarRegister.controls['idEmpresa'].setValue(value.idEmpresa);
+      
       if(value.soyConductor=='no'){
         this.enableInputs();
-        this.formCar.controls['dniconductor'].setValue(value.dniconductor);
-        this.formCar.controls['nombresConductor'].setValue(value.nombresConductor);
-        this.formCar.controls['apellidoPaterno'].setValue(value.apellidoPaterno);
-        this.formCar.controls['apellidoMaterno'].setValue(value.apellidoMaterno);
-        this.formCar.controls['estadoConductor'].setValue(value.estadoConductor);
+        this.formDriver.controls['soyConductor'].setValue(value.soyConductor);
+        this.formDriver.controls['dniconductor'].setValue(value.dniconductor);
+        this.formDriver.controls['nombresConductor'].setValue(value.nombresConductor);
+        this.formDriver.controls['apellidoPaterno'].setValue(value.apellidoPaterno);
+        this.formDriver.controls['apellidoMaterno'].setValue(value.apellidoMaterno);
+        this.formDriver.controls['estadoConductor'].setValue(value.estadoConductor);
       }
-
     }
   }
 
   saveToList(){
-    this._trans.listCarOwner.splice(this.data, 1, this.formCar.value);
+    const data = {...this.formCarRegister.value, ...this.formDriver.value};
+    this._trans.listCarOwner.splice(this.data, 1, data);
     this._msg.successMsg('Automóvil actualizado correctamente','Automóvil actualizado');
     this.dialogRef.close();
   }
