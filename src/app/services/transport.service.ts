@@ -3,7 +3,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Owner } from '../models/owner';
 import { MessagesService } from './messages.service';
-import firestore from 'firebase/app';
 import { Car } from '../models/Car';
 import { Valoration } from '../models/valoration';
 
@@ -13,13 +12,16 @@ import { Valoration } from '../models/valoration';
 export class TransportService {
 
   listCarOwner   : Object[] = [];
-  loadGetcarriers: boolean = false;
-  carriersRef    = this.fs.collection('carriers');
   listCarriers   : Owner[] = [];
   listValoration : Valoration[] = [];
   listcars       = new Array<any>();
   car            : Car;
+  loadGetcarriers: boolean = false;
   url            : string = 'http://localhost:4200/conductor/'
+  carriersRef    = this.fs.collection('carriers');
+  
+  // average valorations
+  average        :number = 0;
 
   constructor(private _msg:MessagesService, 
               private fs: AngularFirestore,
@@ -165,6 +167,7 @@ export class TransportService {
     this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration', ref => ref.orderBy('dateComent','desc') )
            .valueChanges().subscribe( res => {
              this.listValoration = res as any;
+             this.getAverageValoration(this.listValoration);
            })
   }
 
@@ -191,6 +194,16 @@ export class TransportService {
     })
   }
 
-  // /carriers/3EwUwxYSxZTlcQGUY4wK/cars/oFV4cJi0xwxnluepVZpT/valoracion/6z54jTXVhC2WYzyTygPH
+  // methods stadist
+  getAverageValoration(listValoration:Valoration[]){
+    this.average = 0;
+    if(listValoration.length>0){
+      let sum = 0;
+      listValoration.forEach( val => {
+        sum += val.valoration;
+      })
+      this.average = (sum / listValoration.length).toFixed() as any;
+    }
+  }
  
 }

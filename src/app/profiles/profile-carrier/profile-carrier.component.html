@@ -42,8 +42,8 @@
                   </h2>
                   <div class="row">
                     <mat-card-subtitle>Información vehicular</mat-card-subtitle>
-                    <div class="col-md-6 d-flex">
-                      <span class="material-icons">business</span> <p class="info"><b>Cristo Morado</b></p>
+                    <div class="col-md-6 d-flex" *ngIf="enterprise">
+                      <span class="material-icons">business</span> <p class="info"><b>{{enterprise.razonSocial | lowercase}}</b></p>
                     </div>
                     <div class="col-md-6">
                       <div class="d-flex">
@@ -79,10 +79,10 @@
                 </mat-card-header>
                 <mat-card-content>
                   <div class="row">
-                    <div class="col-md-4">
-                      <h1 class="text-center">3</h1>
+                    <div class="col-md-4" *ngIf="_trans.average!=0">
+                      <h1 class="text-center">{{_trans.average}}</h1>
                       <star-rating class="text-center"
-                                  [value]="3" 
+                                  [value]="_trans.average" 
                                   [totalstars]="5" 
                                   checkedcolor="black" 
                                   uncheckedcolor="gray" 
