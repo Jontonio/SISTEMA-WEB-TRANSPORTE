@@ -1,19 +1,32 @@
 
 export class Valoration{
+    id:string;
     comment:string;
     valoration: number;
     dateComent:number;
     userName:string;
     photo:string;
     email:string;
+    like:number;
+    
 
     constructor(comment:string, valoration:number, userName:string,photo:string, email:string){
+        this.id = '',
         this.comment = comment;
         this.valoration = valoration;
         this.dateComent = new Date().getTime();
         this.userName = userName;
         this.photo = photo;
         this.email = email;
+        this.like = 0;
+    }
+
+    getId(){
+        return this.id;
+    }
+
+    getLike(){
+        return this.like;
     }
 
     getvaloration(){
@@ -56,8 +69,10 @@ export class Valoration{
 
     get toObject(){
         return {
+            id: this.getId(),
             comment: this.getcomment(),
             valoration: this.getvaloration(), 
+            like:this.getLike(),
             dateComent: this.getdateComent(),
             userName: this.getuserName(),
             photo:this.getphoto(),
