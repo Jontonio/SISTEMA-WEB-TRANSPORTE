@@ -162,7 +162,7 @@ export class TransportService {
   }
 
   getValoration(idOwner:string, idCar:string){
-    this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration')
+    this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration', ref => ref.orderBy('dateComent','desc') )
            .valueChanges().subscribe( res => {
              this.listValoration = res as any;
            })
