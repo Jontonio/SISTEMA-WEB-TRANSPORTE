@@ -1,5 +1,9 @@
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-4 content-card">
     <mat-card>
+      <mat-card-header>
+        <mat-card-title>Tarjetas generadas</mat-card-title>
+        <mat-card-subtitle><span class="badge-s">2 Tarjetas por vehículo</span></mat-card-subtitle>
+      </mat-card-header>
       <div class="row">
         <div class="col-md-3">
           <mat-form-field class="full-width" appearance="legacy">
@@ -46,7 +50,7 @@
                     </div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-center"><b>QR - {{i}}</b></div>
+                    <div class="text-center"><b>QR - {{i+1}}</b></div>
                     <div class="text-center">
                       <qrcode elementType="img" [qrdata]="car.link" [width]="178" [errorCorrectionLevel]="'M'"></qrcode>
                     </div>
@@ -70,7 +74,7 @@
                     </div>
                   </div>
                   <div class="col-md-5">
-                    <div class="text-center"><b>QR - {{i}}</b></div>
+                    <div class="text-center"><b>QR - {{i+1}}</b></div>
                     <div class="text-center">
                       <qrcode elementType="img" [qrdata]="car.link" [width]="178" [errorCorrectionLevel]="'M'"></qrcode>
                     </div>

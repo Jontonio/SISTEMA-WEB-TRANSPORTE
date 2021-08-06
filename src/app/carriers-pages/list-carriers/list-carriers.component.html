@@ -1,5 +1,9 @@
-<div class="container-fluid mt-3">
-  <mat-card class="m-1">
+<div class="container-fluid mt-4 container-card">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Transportistas registrados</mat-card-title>
+      <mat-card-subtitle><span class="badge-s">Activos</span></mat-card-subtitle>
+    </mat-card-header>
     <div class="row">
       <div class="col-md-3">
         <mat-form-field appearance="legacy">
@@ -44,7 +48,7 @@
                     <td><span class="badge-b">activo</span></td>
                     <td><a [routerLink]="[ '../owner-car', data.id ]" class="link-success">ver más</a></td>
                     <td>
-                        <button mat-raised-button type="button" class="button-search" [routerLink]="[ '../edit-carriers', data.id]">
+                        <button mat-raised-button type="button" color="primary" [routerLink]="[ '../edit-carriers', data.id]">
                             <span class="material-icons">edit</span> Editar
                         </button>
                     </td>

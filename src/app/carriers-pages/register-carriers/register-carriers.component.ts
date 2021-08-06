@@ -56,7 +56,7 @@ export class RegisterCarriersComponent {
 
   openRegisterCar(){
     // abrir componente register carrier modal
-    this.dialog.open(RegisterCarComponent, { width:'100%', disableClose:true })
+    this.dialog.open(RegisterCarComponent, { width:'100%' })
   }
 
   formCarriers(){
@@ -152,6 +152,7 @@ export class RegisterCarriersComponent {
         this._msg.errorMsg(err,'Ocurrio un error')
       })
     } else {
+      // console.log(data.toObject,this._trans.listCarOwner)
       // caso que pase la validación crear un obejto dueño 
       this.registerLoad = true;
       this._trans.addCarrier(data.toObject,this._trans.listCarOwner).then( res => {

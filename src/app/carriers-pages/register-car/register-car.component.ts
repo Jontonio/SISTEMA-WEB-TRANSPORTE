@@ -13,29 +13,53 @@ import { TransportService } from 'src/app/services/transport.service';
 })
 export class RegisterCarComponent {
 
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  isEditable = true;
+  isLinear = false; 
+  
+  ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
+
   formCar:FormGroup;
   soyconductor: string = 'si';
   update: boolean = false;
+  formCarRegister: FormGroup;
+  formDriver:FormGroup;
 
-  constructor(public _db:DatabaseService, 
+  constructor(public _db:DatabaseService,
+    private _formBuilder: FormBuilder, 
               private fb:FormBuilder, 
               private _msg:MessagesService,
               private _trans:TransportService, 
               @Inject(MAT_DIALOG_DATA) public data: number,
               public dialogRef: MatDialogRef<RegisterCarComponent>) {
-    this.createForm();
+    this.createFormCar();
+    this.createFormDriver();
     this.disableInputs();
     this.loadEdit();
   }
 
-  createForm(){
-    this.formCar = this.fb.group({
+  createFormCar(){
+    this.formCarRegister = this.fb.group({
       placa:['',[Validators.required]],
       serie:['',[Validators.required]],
       modelo:['',[Validators.required]],
       color:['',[Validators.required]],
       foto:['',[Validators.required]],
+      targetaCirculacion:['',[Validators.required]],
       idEmpresa:['',[Validators.required]],
+    })
+  }
+
+  createFormDriver(){
+    this.formDriver = this.fb.group({
       soyConductor:[this.soyconductor,[Validators.required]],
       valoration: new FormArray([]),
       dniconductor:['',[Validators.required]],
@@ -43,15 +67,14 @@ export class RegisterCarComponent {
       apellidoPaterno:['',[Validators.required]],
       apellidoMaterno:['',[Validators.required]],
       estadoConductor:['',[Validators.required]],
-      targetaCirculacion:['',[Validators.required]]
     })
   }
 
   get photo(){
-    return this.formCar.controls['foto'].invalid && this.formCar.controls['foto'].touched;
+    return this.formCarRegister.controls['foto'].invalid && this.formCarRegister.controls['foto'].touched;
   }
   get targeta(){
-    return this.formCar.controls['targetaCirculacion'].invalid && this.formCar.controls['targetaCirculacion'].touched;
+    return this.formCarRegister.controls['targetaCirculacion'].invalid && this.formCarRegister.controls['targetaCirculacion'].touched;
   }
 
   vistaInputs(estado:string){
@@ -67,67 +90,77 @@ export class RegisterCarComponent {
   }
 
   disableInputs(){
-    this.formCar.controls['dniconductor'].disable();
-    this.formCar.controls['nombresConductor'].disable();
-    this.formCar.controls['apellidoPaterno'].disable();
-    this.formCar.controls['apellidoMaterno'].disable();
-    this.formCar.controls['estadoConductor'].disable();
+    this.formDriver.controls['dniconductor'].disable();
+    this.formDriver.controls['nombresConductor'].disable();
+    this.formDriver.controls['apellidoPaterno'].disable();
+    this.formDriver.controls['apellidoMaterno'].disable();
+    this.formDriver.controls['estadoConductor'].disable();
   }
 
   enableInputs(){
-    this.formCar.controls['dniconductor'].enable();
-    this.formCar.controls['nombresConductor'].enable();
-    this.formCar.controls['apellidoPaterno'].enable();
-    this.formCar.controls['apellidoMaterno'].enable();
-    this.formCar.controls['estadoConductor'].enable();
+    this.formDriver.controls['dniconductor'].enable();
+    this.formDriver.controls['nombresConductor'].enable();
+    this.formDriver.controls['apellidoPaterno'].enable();
+    this.formDriver.controls['apellidoMaterno'].enable();
+    this.formDriver.controls['estadoConductor'].enable();
   }
 
   registerCar(){
-
-    if(this.formCar.invalid){
-      Object.keys(this.formCar.controls).forEach( input => {
-        this.formCar.controls[input].markAllAsTouched();
-      })
-      return;
-    }
-
-    this._trans.addListCar(this.formCar.value).then( res => {
+    const data = {...this.formCarRegister.value, ...this.formDriver.value};
+    this._trans.addListCar(data).then( res => {
       if(res){
         this._msg.successMsg('Automóvil añadido a la lista','Automóvil añadido');
         this.dialogRef.close();
       }
     })
-
   }
 
   loadEdit(){
     if(this.data!=null){
       this.update = true;
       const value = this._trans.listCarOwner[this.data] as Car;
-      this.formCar.controls['placa'].setValue(value.placa);
-      this.formCar.controls['serie'].setValue(value.serie);
-      this.formCar.controls['modelo'].setValue(value.modelo);
-      this.formCar.controls['color'].setValue(value.color);
-      this.formCar.controls['foto'].setValue(value.fotoConductor);
-      this.formCar.controls['idEmpresa'].setValue(value.idEmpresa);
-      this.formCar.controls['soyConductor'].setValue(value.soyConductor);
-
+      this.formCarRegister.controls['placa'].setValue(value.placa);
+      this.formCarRegister.controls['serie'].setValue(value.serie);
+      this.formCarRegister.controls['modelo'].setValue(value.modelo);
+      this.formCarRegister.controls['color'].setValue(value.color);
+      this.formCarRegister.controls['foto'].setValue(value.fotoConductor);
+      this.formCarRegister.controls['idEmpresa'].setValue(value.idEmpresa);
+      
       if(value.soyConductor=='no'){
         this.enableInputs();
-        this.formCar.controls['dniconductor'].setValue(value.dniconductor);
-        this.formCar.controls['nombresConductor'].setValue(value.nombresConductor);
-        this.formCar.controls['apellidoPaterno'].setValue(value.apellidoPaterno);
-        this.formCar.controls['apellidoMaterno'].setValue(value.apellidoMaterno);
-        this.formCar.controls['estadoConductor'].setValue(value.estadoConductor);
+        this.formDriver.controls['soyConductor'].setValue(value.soyConductor);
+        this.formDriver.controls['dniconductor'].setValue(value.dniconductor);
+        this.formDriver.controls['nombresConductor'].setValue(value.nombresConductor);
+        this.formDriver.controls['apellidoPaterno'].setValue(value.apellidoPaterno);
+        this.formDriver.controls['apellidoMaterno'].setValue(value.apellidoMaterno);
+        this.formDriver.controls['estadoConductor'].setValue(value.estadoConductor);
       }
-
     }
   }
 
   saveToList(){
-    this._trans.listCarOwner.splice(this.data, 1, this.formCar.value);
+    const data = {...this.formCarRegister.value, ...this.formDriver.value};
+    this._trans.listCarOwner.splice(this.data, 1, data);
     this._msg.successMsg('Automóvil actualizado correctamente','Automóvil actualizado');
     this.dialogRef.close();
+  }
+  
+  validateNext1(){
+    if(this.formCarRegister.invalid){
+      Object.keys(this.formCarRegister.controls).forEach( input => {
+        this.formCarRegister.controls[input].markAllAsTouched();
+      })
+      return;
+    }
+  }
+
+  validateNext2(){
+    if(this.formDriver.invalid){
+      Object.keys(this.formDriver.controls).forEach( input => {
+        this.formDriver.controls[input].markAllAsTouched();
+      })
+      return;
+    }
   }
 
 }
