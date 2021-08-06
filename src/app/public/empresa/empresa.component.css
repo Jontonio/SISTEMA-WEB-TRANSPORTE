@@ -4,6 +4,8 @@
 .btn-next{
     background-color:#F05F25 ;
 }
-.card{
-    border-color: #DE8218;
+._card-empresa{
+    border-color: #403D56;
+    border-radius: 8px;
+    border-width: 2px;
 }
