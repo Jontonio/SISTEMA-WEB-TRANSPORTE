@@ -22,7 +22,7 @@
                         (rate)="onRate($event)"
                         size="30px">
                 </star-rating>
-                <small>La valoración es obligatoria</small>
+                <small class="text-success">La valoración es obligatoria</small>
             </div> 
         </form>
     </div>
@@ -30,7 +30,8 @@
         <div></div>
         <mat-dialog-actions align="end">
             <button mat-stroked-button mat-dialog-close (click)="cancel()">Cancelar</button>
-            <button mat-raised-button class="m-1" (click)="saveComment()" [disabled]="Comment.invalid">Guardar</button>
+            <button *ngIf="!editComment" mat-raised-button color="primary" class="m-1" (click)="saveComment()" [disabled]="Comment.invalid || loadprocess">Guardar</button>
+            <button *ngIf="editComment" mat-raised-button color="primary" class="m-1" (click)="updateComment()" [disabled]="Comment.invalid || loadprocess">Guardar cambios</button>
         </mat-dialog-actions>
     </div>
 </div>

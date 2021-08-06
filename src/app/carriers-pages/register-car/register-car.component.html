@@ -206,7 +206,7 @@
       <div class="text-center">
         Se completo los datos con éxito, <span><b>presiona registrar para guardar los datos</b></span>
         <div class="mt-3">
-            <button *ngIf="!this.update" mat-raised-button mat-dialog-close color="primary" (click)="registerCar()">Registrar</button>
+            <button *ngIf="!this.update" mat-raised-button mat-dialog-close color="primary" (click)="registerCar()">Agredar a lista</button>
             <button *ngIf="this.update" mat-raised-button mat-dialog-close color="primary" (click)="saveToList()">Guardar cambios</button>
         </div>
     </div>
@@ -218,16 +218,4 @@
       </div>
     </mat-step>
   </mat-horizontal-stepper>
-  
-<!-- <h2 mat-dialog-title><i class="fas fa-car"></i><span class="material-icons">directions_car_filled</span> Registro vehículo</h2>
-<mat-dialog-content class="mat-typography">
-    <div class="container-fluid">
-        
-    </div>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-raised-button *ngIf="!update" class="btn-b-g" (click)="registerCar()">Guardar <span class="material-icons">directions_car_filled</span></button>
-    <button mat-raised-button *ngIf="update"  class="btn-b-g" (click)="saveToList()">Guardar cambios <span class="material-icons">directions_car_filled</span></button>
-    <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Cancelar</button>
-</mat-dialog-actions> -->
 

@@ -1,8 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Car } from 'src/app/models/Car';
-import { commonUser } from 'src/app/models/commonUser';
 import { Valoration } from 'src/app/models/valoration';
 import { MessagesService } from 'src/app/services/messages.service';
 import { TransportService } from 'src/app/services/transport.service';
@@ -16,13 +14,16 @@ export class CommentComponent implements OnInit {
 
   Comment:FormGroup;
   star:number = 0;
+  editComment: boolean = false;
+  loadprocess: boolean = false;
 
-  constructor(private fb:FormBuilder, 
+  constructor(@Inject(MAT_DIALOG_DATA) public Data: any,
+              private fb:FormBuilder, 
               private _trans:TransportService,
               private dialogRef: MatDialogRef<CommentComponent>,
-              @Inject(MAT_DIALOG_DATA) public Data: any,
               private _msg:MessagesService) {
     this.formComment();
+    this.completeComment();
   }
 
   ngOnInit(): void {
@@ -55,12 +56,53 @@ export class CommentComponent implements OnInit {
                                       this.Data.displayName, 
                                       this.Data.photo,
                                       this.Data.email)
-
-    this._trans.RegisterComment(this.Data.uid, this.Data.idcar,valoration.toObject).then( res => {
+    this.loadprocess = true;
+    this._trans.addValoration(this.Data.uid, this.Data.idcar,valoration.toObject).then( res => {
       this._msg.messageMaterial('Reseña guardada exitosamente');
       this.dialogRef.close();
       this.cancel();
+      this.loadprocess = false;
+    }).catch( err => {
+      this.loadprocess = false;
     })
+    
+  }
+
+  completeComment(){
+    if(this.Data.id){
+      this.editComment = true;
+      this.Comment.controls['comment'].setValue(this.Data.comment);
+      this.star = this.Data.valoration;
+      this.Comment.controls['star'].setValue(this.Data.valoration);
+    } else {
+      this.editComment = false;
+    }
+  }
+
+  updateComment(){
+
+    if(this.Comment.invalid){
+      Object.keys(this.Comment.controls).forEach( input =>{
+        this.Comment.controls[input].markAllAsTouched()
+      })
+      return;
+    }
+
+    const dataUpdate = {
+      comment:this.Comment.value.comment,
+      valoration: this.Comment.value.star
+    }
+
+    this.loadprocess = true;
+    this._trans.updateComment(this.Data.uid, this.Data.idcar,this.Data.id, dataUpdate).then( res => {
+        this._msg.messageMaterial(res as any);
+        this.dialogRef.close();
+        this.cancel();
+        this.loadprocess = false;
+      }).catch( err => {
+      this.loadprocess = false;
+    })
+
   }
 
   get comment(){

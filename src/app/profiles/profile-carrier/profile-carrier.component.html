@@ -56,7 +56,7 @@
                                       size="20px">
                         </star-rating>
                         <p class="material-icons">person</p>
-                        <p class="text-dark">22</p>
+                        <p class="text-dark">{{_trans.listValoration.length}}</p>
                       </div>
                     </div>
                   </div>
@@ -123,7 +123,7 @@
                 </div>
               </ng-template>
               <div *ngIf="_trans.car">
-                <div class="comment-people" *ngFor="let data of _trans.car.valoration; let i=index">
+                <div class="comment-people" *ngFor="let data of _trans.listValoration; let i=index">
                   <div class="container-fluid d-flex justify-content-between centent-user-comment">
                     <div class="d-flex justify-content-between">
                       <div>
@@ -149,15 +149,17 @@
                         <mat-icon>more_vert</mat-icon>
                       </button>
                       <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
-                          <mat-icon><span class="material-icons">delete</span></mat-icon>
-                          <span>Eliminar</span>
-                        </button>
-                        <button mat-menu-item>
-                          <mat-icon>
-                            <span class="material-icons">edit</span></mat-icon>
-                          <span>Editar</span>
-                        </button>
+                        <div *ngIf="common?.email==data?.email">
+                          <button mat-menu-item (click)="deletecomment(data.id)">
+                            <mat-icon><span class="material-icons">delete</span></mat-icon>
+                            <span>Eliminar</span>
+                          </button>
+                          <button mat-menu-item (click)="editComment(data)">
+                            <mat-icon>
+                              <span class="material-icons">edit</span></mat-icon>
+                            <span>Editar</span>
+                          </button>
+                        </div>
                         <button mat-menu-item disabled>
                           <mat-icon>notifications_off</mat-icon>
                           <span>Span</span>
@@ -171,7 +173,7 @@
                     </p>
                   </div>
                 </div>
-                <div class="text-center" *ngIf="_trans.car.valoration.length==0">
+                <div class="text-center" *ngIf="_trans.listValoration.length==0">
                   <span class="material-icons">contact_support</span> 
                   Se el primero en calificar el servicio de transporte
                 </div>

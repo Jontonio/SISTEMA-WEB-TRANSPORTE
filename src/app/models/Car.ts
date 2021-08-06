@@ -9,7 +9,6 @@ export class Car{
     idEmpresa:string
     targetaCirculacion: string
     soyConductor:string
-    valoration: any[];
 
     dniconductor?: string
     nombresConductor?: string
@@ -40,7 +39,6 @@ export class Car{
         this.idEmpresa = idEmpresa;
         this.targetaCirculacion = targetaCirculacion;
         this.soyConductor = soyConductor;
-        this.valoration = [];
 
         this.dniconductor = dniconductor;
         this.nombresConductor = nombresConductor;
@@ -60,7 +58,6 @@ export class Car{
             idEmpresa: this.idEmpresa, 
             targetaCirculacion: this.targetaCirculacion, 
             soyConductor: this.soyConductor, 
-            valoration: this.valoration, 
             dniconductor: this.dniconductor, 
             nombresConductor: this.nombresConductor, 
             apellidoPaterno: this.apellidoPaterno, 

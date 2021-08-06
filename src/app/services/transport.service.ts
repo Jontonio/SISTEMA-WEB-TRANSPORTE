@@ -5,6 +5,7 @@ import { Owner } from '../models/owner';
 import { MessagesService } from './messages.service';
 import firestore from 'firebase/app';
 import { Car } from '../models/Car';
+import { Valoration } from '../models/valoration';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class TransportService {
   loadGetcarriers: boolean = false;
   carriersRef    = this.fs.collection('carriers');
   listCarriers   : Owner[] = [];
+  listValoration : Valoration[] = [];
   listcars       = new Array<any>();
   car            : Car;
   url            : string = 'http://localhost:4200/conductor/'
@@ -90,6 +92,7 @@ export class TransportService {
       this.fs.collection('/carriers/'+idOwner+'/cars').doc(idCar)
              .valueChanges().subscribe( res => {
               this.car = res as Car;
+              this.getValoration(idOwner, idCar);
         resolve(res);
       }, err => {
         reject('Error al obtener datoa del vehículo');
@@ -130,22 +133,9 @@ export class TransportService {
   updateCarrier(data:any){
     return new Promise((resolve,reject) => {
       this.carriersRef.doc(data.id).update(data).then( res => {
-          // this.addCar(dataCar,res.id)
-          resolve('Datos actualizados correctamente');
+        resolve('Datos actualizados correctamente');
       }).catch( err => {
         reject('Error al actualizar los datos')
-      })
-    })
-  }
-  
-  RegisterComment(idOwner:string,idcar:string,data:any){
-    return new Promise((resolve,reject) => {
-      this.fs.collection('carriers/'+idOwner+'/cars').doc(idcar).update({
-        valoration: firestore.firestore.FieldValue.arrayUnion(data)
-      }).then( res => {
-        resolve('Datos registrado correctamente');
-      }).catch( err => {
-        reject('Error al registrar los datos')
       })
     })
   }
@@ -159,5 +149,48 @@ export class TransportService {
       });
     }
   }
+
+  addValoration(idOwner:string, idCar:string, data:any){
+    return new Promise((resolve, reject) => {
+       this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration').add(data).then( res => {
+         this.updateId('carriers/'+idOwner+'/cars/'+idCar+'/valoration',res.id);
+         resolve('Datos registrado correctamente');
+       }).catch( err => {
+         reject('Error al registrar los datos')
+       })
+    })
+  }
+
+  getValoration(idOwner:string, idCar:string){
+    this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration')
+           .valueChanges().subscribe( res => {
+             this.listValoration = res as any;
+           })
+  }
+
+  delteComment(idOwner:string, idCar:string, idValoration:string){
+    return new Promise((resolve, reject) => {
+      this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration').doc(idValoration).delete()
+          .then( res => {
+            resolve('Reseña eliminada correctamente');
+          }).catch( err => {
+            reject('Error al eliminar reseña')
+          })
+    })
+  }
+
+  updateComment(idOwner:string, idCar:string, idValoration:string, data:any){
+    return new Promise((resolve, reject) => {
+      this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration').doc(idValoration).update(data)
+          .then( res => {
+            resolve('Reseña actualizada correctamente');
+          }).catch( err => {
+            console.log(err)
+            reject('Error al actualizar reseña')
+          })
+    })
+  }
+
+  // /carriers/3EwUwxYSxZTlcQGUY4wK/cars/oFV4cJi0xwxnluepVZpT/valoracion/6z54jTXVhC2WYzyTygPH
  
 }

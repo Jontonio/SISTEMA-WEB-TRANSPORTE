@@ -119,14 +119,12 @@ export class ProfileCarrierComponent {
   }
 
   isSesion(){
-
     this._auth.userGoogle().then( res => {
       if(res){ 
         this.existUser = true 
         this.common = res as any;
       }
     })
-
   }
 
   googleSesion(){
@@ -154,6 +152,20 @@ export class ProfileCarrierComponent {
       'email':this.common.email
     };
 
+    this.dialog.open(CommentComponent,{ panelClass:'container-comment', width:'600px', data:data})
+  }
+
+  deletecomment(idValoration:string){
+    this._trans.delteComment(this.uid, this.idcar,idValoration).then( res => {
+      this._msg.messageMaterial(res as any);
+    }).catch( err => {
+      this._msg.messageMaterial(err as any);
+    })
+  }
+
+  editComment(dataVal:Valoration){
+    const info = { 'uid':this.uid, 'idcar':this.idcar};
+    const data = {...info, ...dataVal}
     this.dialog.open(CommentComponent,{ panelClass:'container-comment', width:'600px', data:data})
   }
   /*
