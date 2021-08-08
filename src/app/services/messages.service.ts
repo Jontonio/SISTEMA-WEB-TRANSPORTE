@@ -18,13 +18,13 @@ export class MessagesService {
   }
 
   successMsg(body:string,title:string, ){
-    this._ts.success(body,title,{positionClass:'toast-bottom-center'})
+    this._ts.success(body,title,{positionClass:'toast-bottom-right'})
   }
   warningMsg(body:string,title:string,){
-    this._ts.warning(body,title,{positionClass:'toast-bottom-center'})
+    this._ts.warning(body,title,{positionClass:'toast-bottom-right'})
   }
   errorMsg(body:string,title:string){
-    this._ts.error(body,title,{positionClass:'toast-bottom-center'})
+    this._ts.error(body,title,{positionClass:'toast-bottom-right'})
   }
 
 }

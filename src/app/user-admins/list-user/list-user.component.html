@@ -40,9 +40,9 @@
         </tbody>
       </table>
       <div *ngIf="_db.listUsers.length==0 && !_db.loadGet">
-        <div class="alert alert-info" role="alert">
-          <span class="material-icons">folder</span> Lista de usuarios vacia
-        </div>
+        <app-message message="No se encontraron usuarios registrados" 
+                     subMessage="Registre un nuevo usuario para administrarlos">
+        </app-message>
       </div>
       <div *ngIf="_db.loadGet" class="text-center mt-4">
         <div class="spinner-border text-secondary" role="status"></div>

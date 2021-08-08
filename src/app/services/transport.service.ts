@@ -14,6 +14,7 @@ export class TransportService {
   listCarOwner   : Object[] = [];
   listCarriers   : Owner[] = [];
   listValoration : Valoration[] = [];
+  listValorationAdmin : Valoration[] = [];
   listcars       = new Array<any>();
   car            : Car;
   loadGetcarriers: boolean = false;
@@ -170,6 +171,15 @@ export class TransportService {
              this.getAverageValoration(this.listValoration);
            })
   }
+
+  getValorationAdmin(idOwner:string, idCar:string){
+    this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration', ref => ref.orderBy('dateComent','desc') )
+           .valueChanges().subscribe( res => {
+             this.listValorationAdmin = res as any;
+             //this.getAverageValoration(this.listValorationAdmin);
+           })
+  }
+
 
   delteComment(idOwner:string, idCar:string, idValoration:string){
     return new Promise((resolve, reject) => {

@@ -50,7 +50,7 @@ export class DatabaseService {
     //this.getEnterprises();
     this.getDescriptions();
     //this.getDesactEnterprises();
-    //this.getPosts();
+    this.getPosts();
   }
 
   getUsers(){

@@ -84,6 +84,7 @@ import { ListQrCarriersComponent } from './carriers-pages/list-qr-carriers/list-
 // Ngx - print
 import { NgxPrintModule } from 'ngx-print';
 import { CalificationComponent } from './public/calification/calification.component';
+import { MessageComponent } from './shared/message/message.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +134,7 @@ import { CalificationComponent } from './public/calification/calification.compon
     CommentComponent,
     ListQrCarriersComponent,
     CalificationComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

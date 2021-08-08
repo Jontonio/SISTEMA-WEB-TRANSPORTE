@@ -29,7 +29,6 @@ export class ProfileCarrierComponent {
   common:commonUser;
   enterprise:Ruc;
   car:Car;
-  users:string[] = ['José Angel','Angel','María Quispe','Juan Pedro','Santos Damian','Dany Lua'];
 
   results: any[] = [
     {

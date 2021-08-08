@@ -31,9 +31,9 @@
       </tbody>
     </table>
     <div *ngIf="_db.listEnterpise.length==0 && !_db.loadGetenterprise">
-      <div class="alert" role="alert">
-        <span class="material-icons">folder</span> Lista de empresas vacia
-      </div>
+      <app-message message="No se encontraron empresas desactivadas" 
+                   subMessage="Las empresas desactivas no participan en el programa">
+      </app-message>
     </div>
     <div *ngIf="_db.loadGetenterprise" class="text-center mt-4">
       <div class="spinner-border text-secondary" role="status"></div>

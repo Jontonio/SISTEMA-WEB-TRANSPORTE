@@ -1,5 +1,5 @@
-
-<mat-card>
+<br>
+<div>
   <mat-card-header>
     <div mat-card-avatar>
       <button mat-icon-button routerLink="../../carriers">
@@ -7,65 +7,222 @@
       </button>
     </div>
     <mat-card-title>Lista de Vehículos registrados</mat-card-title>
-    <mat-card-subtitle><span class="badge-s">Registrados {{listCars.length}} </span></mat-card-subtitle>
+    <mat-card-subtitle><span class="badge-b">Registrados {{listCars.length}} </span></mat-card-subtitle>
   </mat-card-header>
-  <div class="row">
-    <div class="col-md-3 mb-1" *ngIf="owner!=null">
-      <mat-card class="mat-card card-preview animate__animated animate__fadeInLeft">
+</div>
+<div class="row">
+  <div class="col-md-3 mb-1" *ngIf="owner!=null">
+    <mat-card class="mat-card card-preview animate__animated animate__fadeInLeft">
+      <mat-card-header>
+        <mat-card-title>Propietario</mat-card-title>
+        <mat-card-subtitle>Información</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="center"><img class="img-user-profile" [src]="owner.URL_photo | img" alt="" srcset=""></div>
+        <mat-card-subtitle>Nombres</mat-card-subtitle>
+        <h3 class="text-center">{{owner.firts_name}} {{owner.father_last_name}} {{owner.mother_last_name}}</h3>
+        <mat-card-subtitle>Información de contacto</mat-card-subtitle>
+        <h3 class="text-center">{{owner.email}}</h3>
+        <mat-card-subtitle>Celular</mat-card-subtitle>
+        <h3 class="text-center">{{owner.celphone}}</h3>
+        <mat-card-subtitle>Cantidad de vehículos: {{listCars.length}}</mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-md-5 animate__animated animate__fadeIn">
+      <div class="row">
+          <div class="col-md-12 mb-4" *ngFor="let car of listCars; let i=index">
+            <mat-card>
+              <h5 class="card-title">
+                <img class="header-image" src="../../../assets/img/muni.png" alt="">
+                <b class="m-1 title-muni">Municipalidad de Andahuaylas</b>
+              </h5>
+              <h6 class="card-subtitle mb-2 text-muted">Vehículo {{i+1}}</h6>
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th scope="col"><span class="material-icons">directions_car</span>
+                        </th>
+                      <th scope="col">Datos</th>
+                      <th scope="col">Documentos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><b>Placa</b></td>
+                      <td>{{car.placa}}</td>
+                      <td class="d-flex">
+                        <span class="material-icons">link</span>
+                        <span class="cursor"><b>Targeta de circulación</b></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>Modelo</b></td>
+                      <td>{{car.modelo}}</td>
+                      <td class="d-flex">
+                        <span class="material-icons">image</span> 
+                        <span class="cursor"><b>Foto vehículo</b></span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><b>Serie</b></td>
+                      <td colspan="2">{{car.serie}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <button mat-raised-button color="primary" class="m-1">Editar</button>
+              <button mat-raised-button color="primary" class="m-1" (click)="verResenia(car.id, car.idEmpresa, car.placa)">Ver reseña</button>
+              <button mat-raised-button color="warn" class="m-1">Eliminar</button>
+            </mat-card>
+          </div>
+          <div *ngIf="listCars.length==0 && !loadCars">
+            <div class="alert" role="alert">
+              <span class="material-icons">folder</span> Lista de transportistas vacia
+            </div>
+          </div>
+          <div *ngIf="loadCars" class="text-center mt-4">
+            <div class="spinner-grow" role="status"></div>
+            <div>Cargando...</div>
+          </div>
+      </div> 
+  </div>
+  <div class="col-md-4 animate__animated animate__fadeIn">
+    <mat-card>
         <mat-card-header>
-          <mat-card-title>Propietario</mat-card-title>
-          <mat-card-subtitle>Información</mat-card-subtitle>
+          <mat-card-title><b>Información</b></mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          <div class="center"><img class="img-user-profile" [src]="owner.URL_photo | img" alt="" srcset=""></div>
-          <mat-card-subtitle>Nombres</mat-card-subtitle>
-          <h3 class="text-center">{{owner.firts_name}} {{owner.father_last_name}} {{owner.mother_last_name}}</h3>
-          <mat-card-subtitle>Información de contacto</mat-card-subtitle>
-          <h3 class="text-center">{{owner.email}}</h3>
-          <mat-card-subtitle>Celular</mat-card-subtitle>
-          <h3 class="text-center">{{owner.celphone}}</h3>
-          <mat-card-subtitle>Cantidad de vehículos: {{listCars.length}}</mat-card-subtitle>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="col-md-9 animate__animated animate__fadeIn" *ngIf="owner!=null">
-        <div class="row">
-            <div class="col-md-6 mb-4" *ngFor="let car of listCars; let i=index">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-7">
-                      <h5 class="card-title">
-                        <img class="header-image" src="../../../assets/img/muni.png" alt="">
-                        <b class="m-1 title-muni">Municipalidad de Andahuaylas</b>
-                      </h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Vehículo {{i+1}}</h6>
-                      <p class="card-text">
-                        <b>Placa: </b> {{car.placa}} <br>
-                        <b>Modelo:</b> {{car.modelo}} <br>
-                        <b>Serie:</b> {{car.serie}}
-                      </p>
-                      <button mat-raised-button>ver más</button>
-                      <button mat-raised-button class="m-1">Editar</button>
-                    </div>
-                    <div class="col-md-5 text-center">
-                      <a [routerLink]="[ '/conductor', owner.id, car.id ]" target="_blank">Esto va esta en el QR</a>
-                      <qrcode [qrdata]="'http://localhost:4200/conductor/{{owner.id}}/{{car.id}}'" [width]="180" [errorCorrectionLevel]="'M'"></qrcode>
-                    </div>
+        <mat-card-content *ngIf="enterprise && !loadResenia; else msg">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="center"><img class="img-profile" [src]="owner.URL_photo" alt="" srcset=""></div>
+            </div>
+            <div class="col-md-8">
+              <h4 class="name-driver">
+                <b>{{owner.firts_name}} {{owner.father_last_name}} {{owner.mother_last_name}}</b>
+              </h4>
+              <mat-card-subtitle>Información vehicular</mat-card-subtitle>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="d-flex">
+                      <star-rating 
+                                  [value]="3" 
+                                  [totalstars]="5" 
+                                  checkedcolor="black" 
+                                  uncheckedcolor="gray" 
+                                  [readonly]="true" 
+                                  size="15px">
+                    </star-rating>
+                    <p class="material-icons">person</p>
+                    <p class="text-dark">{{_trans.listValoration.length}}</p>
+                  </div>
+                </div>
+              </div>   
+            </div>
+          </div>
+          <div class="mt-2">
+            <div class="row">
+              <div class="col-md d-flex" *ngIf="enterprise">
+                <span class="material-icons">business</span> <p class="info"><b>{{enterprise.razonSocial | lowercase}}</b></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 d-flex">
+                <span class="material-icons">directions_car_filled</span> 
+                <p class="info"><b>{{placa}}</b></p>
+              </div>
+              <div class="col-md-6"></div>
+            </div> 
+          </div>
+          <div class="row mt-4">
+            <div class="text-center">
+              <mat-card-title><b>Reseña</b></mat-card-title>
+            </div>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-md">
+                  <div class="content-chart">
+                    <ngx-charts-bar-horizontal
+                        [scheme]="colorScheme"
+                        [results]="results"
+                        [gradient]="gradient"
+                        [yAxis]="showYAxis"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        (select)="onSelect($event)">
+                    </ngx-charts-bar-horizontal>
+                </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </div>
+          <div class="comment-people" *ngFor="let data of _trans.listValorationAdmin; let i=index">
+            <div class="container-fluid d-flex justify-content-between centent-user-comment">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <ngx-avatar [name]="data.userName" [src]="data.photo" size="40"></ngx-avatar>
+                </div>
+                <div class="d-flex justify-content-center align-content-center flex-column">
+                  <p class="autor"><b>{{data.userName}}</b></p>
+                  <div class="content-star">
+                    <star-rating class="calificado" 
+                                [value]="data.valoration" 
+                                [totalstars]="5" 
+                                checkedcolor="black" 
+                                uncheckedcolor="gray" 
+                                [readonly]="true" 
+                                size="15px">
+                    </star-rating> 
+                    <p class="date-comment">{{data.dateComent | date}}</p>
                   </div>
                 </div>
               </div>
-            </div>
-            <div *ngIf="listCars.length==0 && !loadCars">
-              <div class="alert" role="alert">
-                <span class="material-icons">folder</span> Lista de transportistas vacia
+              <div>
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <div>
+                    <button mat-menu-item (click)="deleteComment(data.id)">
+                      <mat-icon><span class="material-icons">delete</span></mat-icon>
+                      <span>Eliminar</span>
+                    </button>
+                    <button mat-menu-item>
+                      <mat-icon>
+                        <span class="material-icons">report</span></mat-icon>
+                      <span>Reportar reseña</span>
+                    </button>
+                  </div>
+                  <button mat-menu-item disabled>
+                    <mat-icon>notifications_off</mat-icon>
+                    <span>Span</span>
+                  </button>
+                </mat-menu>
               </div>
             </div>
-            <div *ngIf="loadCars" class="text-center mt-4">
-              <div class="spinner-grow" role="status"></div>
-              <div>Cargando...</div>
+            <div>
+              <p class="comment">
+                {{data.comment}}
+              </p>
             </div>
-        </div> 
-    </div>
+          </div>
+          <div class="text-center" *ngIf="_trans.listValorationAdmin.length==0">
+            <span class="material-icons">contact_support</span> Este vehículo no tiene comentarios
+          </div>
+        </mat-card-content>
+        <ng-template #msg>
+          <div *ngIf="!loadResenia">
+            <app-message message="Haga click en reseña y obtenga más información" 
+                       subMessage="En esta sección podrá admistrar las reseñas de los usuarios">
+            </app-message>
+          </div>
+        </ng-template>
+        <div *ngIf="loadResenia" class="text-center">
+          <span class="spinner-border" role="status"></span>
+          <p class="text-muted">Cargando Información</p>
+        </div>
+    </mat-card>
   </div>
-</mat-card>
+</div>

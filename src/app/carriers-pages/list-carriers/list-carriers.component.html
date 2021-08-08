@@ -57,9 +57,9 @@
                 </tbody>
             </table>
                 <div *ngIf="_trans.listCarriers.length==0 && !_trans.loadGetcarriers">
-                  <div class="alert" role="alert">
-                    <span class="material-icons">folder</span> Lista de transportistas vacia
-                  </div>
+                  <app-message message="No se encontraron transportistas registrados" 
+                   subMessage="Registre un nuevo transportista para mostrarlos en esta sección">
+                  </app-message>
                 </div>
                 <div *ngIf="_trans.loadGetcarriers" class="text-center mt-4">
                   <div class="spinner-border text-secondary" role="status"></div>

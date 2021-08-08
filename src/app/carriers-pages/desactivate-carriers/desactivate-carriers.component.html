@@ -15,9 +15,9 @@
         </tbody>
       </table>
     </div>
-    <div class="alert" role="alert">
-      <span class="material-icons">sentiment_very_satisfied</span> Estamos en desarrollo
-    </div>
+    <app-message message="No se encontraron transportitas desactivados" 
+                   subMessage="El modulo se encuetra en desarrollo">
+    </app-message>
     <mat-paginator [length]="desCarriers.length" [pageSize]="9" (page)="pageEvent($event)"> </mat-paginator>
   </mat-card>
 </div>

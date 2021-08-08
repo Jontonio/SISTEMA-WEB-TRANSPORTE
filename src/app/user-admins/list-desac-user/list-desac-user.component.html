@@ -29,9 +29,9 @@
       </tbody>
     </table>
     <div *ngIf="_db.listUsersdisable.length==0 && !_db.loadGetDisable">
-      <div class="alert alert-info" role="alert">
-        <span class="material-icons">folder</span> Lista de usuarios vacia
-      </div>
+      <app-message message="No se encontraron usuarios desactivados" 
+                     subMessage="Recuerde que los usuarios desactivados no participan en el programa">
+      </app-message>
     </div>
     <div *ngIf="_db.loadGetDisable" class="text-center mt-4">
       <div class="spinner-border text-secondary" role="status"></div>
