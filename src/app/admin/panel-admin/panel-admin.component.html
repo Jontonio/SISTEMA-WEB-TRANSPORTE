@@ -30,8 +30,8 @@
                         </button>
                     </mat-menu>
                     <button type="button" mat-icon-button class="m-1" (click)="changeTheme()">
-                        <span *ngIf="!modePage" class="material-icons">dark_mode</span>
-                        <span *ngIf="modePage" class="material-icons sun">light_mode</span>
+                        <span *ngIf="!_theme.modePage" class="material-icons">dark_mode</span>
+                        <span *ngIf="_theme.modePage" class="material-icons sun">light_mode</span>
                     </button>
                 </div>
                 <div *ngIf="!_auth.loadUser" class="spinner-grow" role="status"></div>

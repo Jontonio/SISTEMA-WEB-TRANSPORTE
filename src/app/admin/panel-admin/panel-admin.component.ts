@@ -14,9 +14,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 export class PanelAdminComponent implements OnInit {
 
   @ViewChild('drawer',{static:false}) drawer:any;
-
   modo: any = 'side';
-  modePage: boolean = false;
   
   constructor(private dialog:MatDialog, 
               public _theme:ThemeService, 
@@ -38,12 +36,8 @@ export class PanelAdminComponent implements OnInit {
   }
 
   changeTheme(){
-    this.modePage = !this.modePage;
-    if(this.modePage){
-      this._theme.applyMode(this.modePage);
-    } else {
-      this._theme.applyMode(this.modePage);
-    }
+    this._theme.modePage = !this._theme.modePage;
+    this._theme.applyMode(this._theme.modePage);
   }
 
 

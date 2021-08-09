@@ -5,10 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class ThemeService {
 
+  // atributes 
   _color:string
   _backgroundMain:string;
   _backgroundNav:string;
   _box:string;
+
+  // mode page
+  modePage:boolean = false;
 
   constructor() {
     this.verifyTheme();
@@ -40,8 +44,10 @@ export class ThemeService {
 
   verifyTheme(){
     if(localStorage.getItem('theme')){
+      this.modePage = true;
       this.darkTheme();
     } else {
+      this.modePage = false;
       this.lightTheme();
     }
   }

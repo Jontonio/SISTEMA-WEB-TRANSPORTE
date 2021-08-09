@@ -1,9 +1,10 @@
 .panel-container{
     height: 100vh;
-    background-color: #fafafaec;
+    background: #fafafaec;
 }
 .panel-sidenav{
-    width: 260px;
+    width: 270px;
+    background: #fafafaec;
 }
 .mode-phone{
     display: block;
@@ -27,9 +28,6 @@
 }
 .sun{
     color: #f1c01c;
-}
-.panel-sidenav{
-    background: #FFF;
 }
 
 @media (max-width:760px) {
