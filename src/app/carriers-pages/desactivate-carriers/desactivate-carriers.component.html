@@ -1,8 +1,8 @@
 <div class="table-responsive mt-4 animate__animated animate__fadeIn">
-  <mat-card class="m-1">
+  <mat-card class="m-1" [ngStyle]="{'background': _theme._box}">
     <div class="table-responsive">
-      <table class="table table-striped table-sm">
-        <thead class="">
+      <table class="table table-hover table-sm">
+        <thead class="c-icon">
             <tr>
               <th scope="col">Nro</th>
               <th scope="col">Dni</th>
@@ -18,6 +18,9 @@
     <app-message message="No se encontraron transportitas desactivados" 
                    subMessage="El modulo se encuetra en desarrollo">
     </app-message>
-    <mat-paginator [length]="desCarriers.length" [pageSize]="9" (page)="pageEvent($event)"> </mat-paginator>
+    <mat-paginator [length]="desCarriers.length" 
+                   [pageSize]="9" 
+                   (page)="pageEvent($event)"
+                   [ngStyle]="{'background': _theme._box}"></mat-paginator>
   </mat-card>
 </div>

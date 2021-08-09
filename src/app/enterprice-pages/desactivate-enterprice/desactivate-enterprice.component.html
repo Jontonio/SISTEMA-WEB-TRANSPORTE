@@ -1,12 +1,12 @@
 <div class="table-responsive mt-4">
-  <mat-card class="m-1">
-    <mat-card-header>
+  <mat-card class="m-1" [ngStyle]="{'background': _theme._box}">
+    <mat-card-header class="c-icon">
       <mat-card-title>Empresas registradas</mat-card-title>
       <mat-card-subtitle><span class="badge-e">Desactivadas</span></mat-card-subtitle>
     </mat-card-header>
     <table class="table table-hover cursor">
       <thead>
-        <tr>
+        <tr class="c-icon">
           <th scope="col" class="text-center">Nro</th>
           <th scope="col" class="text-center">RUC</th>
           <th scope="col" class="text-center">Razón social</th>
@@ -39,6 +39,8 @@
       <div class="spinner-border text-secondary" role="status"></div>
       <div>Cargando...</div>
     </div>
-    <mat-paginator [length]="_db.listEnterpise.length" [pageSize]="9" (page)="pageEvent($event)"></mat-paginator>
+    <mat-paginator [length]="_db.listEnterpise.length" 
+                   [pageSize]="9" (page)="pageEvent($event)"
+                   [ngStyle]="{'background': _theme._box}"></mat-paginator>
   </mat-card>
 </div>

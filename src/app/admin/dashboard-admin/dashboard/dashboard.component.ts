@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DatabaseService } from 'src/app/services/database.service';
+import { ThemeService } from 'src/app/services/theme.service';
 import { TransportService } from 'src/app/services/transport.service';
 
 
@@ -10,6 +11,6 @@ import { TransportService } from 'src/app/services/transport.service';
 })
 export class DashboardComponent {
 
-  constructor( public _db:DatabaseService, public _trans:TransportService) {}
+  constructor( public _db:DatabaseService, public _trans:TransportService, public _theme:ThemeService) {}
 
 }

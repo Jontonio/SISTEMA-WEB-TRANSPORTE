@@ -1,6 +1,6 @@
 <div class="container-fluid mt-4 mb-2 content-card"> 
-    <mat-card>
-      <mat-card-header>
+    <mat-card [ngStyle]="{'background': _theme._box}">
+      <mat-card-header class="c-icon">
         <div *ngIf="updateData" mat-card-avatar>
           <button mat-icon-button routerLink="../../carriers">
             <mat-icon><span class="material-icons">west</span></mat-icon>

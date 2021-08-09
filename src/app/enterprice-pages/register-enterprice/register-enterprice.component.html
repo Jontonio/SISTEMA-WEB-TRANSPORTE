@@ -1,6 +1,6 @@
 <div class="container-fluid content-card mt-4"> 
-  <mat-card>
-    <mat-card-header>
+  <mat-card [ngStyle]="{'background': _theme._box}">
+    <mat-card-header class="c-icon">
       <div *ngIf="edit" mat-card-avatar>
         <button mat-icon-button routerLink="../../enterprice">
           <mat-icon><span class="material-icons">keyboard_backspace</span></mat-icon>

@@ -7,6 +7,7 @@ import { Message } from 'src/app/models/message';
 import { Ruc } from 'src/app/models/ruc';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 import { RegisterEnterpriceComponent } from '../register-enterprice/register-enterprice.component';
 
 @Component({
@@ -19,7 +20,7 @@ export class ListEnterpriceComponent implements OnInit {
   desde:number = 0;
   hasta:number = 9;
 
-  constructor(public dialog: MatDialog, public _db:DatabaseService, private _msg:MessagesService) { }
+  constructor(public dialog: MatDialog, public _db:DatabaseService, private _msg:MessagesService, public _theme:ThemeService) { }
 
   ngOnInit(): void {
   }

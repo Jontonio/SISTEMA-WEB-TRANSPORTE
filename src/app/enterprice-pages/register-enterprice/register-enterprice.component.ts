@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ruc } from 'src/app/models/ruc';
 import { ApiService } from 'src/app/services/api.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-register-enterprice',
@@ -26,7 +27,8 @@ export class RegisterEnterpriceComponent implements OnInit {
               private _db:DatabaseService, 
               private fb:FormBuilder, 
               private _api:ApiService,
-              private _msg:MessagesService) {
+              private _msg:MessagesService,
+              public _theme:ThemeService) {
     this.createForm();
     this.getIdUpdate();
   }

@@ -1,7 +1,7 @@
 <div class="container-fluid mt-4 content-card">
     <div *ngIf="update" class="mt-2"></div>
-    <mat-card>
-      <mat-card-header>
+    <mat-card [ngStyle]="{'background': _theme._box}">
+      <mat-card-header class="c-icon">
         <div *ngIf="update" mat-card-avatar>
           <button mat-icon-button routerLink="../../users">
             <mat-icon><span class="material-icons">keyboard_backspace</span></mat-icon>

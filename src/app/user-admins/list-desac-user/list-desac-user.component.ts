@@ -7,6 +7,7 @@ import { Message } from 'src/app/models/message';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-list-desac-user',
@@ -19,7 +20,11 @@ export class ListDesacUserComponent implements OnInit {
   hasta:number = 8;
   activate: boolean = false;
 
-  constructor( public _db:DatabaseService, private _auth:AuthService, private _ts:ToastrService, private dialog:MatDialog) { }
+  constructor(public _db:DatabaseService, 
+              private _auth:AuthService, 
+              private _ts:ToastrService, 
+              private dialog:MatDialog,
+              public _theme:ThemeService) { }
 
   ngOnInit(): void {
   }

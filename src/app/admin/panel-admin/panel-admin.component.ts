@@ -4,6 +4,7 @@ import { MsgLogoutComponent } from 'src/app/messages/msg-logout/msg-logout.compo
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-panel-admin',
@@ -17,7 +18,9 @@ export class PanelAdminComponent implements OnInit {
   modo: any = 'side';
   modePage: boolean = false;
   
-  constructor( private dialog:MatDialog, private _database:DatabaseService, public _auth:AuthService) {}
+  constructor(private dialog:MatDialog, 
+              public _theme:ThemeService, 
+              public _auth:AuthService) {}
 
   ngOnInit(): void {}
 
@@ -34,9 +37,13 @@ export class PanelAdminComponent implements OnInit {
     this.dialog.open(MsgLogoutComponent);
   }
 
-  usuario(){
-    this._auth.isActiveUser().subscribe( res => {
-    })
+  changeTheme(){
+    this.modePage = !this.modePage;
+    if(this.modePage){
+      this._theme.applyMode(this.modePage);
+    } else {
+      this._theme.applyMode(this.modePage);
+    }
   }
 
 

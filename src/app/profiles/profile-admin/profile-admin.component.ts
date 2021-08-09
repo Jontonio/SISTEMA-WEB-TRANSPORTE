@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-profile-admin',
@@ -13,7 +14,11 @@ export class ProfileAdminComponent{
 
   formPassword:FormGroup;
 
-  constructor(private fb:FormBuilder ,public _auth:AuthService,private _db:DatabaseService, private _msg:MessagesService) {
+  constructor(private fb:FormBuilder,
+              public _auth:AuthService,
+              private _db:DatabaseService, 
+              private _msg:MessagesService,
+              public _theme:ThemeService) {
     this.createdForm();
   }
 

@@ -1,12 +1,12 @@
 <div class="container-fluid mt-4 contend-card">
-  <mat-card>
-    <mat-card-header>
+  <mat-card [ngStyle]="{'background': _theme._box}">
+    <mat-card-header class="c-icon">
       <mat-card-title>Usuarios registrados</mat-card-title>
       <mat-card-subtitle><span class="badge-s">Activos</span></mat-card-subtitle>
     </mat-card-header>
     <div class="table-responsive">
       <table class="table">
-        <thead>
+        <thead class="c-icon">
           <tr>
             <th scope="col">#</th>
             <th scope="col">Photo</th>
@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of _db.listUsers | slice:desde:hasta; let i=index">
+          <tr *ngFor="let data of _db.listUsers | slice:desde:hasta; let i=index" class="c-icon">
             <th >{{i+1}}</th>
             <td><img class="default-user" [src]="data.URL_photo" alt=""></td>
             <td>{{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}</td>
@@ -48,7 +48,10 @@
         <div class="spinner-border text-secondary" role="status"></div>
         <div>Cargando...</div>
       </div>
-      <mat-paginator [length]="_db.listUsers.length" [pageSize]="8" (page)="pageEvent($event)"> </mat-paginator>
+      <mat-paginator [length]="_db.listUsers.length" 
+                     [pageSize]="8" 
+                     (page)="pageEvent($event)"
+                     [ngStyle]="{'background': _theme._box}"></mat-paginator>
     </div>
   </mat-card>
 </div>

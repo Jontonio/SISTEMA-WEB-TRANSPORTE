@@ -7,6 +7,7 @@ import { Person } from 'src/app/models/person';
 import { ApiService } from 'src/app/services/api.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 import { TransportService } from 'src/app/services/transport.service';
 import { RegisterCarComponent } from '../register-car/register-car.component';
 
@@ -31,6 +32,7 @@ export class RegisterCarriersComponent {
               private fb:FormBuilder, 
               public _trans:TransportService, 
               public _db:DatabaseService,
+              public _theme:ThemeService,
               private _msg:MessagesService,
               private _api:ApiService) { 
     this.formCarriers();

@@ -23,12 +23,12 @@
            </div>
            <div class="col-md-9">
             <mat-accordion class="example-headers-align">
-                <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle [ngStyle]="{'background': _theme._box}">
                     <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            <span class="material-icons c-icon">recent_actors</span> &nbsp;Información personal
+                        <mat-panel-title class="c-icon">
+                            <span class="material-icons">recent_actors</span> &nbsp;Información personal
                         </mat-panel-title>
-                        <mat-panel-description>
+                        <mat-panel-description class="c-icon">
                           Viusaliza tus datos
                           <mat-icon><span class="material-icons c-icon">expand_more</span></mat-icon>
                         </mat-panel-description>
@@ -70,12 +70,12 @@
                 </mat-action-row>
                 </mat-expansion-panel>
 
-                <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle [ngStyle]="{'background': _theme._box}">
                   <mat-expansion-panel-header>
-                    <mat-panel-title>
+                    <mat-panel-title class="c-icon">
                         <span class="material-icons c-icon">verified_user</span>&nbsp;Actualizar contraseña
                     </mat-panel-title>
-                    <mat-panel-description>
+                    <mat-panel-description class="c-icon">
                       Realiza los cambios de contraseña
                       <mat-icon><span class="material-icons c-icon">expand_more</span></mat-icon>
                     </mat-panel-description>

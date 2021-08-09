@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { OptionsComponent } from 'src/app/messages/options/options.component';
 import { Message } from 'src/app/models/message';
 import { PortDescriotion } from 'src/app/models/portdaDes';
-import { Post } from 'src/app/models/post';
 import { DatabaseService } from 'src/app/services/database.service';
+import { ThemeService } from 'src/app/services/theme.service';
 import { FormDescripComponent } from '../forms/form-descrip/form-descrip.component';
 import { PostComponent } from '../forms/post/post.component';
 
@@ -15,7 +15,7 @@ import { PostComponent } from '../forms/post/post.component';
 })
 export class AdminPortadaComponent implements OnInit {
 
-  constructor(private mat:MatDialog, public _db:DatabaseService) {}
+  constructor(private mat:MatDialog, public _db:DatabaseService, public _theme:ThemeService) {}
 
   ngOnInit(): void {
   }
