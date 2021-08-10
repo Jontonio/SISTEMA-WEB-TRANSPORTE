@@ -19,14 +19,14 @@ export class ThemeService {
   }
 
   lightTheme(){
-    this._color = 'green';
+    this._color = '#36362ee6';
     this._backgroundMain = '#fafafaec';
     this._backgroundNav = '#3F3F3F';
     this._box = ''
   }
 
   darkTheme(){
-    this._color = 'white';
+    this._color = '#fafafaec';
     this._backgroundMain = '#121212';
     this._backgroundNav = '#1f1f1f';
     this._box = '#1d1d1d';

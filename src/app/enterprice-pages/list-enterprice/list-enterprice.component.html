@@ -16,7 +16,7 @@
           <th scope="col" class="text-center">Desactivar</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody [ngStyle]="{'color': _theme._color}">
         <tr *ngFor="let data of _db.listEnterpise | slice:desde:hasta; let i=index">
           <td class="text-center">{{i+1}}</td>
           <td class="text-center">{{data.ruc}}</td>

@@ -69,7 +69,6 @@ import { ImgPipe } from './pipes/img.pipe';
 import { AvatarModule } from 'ngx-avatar';
 
 //ngx-masonry
-import { NgxMasonryModule } from 'ngx-masonry';
 import { ViewPostComponent } from './public/view-post/view-post.component';
 import { PreviewOwnerComponent } from './profiles/preview-owner/preview-owner.component';
 
@@ -151,7 +150,6 @@ import { MessageComponent } from './shared/message/message.component';
     NgxChartsModule,
     QRCodeModule,
     AvatarModule,
-    NgxMasonryModule,
     RatingModule,
     NgxSpinnerModule,
     NgxPrintModule

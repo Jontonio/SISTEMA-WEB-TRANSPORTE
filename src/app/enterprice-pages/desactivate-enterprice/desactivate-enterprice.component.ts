@@ -33,7 +33,7 @@ export class DesactivateEnterpriceComponent implements OnInit {
   
   activateEnterprise(id:string, status:string){
     const msg = new Message('Activar empresa','¿Estas seguro de activar la empresa de transportes?');
-    const ref = this.dialog.open(OptionsComponent,{data:msg, width:'35%'})
+    const ref = this.dialog.open(OptionsComponent,{data:msg, width:'35%', panelClass:'description-modal'})
     ref.afterClosed().subscribe( res => {
       if(res){
         this._db.statusEnterprise(id,status).then( res => {

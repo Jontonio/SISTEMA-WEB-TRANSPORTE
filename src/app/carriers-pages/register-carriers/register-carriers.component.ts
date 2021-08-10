@@ -58,7 +58,7 @@ export class RegisterCarriersComponent {
 
   openRegisterCar(){
     // abrir componente register carrier modal
-    this.dialog.open(RegisterCarComponent, { width:'100%' })
+    this.dialog.open(RegisterCarComponent, { width:'100%',panelClass:'description-modal' })
   }
 
   formCarriers(){
@@ -199,7 +199,7 @@ export class RegisterCarriersComponent {
   }
 
   editCar(indice:number) {
-    this.dialog.open(RegisterCarComponent,{ width:'100%', disableClose:true, data: indice});
+    this.dialog.open(RegisterCarComponent,{ width:'100%', disableClose:true, data: indice, panelClass:'description-modal'});
   }
 
   resetForm(){

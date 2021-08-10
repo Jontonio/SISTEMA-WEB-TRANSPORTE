@@ -20,7 +20,9 @@
         <mat-form-field class="full-width" appearance="legacy">
           <mat-label>Buscar</mat-label>
           <mat-icon matSuffix><i class="fas fa-search"></i></mat-icon>
-          <input type="text" matInput autocomplete="off">
+          <input type="text" matInput 
+                 autocomplete="off"
+                 [ngStyle]="{'color': _theme._color}">
           <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
         </mat-form-field>
       </div>
@@ -39,7 +41,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let data of _trans.listCarriers | slice:desde:hasta; let i=index" class="c-icon">
+                  <tr *ngFor="let data of _trans.listCarriers | slice:desde:hasta; let i=index" [ngStyle]="{'color': _theme._color}">
                     <td>{{i+1}}</td>
                     <td>{{data.ID_card}}</td>
                     <td (click)="previewOwner(data)" class="cursor">

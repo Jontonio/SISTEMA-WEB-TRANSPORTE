@@ -37,7 +37,7 @@ export class ListDesacUserComponent implements OnInit {
   desactivateUser(id:string,sta:boolean){
 
     const msg = new Message('Activar usuario','¿Estas seguro de activar al usuario?');
-    const ref = this.dialog.open(OptionsComponent,{data:msg, width:'35%'})
+    const ref = this.dialog.open(OptionsComponent,{data:msg, width:'35%', panelClass:'description-modal'})
 
     ref.afterClosed().subscribe( res => {
       if(res){

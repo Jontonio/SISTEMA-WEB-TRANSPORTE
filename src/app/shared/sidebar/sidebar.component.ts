@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
   }
 
   openLogout() {
-    this.dialog.open(MsgLogoutComponent);
+    this.dialog.open(MsgLogoutComponent,{panelClass:'description-modal'});
   }
 
 }

@@ -1,10 +1,17 @@
-<div>
+<div [ngStyle]="{'background': _theme._box}" class="p-4">
     <form [formGroup]="formDescrip">
-        <h2 mat-dialog-title>Descripción</h2>
+        <div class="c-icon d-flex mb-2">
+            <span class="material-icons">description</span>
+            <span class="m-1 fs-4">Descripción</span>  
+        </div>
         <div class="mb-3">
             <mat-form-field class="full-width">
                 <mat-label>Titulo</mat-label>
-                <input type="email" matInput autocomplete="off" formControlName="title" maxlength="75">
+                <input type="email" matInput 
+                       autocomplete="off" 
+                       formControlName="title" 
+                       [ngStyle]="{'color': _theme._color}"
+                       maxlength="75">
                 <mat-error *ngIf="title.hasError('required')">
                     El titulo es <strong>requerida</strong>
                 </mat-error>
@@ -13,7 +20,9 @@
           <div class="mb-3">
             <mat-form-field class="full-width">
                 <mat-label>Descripción</mat-label>
-                <textarea matInput rows="6" maxlength="145" formControlName="description"></textarea>
+                <textarea matInput rows="6" maxlength="145" 
+                          formControlName="description"
+                          [ngStyle]="{'color': _theme._color}"></textarea>
                 <mat-hint align="end">5/ 145</mat-hint>
                 <mat-error *ngIf="description.hasError('required')">
                     La descripcion es <strong>requerida</strong>

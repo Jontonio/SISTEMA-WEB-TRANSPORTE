@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PortDescriotion } from 'src/app/models/portdaDes';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-form-descrip',
@@ -19,6 +20,7 @@ export class FormDescripComponent implements OnInit {
   constructor(private fb:FormBuilder, 
               private _db:DatabaseService, 
               private _msg:MessagesService,
+              public _theme:ThemeService,
               @Inject(MAT_DIALOG_DATA) public data: PortDescriotion, 
               public dialogRef: MatDialogRef<FormDescripComponent>) { 
     this.crearFormulario();

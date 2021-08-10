@@ -21,20 +21,20 @@ export class AdminPortadaComponent implements OnInit {
   }
 
   portDescrip(){
-    this.mat.open(FormDescripComponent, {disableClose:true,width:'70%'})
+    this.mat.open(FormDescripComponent, {disableClose:true, width:'70%', panelClass:'description-modal'})
   }
   
   post(){
-    this.mat.open(PostComponent, {disableClose:true})
+    this.mat.open(PostComponent, {disableClose:true, panelClass:'description-modal'})
   }
 
   editDescription(data:PortDescriotion){
-    this.mat.open(FormDescripComponent, {disableClose:true,width:'100%',data:data})
+    this.mat.open(FormDescripComponent, {disableClose:true,width:'70%',data:data, panelClass:'description-modal'})
   }
 
   deleteDescript(data:PortDescriotion){
     const msg = new Message('Eliminar descripción','¿Estas seguro de eliminar la descripción de la portada?');
-    const ref = this.mat.open(OptionsComponent,{data:msg})
+    const ref = this.mat.open(OptionsComponent,{data:msg, panelClass:'description-modal'})
     ref.afterClosed().subscribe( res => {
       if(res) this._db.deleteDescription(data);
     })

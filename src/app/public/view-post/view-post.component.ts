@@ -6,6 +6,7 @@ import { Message } from 'src/app/models/message';
 import { Post } from 'src/app/models/post';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-view-post',
@@ -20,6 +21,7 @@ export class ViewPostComponent{
               private _db:DatabaseService, 
               private _msg:MessagesService,
               private mat:MatDialog,
+              public _theme:ThemeService,
               private ruta:Router) { 
     this.data();
   }
@@ -37,7 +39,7 @@ export class ViewPostComponent{
 
   deletePost(id:string){
     const msg = new Message('Eliminar Post de portada','¿Estas seguro de eliminar el post de la portada?');
-    const ref = this.mat.open(OptionsComponent,{data:msg})
+    const ref = this.mat.open(OptionsComponent,{data:msg, panelClass:'description-modal'})
     ref.afterClosed().subscribe( res => {
       if(res){
         this._db.deletePost(id);

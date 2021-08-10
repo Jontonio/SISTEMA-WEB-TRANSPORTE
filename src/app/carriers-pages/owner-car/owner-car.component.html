@@ -3,10 +3,10 @@
   <mat-card-header>
     <div mat-card-avatar>
       <button mat-icon-button routerLink="../../carriers">
-        <mat-icon><span class="material-icons">west</span></mat-icon>
+        <mat-icon><span class="material-icons c-icon">west</span></mat-icon>
       </button>
     </div>
-    <mat-card-title>Lista de Vehículos registrados</mat-card-title>
+    <mat-card-title class="c-icon">Lista de Vehículos registrados</mat-card-title>
     <mat-card-subtitle><span class="badge-b">Registrados {{listCars.length}} </span></mat-card-subtitle>
   </mat-card-header>
 </div>
@@ -32,14 +32,14 @@
   <div class="col-md-5 animate__animated animate__fadeIn">
       <div class="row">
           <div class="col-md-12 mb-4" *ngFor="let car of listCars; let i=index">
-            <mat-card>
+            <mat-card [ngStyle]="{'background': _theme._box, color:_theme._color}">
               <h5 class="card-title">
                 <img class="header-image" src="../../../assets/img/muni.png" alt="">
                 <b class="m-1 title-muni">Municipalidad de Andahuaylas</b>
               </h5>
               <h6 class="card-subtitle mb-2 text-muted">Vehículo {{i+1}}</h6>
               <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" [ngStyle]="{'color':_theme._color}">
                   <thead>
                     <tr>
                       <th scope="col"><span class="material-icons">directions_car</span>
@@ -89,7 +89,7 @@
       </div> 
   </div>
   <div class="col-md-4 animate__animated animate__fadeIn">
-    <mat-card>
+    <mat-card [ngStyle]="{'background': _theme._box, color:_theme._color}">
         <mat-card-header>
           <mat-card-title><b>Información</b></mat-card-title>
         </mat-card-header>

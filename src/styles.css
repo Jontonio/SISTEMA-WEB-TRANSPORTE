@@ -22,12 +22,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .comodin{
     margin-top: 60px;
 }
-.mat-form-field-appearance-outline .mat-form-field-outline {
-    color: #c9c8c8;
-}
-.mat-form-field-outline{
-    height: 47px;
-}
 .btn-c{
     color: rgb(230, 30, 30);
 }
@@ -188,6 +182,10 @@ background-image: linear-gradient(180deg, #fc7d5a 0%, #F7CE68 100%);
     width: 130px;
 }
 
+.description-modal .mat-dialog-container {
+    padding: 0;
+    margin: 0;
+}
 body::-webkit-scrollbar {
     width: 8px;     
     height: 8px;    
@@ -196,4 +194,7 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
     background: #ccc;
     border-radius: 4px;
+}
+.td:hover{
+    color: #FFFF;
 }

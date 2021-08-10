@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of _db.listEnterpiseDes | slice:desde:hasta; let i=index">
+        <tr *ngFor="let data of _db.listEnterpiseDes | slice:desde:hasta; let i=index" [ngStyle]="{'color': _theme._color}">
           <td class="text-center">{{i+1}}</td>
           <td class="text-center">{{data.ruc}}</td>
           <td class="text-center">{{data.razonSocial | slice:0:45}}..</td>

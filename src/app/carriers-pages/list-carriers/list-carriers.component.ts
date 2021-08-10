@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { Owner } from 'src/app/models/owner';
 import { PreviewOwnerComponent } from 'src/app/profiles/preview-owner/preview-owner.component';
 import { DatabaseService } from 'src/app/services/database.service';

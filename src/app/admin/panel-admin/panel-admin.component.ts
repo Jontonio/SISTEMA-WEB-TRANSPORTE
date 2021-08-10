@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MsgLogoutComponent } from 'src/app/messages/msg-logout/msg-logout.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { DatabaseService } from 'src/app/services/database.service';
-import { MessagesService } from 'src/app/services/messages.service';
 import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
@@ -32,7 +30,7 @@ export class PanelAdminComponent implements OnInit {
     this.modo = 'side'
   }
   openLogout() {
-    this.dialog.open(MsgLogoutComponent);
+    this.dialog.open(MsgLogoutComponent, {panelClass:'description-modal'});
   }
 
   changeTheme(){

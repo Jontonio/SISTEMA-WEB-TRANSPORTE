@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-msg-logout',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class MsgLogoutComponent implements OnInit {
 
-  constructor( private _auth: AuthService, private ruta:Router) { }
+  constructor( private _auth: AuthService, private ruta:Router, public _theme:ThemeService) { }
 
   ngOnInit(): void {
 

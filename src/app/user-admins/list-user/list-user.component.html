@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of _db.listUsers | slice:desde:hasta; let i=index" class="c-icon">
+          <tr *ngFor="let data of _db.listUsers | slice:desde:hasta; let i=index" [ngStyle]="{'color': _theme._color}">
             <th >{{i+1}}</th>
             <td><img class="default-user" [src]="data.URL_photo" alt=""></td>
             <td>{{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}</td>

@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Post } from 'src/app/models/post';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-post',
@@ -11,7 +12,10 @@ import { MessagesService } from 'src/app/services/messages.service';
 })
 export class PostComponent implements OnInit {
 
-  constructor(public _db:DatabaseService, private _msg:MessagesService, public dialogRef: MatDialogRef<PostComponent>) { }
+  constructor(public _db:DatabaseService, 
+              private _msg:MessagesService, 
+              public _theme:ThemeService,
+              public dialogRef: MatDialogRef<PostComponent>) { }
 
   ngOnInit(): void {
   }

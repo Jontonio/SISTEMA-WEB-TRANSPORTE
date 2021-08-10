@@ -1,6 +1,8 @@
-<h1 mat-dialog-title>Cerrar sesión</h1>
-<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No, gracias</button>
-  <button mat-button mat-dialog-close (click)="salir()">Si, cerrar</button>
+<div  [ngStyle]="{'background': _theme._box, color:_theme._color}" class="p-4">
+  <h1 mat-dialog-title>Cerrar sesión</h1>
+  <div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>No, gracias</button>
+    <button mat-button mat-dialog-close (click)="salir()">Si, cerrar</button>
+  </div>
 </div>

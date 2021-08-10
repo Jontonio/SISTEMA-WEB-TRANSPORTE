@@ -8,6 +8,7 @@ import { Owner } from 'src/app/models/owner';
 import { Ruc } from 'src/app/models/ruc';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 import { TransportService } from 'src/app/services/transport.service';
 
 @Component({
@@ -63,6 +64,7 @@ export class OwnerCarComponent {
   constructor(private rutaActiva:ActivatedRoute, 
               public _trans:TransportService,
               private dialog:MatDialog,
+              public _theme:ThemeService,
               private _db:DatabaseService, 
               private _msg:MessagesService) {
     this.data();
@@ -116,7 +118,7 @@ export class OwnerCarComponent {
 
   deleteComment(idValoration:string){
       const msg = new Message('Eliminar reseña','¿Estas seguro de eliminar la reseña del transportista?');
-      const ref = this.dialog.open(OptionsComponent,{data:msg, width:'35%'})
+      const ref = this.dialog.open(OptionsComponent,{data:msg, width:'35%', panelClass:'description-modal'})
       ref.afterClosed().subscribe( res => {
         if(res){
           this._trans.delteComment(this.idconductor,this.idcar, idValoration).then( res => {
