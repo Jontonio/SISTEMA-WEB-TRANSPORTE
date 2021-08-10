@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { DatabaseService } from 'src/app/services/database.service';
+import { ThemeService } from 'src/app/services/theme.service';
 import { TransportService } from 'src/app/services/transport.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class ListQrCarriersComponent{
   desde       : number = 0;
   hasta       : number = 9;
 
-  constructor(public _trans:TransportService, public _db:DatabaseService) {}
+  constructor(public _trans:TransportService, public _db:DatabaseService, public _theme:ThemeService) {}
 
   pageEvent(e:PageEvent){
     console.log(e)

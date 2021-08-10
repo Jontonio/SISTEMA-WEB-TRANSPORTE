@@ -9,6 +9,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-list-user',
@@ -21,7 +22,11 @@ export class ListUserComponent {
   hasta:number = 8;
   activate: boolean = false;
 
-  constructor(public _db:DatabaseService, public _auth:AuthService, private _msg:MessagesService, private dialog:MatDialog) { }
+  constructor(public _db:DatabaseService, 
+              public _auth:AuthService, 
+              private _msg:MessagesService, 
+              private dialog:MatDialog,
+              public _theme:ThemeService) { }
 
   pageEvent(e:PageEvent){
     this.desde = e.pageIndex * e.pageSize;

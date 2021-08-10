@@ -1,8 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Car } from 'src/app/models/Car';
 import { commonUser } from 'src/app/models/commonUser';
 import { Owner } from 'src/app/models/owner';
 import { Valoration } from 'src/app/models/valoration';
@@ -10,6 +9,9 @@ import { CommentComponent } from 'src/app/public/forms/comment/comment.component
 import { AuthService } from 'src/app/services/auth.service';
 import { MessagesService } from 'src/app/services/messages.service';
 import { TransportService } from 'src/app/services/transport.service';
+import { Ruc } from 'src/app/models/ruc';
+import { DatabaseService } from 'src/app/services/database.service';
+import { Car } from 'src/app/models/Car';
 
 @Component({
   selector: 'app-profile-carrier',
@@ -23,9 +25,10 @@ export class ProfileCarrierComponent {
   idcar:string;
   owner:Owner;
   existUser:boolean = false;
-  listComment:Valoration[] = []
-  common:commonUser
-  users:string[] = ['José Angel','Angel','María Quispe','Juan Pedro','Santos Damian','Dany Lua'];
+  listComment:Valoration[] = [];
+  common:commonUser;
+  enterprise:Ruc;
+  car:Car;
 
   results: any[] = [
     {
@@ -34,7 +37,7 @@ export class ProfileCarrierComponent {
     },
     {
       "name": "4",
-      "value": 73000000
+      "value": 1
     },
     {
       "name": "3",
@@ -58,7 +61,7 @@ export class ProfileCarrierComponent {
   showXAxisLabel = true;
   xAxisLabel = 'Country';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'Valoración';
   colorScheme = { domain: ['#FAAF05', '#DE8504', '#F57710','#DE4704', '#FA2C05'] }
 
   onSelect(event:any) {
@@ -81,11 +84,13 @@ export class ProfileCarrierComponent {
               public _trans:TransportService, 
               private _auth:AuthService,
               private ruta:Router,
+              private _db:DatabaseService,
               private dialog:MatDialog,
               private _msg:MessagesService,
               private _sp:NgxSpinnerService) {
     this.verifcarData();
     this.isSesion();
+    console.log(this.results[0].name)
   }
 
   verifcarData(){
@@ -112,7 +117,12 @@ export class ProfileCarrierComponent {
   }
 
   getcar(idOwner:string, idCar:string){
-    this._trans.getCar(idOwner,idCar).then( res => { })
+    this._trans.getCar(idOwner,idCar).then( res => {
+      this.car = res as any;
+      this._db.getEnterprise(this.car.idEmpresa).then( res => {
+        this.enterprise = res as any;
+      })
+    })
     .catch( err => {
       console.log(err)
     })
@@ -166,7 +176,7 @@ export class ProfileCarrierComponent {
   editComment(dataVal:Valoration){
     const info = { 'uid':this.uid, 'idcar':this.idcar};
     const data = {...info, ...dataVal}
-    this.dialog.open(CommentComponent,{ panelClass:'container-comment', width:'600px', data:data})
+    this.dialog.open(CommentComponent,{ panelClass:'container-comment', width:'600px', data:data});
   }
   /*
     displayName

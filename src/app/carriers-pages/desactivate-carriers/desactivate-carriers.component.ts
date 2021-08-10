@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-desactivate-carriers',
@@ -11,7 +12,7 @@ export class DesactivateCarriersComponent implements OnInit {
   desde: number = 0;
   hasta: number = 9;
 
-  constructor() { }
+  constructor( public _theme:ThemeService) { }
 
   ngOnInit(): void {
   }

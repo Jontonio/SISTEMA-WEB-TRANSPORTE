@@ -1,11 +1,10 @@
-<mat-drawer-container class="panel-container" hasBackdrop="true">
+<mat-drawer-container class="panel-container" hasBackdrop="true" [ngStyle]="{'background': _theme._backgroundMain}">
     <mat-drawer #drawer class="panel-sidenav" mode="over">
       <app-sidebar [acction]="drawer" ></app-sidebar>
     </mat-drawer>
   
-    <div class="example-sidenav-content">
-
-        <nav class="navbar navbar-custom fixed-top text-white">
+    <div>
+        <nav class="navbar navbar-custom fixed-top text-white" [ngStyle]="{'background': _theme._backgroundNav}">
             <div class="container-fluid">
                 <div>
                     <button class="mode-phone" type="button" mat-button  (click)="modeDesktop()">
@@ -30,19 +29,17 @@
                           <span>Cerrar sesión</span>
                         </button>
                     </mat-menu>
-                    <button type="button" mat-icon-button class="m-1" (click)="modePage=!modePage">
-                        <span *ngIf="!modePage" class="material-icons" (click)="usuario()">dark_mode</span>
-                        <span *ngIf="modePage" class="material-icons">light_mode</span>
+                    <button type="button" mat-icon-button class="m-1" (click)="changeTheme()">
+                        <span *ngIf="!_theme.modePage" class="material-icons">dark_mode</span>
+                        <span *ngIf="_theme.modePage" class="material-icons sun">light_mode</span>
                     </button>
                 </div>
                 <div *ngIf="!_auth.loadUser" class="spinner-grow" role="status"></div>
             </div>
         </nav>
-
-        <div class="container-fluid p-3">
+        <div class="container-fluid p-3" [ngStyle]="{'background': _theme._backgroundMain}">
             <div class="comodin"></div>
             <router-outlet></router-outlet>
         </div>
-
     </div>
 </mat-drawer-container>

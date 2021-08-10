@@ -1,12 +1,9 @@
 ._card1{
     border-radius: 3%;
-    background-color: #403D56;
+    /* background-color: #CCCCCC; */
 }
 ._txtcard1,p{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: azure;
-}
-._contcali{
-    border-radius:10px;
-    background-color: #F97B26;
+    columns: black;
+    /* color: azure; */
 }

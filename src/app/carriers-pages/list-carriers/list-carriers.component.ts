@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Owner } from 'src/app/models/owner';
 import { PreviewOwnerComponent } from 'src/app/profiles/preview-owner/preview-owner.component';
 import { DatabaseService } from 'src/app/services/database.service';
+import { ThemeService } from 'src/app/services/theme.service';
 import { TransportService } from 'src/app/services/transport.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class ListCarriersComponent {
   hasta       : number = 9;
   ownerPreview: Owner;
 
-  constructor(public _trans:TransportService, public _db:DatabaseService, private dialog:MatDialog) {}
+  constructor(public _trans:TransportService, public _db:DatabaseService, private dialog:MatDialog, public _theme:ThemeService) {}
 
   pageEvent(e:PageEvent){
     console.log(e)

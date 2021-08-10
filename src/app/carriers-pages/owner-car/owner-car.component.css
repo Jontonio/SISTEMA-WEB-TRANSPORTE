@@ -19,3 +19,115 @@
 .title-muni{
     font-size: 14px;
 }
+
+
+.img-profile{
+    height: 100px;
+    width: 100px;
+}
+.info{
+    margin-left: 3px;
+    margin-top: 5px;
+}
+.img-view{
+    height: 300px;
+    width: 500px !important;
+}
+.content-chart{
+    width: 100%;
+    height: 150px;
+}
+.autor{
+    margin-left: 5px;
+    margin-top: 4px;
+}
+.calificado{
+    margin-left: 5px;
+    margin-top: -10px;
+}
+.comment{
+    margin-left: 50px;
+    text-align: justify;
+    padding-right: 20px;
+}
+.img-logo{
+    height: 45px !important;
+    width: 40px !important;
+}
+.navbar-custom{
+    color: #3F3F3F;
+}
+.navbar{
+    background:#ff6f5e;
+}
+.navbar-other{
+    color: #3F3F3F;
+    text-decoration: none !important;
+}
+.title{
+    text-decoration: none;
+    color: #181818;
+}
+.custom-scroll{
+    background: #3F3F3F;
+    transition: 0.5s;
+}
+.navbar-brand{
+    color: #FFF;
+    font-size: 16px;
+    font-family: 'K2D', sans-serif;
+}
+.container-profile{
+    margin-top: 40px;
+}
+.svg-google{
+    height: 15px;
+    width: 15px;
+}
+.user-img{
+    border-radius: 50%;
+    height: 40px;
+    width:  40px;
+}
+.content-star{
+    display: flex;
+}
+.date-comment{
+    margin-top: -10px;
+    font-size: 12px;
+    color: #3F3F3F;
+}
+
+@media (max-width:760px){
+    .img-view{
+        height: 200px;
+        width: 300px !important;
+    }
+    .img-profile{
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+    }
+    .name-driver{
+        font-size: 18px;
+    }
+    .navbar-brand{
+        font-size: 14px;
+    }
+    .centent-user-comment{
+        margin: 0;
+        padding: 0;
+    }
+    .mat-card{
+        border: none;
+        border-radius: 0;
+        margin-top: 20px !important;
+        background-image: linear-gradient(0deg, #ffe862 0%, #fa965c 50%, #ff6f5e 100%);
+    }
+    .navbar{
+        margin: 0;
+    }
+    .col-md-12{
+        padding: 0;
+    }
+}

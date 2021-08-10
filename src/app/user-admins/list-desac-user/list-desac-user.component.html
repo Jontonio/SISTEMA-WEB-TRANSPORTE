@@ -1,11 +1,11 @@
 <div class="container-fluid mt-4 contend-card">
-  <mat-card>
-    <mat-card-header>
+  <mat-card [ngStyle]="{'background': _theme._box}">
+    <mat-card-header class="c-icon">
       <mat-card-title>Usuarios desactivados</mat-card-title>
       <mat-card-subtitle><span class="badge-e">desactivados</span></mat-card-subtitle>
     </mat-card-header>
     <table class="table table-striped">
-      <thead>
+      <thead class="c-icon">
         <tr>
           <th scope="col">#</th>
           <th scope="col">Photo</th>
@@ -29,14 +29,17 @@
       </tbody>
     </table>
     <div *ngIf="_db.listUsersdisable.length==0 && !_db.loadGetDisable">
-      <div class="alert alert-info" role="alert">
-        <span class="material-icons">folder</span> Lista de usuarios vacia
-      </div>
+      <app-message message="No se encontraron usuarios desactivados" 
+                     subMessage="Recuerde que los usuarios desactivados no participan en el programa">
+      </app-message>
     </div>
     <div *ngIf="_db.loadGetDisable" class="text-center mt-4">
       <div class="spinner-border text-secondary" role="status"></div>
       <div>Cargando...</div>
     </div>
-    <mat-paginator [length]="_db.listUsers.length" [pageSize]="8" (page)="pageEvent($event)"> </mat-paginator>
+    <mat-paginator [length]="_db.listUsers.length" 
+                   [pageSize]="8" 
+                   (page)="pageEvent($event)"
+                   [ngStyle]="{'background': _theme._box}"> </mat-paginator>
   </mat-card>
 </div>

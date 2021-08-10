@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-register-user',
@@ -32,7 +33,8 @@ export class RegisterUserComponent {
                public _db:DatabaseService, 
                private _msg:MessagesService,
                private _auth:AuthService,
-               private _api:ApiService) { 
+               private _api:ApiService,
+               public _theme:ThemeService) { 
     this.createForm();
     this.verifyUpdate();
   }

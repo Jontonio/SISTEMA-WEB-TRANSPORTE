@@ -1,14 +1,10 @@
 .panel-container{
     height: 100vh;
-    background-color: #fafafa;
+    background: #fafafaec;
 }
 .panel-sidenav{
-    width: 260px;
-}
-mat-drawer-content {
-    padding       : 12px;
-    display       : flex;
-    height        : 100vh;
+    width: 270px;
+    background: #fafafaec;
 }
 .mode-phone{
     display: block;
@@ -29,6 +25,9 @@ mat-drawer-content {
 }
 .navbar-custom{
     background:#3F3F3F;
+}
+.sun{
+    color: #f1c01c;
 }
 
 @media (max-width:760px) {

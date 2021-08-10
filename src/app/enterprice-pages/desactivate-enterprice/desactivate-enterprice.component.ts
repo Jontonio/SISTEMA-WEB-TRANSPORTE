@@ -5,6 +5,7 @@ import { OptionsComponent } from 'src/app/messages/options/options.component';
 import { Message } from 'src/app/models/message';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'app-desactivate-enterprice',
@@ -16,7 +17,10 @@ export class DesactivateEnterpriceComponent implements OnInit {
   desde:number = 0;
   hasta:number = 9;
   
-  constructor(public _db:DatabaseService, private dialog:MatDialog, private _msg:MessagesService) {}
+  constructor(public _db:DatabaseService, 
+              private dialog:MatDialog, 
+              private _msg:MessagesService,
+              public _theme:ThemeService) {}
 
   ngOnInit(): void {
   }
