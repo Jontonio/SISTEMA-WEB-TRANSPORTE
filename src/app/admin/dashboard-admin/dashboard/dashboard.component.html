@@ -1,112 +1,77 @@
 
+
 <div class="row">
-        <div class="col-md-6">
-            <h2><span class="material-icons c-icon">space_dashboard</span> Dashboard</h2>
-        </div>
-        <div class="col-md-6 d-flex justify-content-end align-items-stretch">
-            <button mat-button
-                    [useExistingCss]="true"
-                    printSectionId="general"
-                    ngxPrint >
-                    <span class="material-icons">print</span>
-            </button>
-        </div>
-        <div class="col-md-4">
-            <div class="card bg-gradient-success card-img-holder">
-            <div class="card-body d-flex justify-content-between">
-                <div class="col-right d-flex justify-content-center">
-                    <div class="text-center" >
-                        <h1 class=" mt-4 text-white">Empresas
-                            <i class="fas fa-building"></i>
-                        </h1>
-                        <h1 class="mb-3  text-white">{{_db.listEnterpise.length}}</h1>
-                        <h3 class="card-text  text-white">Increased by 60%</h3>
-                    </div>
-                </div>
-                <div class="col-left">
-                    <img src="../../../../assets/img/dashboard/circle.png" class="card-img-absolute" alt="circle-image"/>                                    
-        <div class="d-flex fs-5 mb-2">
-            <span class="material-icons c-icon">space_dashboard</span> 
-            <span class="c-icon m-1">Dashboard</span>
-        </div>
-    <div class="col-md-4">
-        <div class="card bg-gradient-success card-img-holder">
-        <div class="card-body d-flex justify-content-between">
-            <div class="col-right d-flex justify-content-center">
-                <div class="text-center" >
-                    <h1 class=" mt-4 text-white">Empresas</h1>
-                    <h1 class="mb-3  text-white">{{_db.listEnterpise.length}}</h1>
-                    <h3 class="card-text  text-white">Increased by 60%</h3>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card bg-gradient-success card-img-holder">
-            <div class="card-body d-flex justify-content-between">
-                <div class="col-right d-flex justify-content-center">
-                    <div class="text-center">
-                        <h1 class=" mt-4 text-white">Transportistas
-                            <i class="fas fa-car"></i>
-                        </h1>
-                        <h1 class="mb-3  text-white">{{_trans.listCarriers.length}}</h1>
-                        <h3 class="card-text  text-white">Increased by 54%</h3>
-                    </div>
-                </div>
-                <div class="col-left">
-                    <img src="../../../../assets/img/dashboard/circle.png" class="card-img-absolute" alt="circle-image"/>                                    
-        </div>
+    <div class="d-flex fs-5 mb-2 col-md-6">
+        <span class="material-icons c-icon">space_dashboard</span> 
+        <span class="c-icon m-1">Dashboard</span>
     </div>
-    <div class="col-md-4">
-        <div class="card bg-gradient-success card-img-holder">
-        <div class="card-body d-flex justify-content-between">
-            <div class="col-right d-flex justify-content-center">
-                <div class="text-center">
-                    <h1 class=" mt-4 text-white">Transportistas</h1>
-                    <h1 class="mb-3  text-white">{{_trans.listCarriers.length}}</h1>
-                    <h3 class="card-text  text-white">Increased by 54%</h3>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-        <div class="card bg-gradient-success card-img-holder">
-            <div class="card-body d-flex justify-content-between">
-                <div class="col-right d-flex justify-content-center">
-                    <div class="text-center">
-                        <h1 class=" mt-4 text-white">Usuarios
-                            <i class="fas fa-users"></i>
-                        </h1>
-                        <h1 class="mb-3  text-white">{{_db.listUsers.length}}</h1>
-                        <h3 class="card-text  text-white">Increased by 5%</h3>
-                    </div>
-                </div>
-                <div class="col-left">
-                    <img src="../../../../assets/img/dashboard/circle.png" class="card-img-absolute" alt="circle-image"/>                                    
-        </div>
+    <div class="col-md-6 d-flex justify-content-end align-items-stretch">
+        <button mat-button
+                [useExistingCss]="true"
+                printSectionId="general"
+                ngxPrint >
+                <span class="material-icons">print</span>
+        </button>
     </div>
-    <div class="col-md-4">
+<div class="col-md-4">
     <div class="card bg-gradient-success card-img-holder">
-        <div class="card-body d-flex justify-content-between">
-            <div class="col-right d-flex justify-content-center">
-                <div class="text-center">
-                    <h1 class=" mt-4 text-white">Usuarios</h1>
-                    <h1 class="mb-3  text-white">{{_db.listUsers.length}}</h1>
-                    <h3 class="card-text  text-white">Increased by 5%</h3>
-                </div>
+    <div class="card-body d-flex justify-content-between">
+        <div class="col-right d-flex justify-content-center">
+            <div class="text-center" >
+                <h1 class=" mt-4 text-white">Empresas</h1>
+                <h1 class="mb-3  text-white">{{_db.listEnterpise.length}}</h1>
+                <h3 class="card-text  text-white">Increased by 60%</h3>
             </div>
         </div>
+        <div class="col-left">
+            <img src="../../../../assets/img/dashboard/circle.png" class="card-img-absolute" alt="circle-image"/>                                    
         </div>
+    </div>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="card bg-gradient-success card-img-holder">
+    <div class="card-body d-flex justify-content-between">
+        <div class="col-right d-flex justify-content-center">
+            <div class="text-center">
+                <h1 class=" mt-4 text-white">Transportistas</h1>
+                <h1 class="mb-3  text-white">{{_trans.listCarriers.length}}</h1>
+                <h3 class="card-text  text-white">Increased by 54%</h3>
+            </div>
+        </div>
+        <div class="col-left">
+            <img src="../../../../assets/img/dashboard/circle.png" class="card-img-absolute" alt="circle-image"/>                                    
+        </div>
+    </div>
+    </div>
+</div>
+<div class="col-md-4">
+<div class="card bg-gradient-success card-img-holder">
+    <div class="card-body d-flex justify-content-between">
+        <div class="col-right d-flex justify-content-center">
+            <div class="text-center">
+                <h1 class=" mt-4 text-white">Usuarios</h1>
+                <h1 class="mb-3  text-white">{{_db.listUsers.length}}</h1>
+                <h3 class="card-text  text-white">Increased by 5%</h3>
+            </div>
+        </div>
+        <div class="col-left">
+            <img src="../../../../assets/img/dashboard/circle.png" class="card-img-absolute" alt="circle-image"/>                                    
+        </div>
+    </div>
+</div>
+</div>
 </div>
 
 <div class="container-fluid mt-3 container-general-chart">
     <div class="row">
-        <div class="row" id="general">
+        <div id="general" class="row">
             <div class="col-md-6 mb-3" id="Ghorizoltal">
-                <mat-card>
-                    <div class="row m-1">
-                        <div class="col-md-6">
-                            <h2><span class="material-icons c-icon">leaderboard</span> Grafico horizontal</h2>
+                <mat-card [ngStyle]="{'background': _theme._box}">
+                    <div class="row">
+                        <div class="d-flex fs-5 col-md-6">
+                            <span class="material-icons c-icon">leaderboard</span> 
+                            <span class="c-icon m-1">Grafico horizontal</span>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end align-items-stretch">
                             <button mat-button
@@ -117,72 +82,48 @@
                             </button>
                         </div>
                     </div>
-                    <app-horizontal-bar></app-horizontal-bar>      
+                    
+                    <app-horizontal-bar></app-horizontal-bar>
                 </mat-card>
             </div>
             <div class="col-md-6 mb-3" id="Gcircular">
-                <mat-card>
-                    <div class="row m-1">
-                        <div class="col-md-6">
-                            <h2><span class="material-icons c-icon">pie_chart</span> Grafico circular</h2>
-                        </div>
-                        <div class="col-md-6 d-flex justify-content-end align-items-stretch">
-                            <button mat-button
-                                [useExistingCss]="true"
-                                printSectionId="Gcircular"
-                                ngxPrint>
-                                    <span class="material-icons">print</span>
-                            </button>
-                        </div>
-                        
-                    </div>
-                    <app-pie-chart></app-pie-chart>
-                </mat-card>
-            </div>
-        </div>
-        <div class="container col-md-9 mt-2" id="GBvertical">
-                <mat-card>
+                <mat-card [ngStyle]="{'background': _theme._box}">
                     <div class="row">
-                        <div class="col-md-6">
-                            <h2><span class="material-icons c-icon">bar_chart</span> Grafico barra vertical</h2>
+                        <div class="d-flex fs-5 col-md-6">
+                            <span class="material-icons c-icon">pie_chart</span> 
+                            <span class="c-icon m-1">Gráfico circular</span>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end align-items-stretch">
                             <button mat-button
                                     [useExistingCss]="true"
-                                    printSectionId="GBvertical"
+                                    printSectionId="Gcircular"
                                     ngxPrint>
                                     <span class="material-icons">print</span>
                             </button>
                         </div>
-                    </div>
-                    <app-vertical-bar-chart></app-vertical-bar-chart>
-                    
+                    </div>                    
+                    <app-pie-chart></app-pie-chart>
                 </mat-card>
-   <div class="row">
-        <div class="col-md-6">
-            <mat-card [ngStyle]="{'background': _theme._box}">
-                <div class="d-flex fs-5">
-                    <span class="material-icons c-icon">leaderboard</span> 
-                    <span class="c-icon m-1">Grafico horizontal</span>
-                </div>
-                <app-horizontal-bar></app-horizontal-bar>
-            </mat-card>
+            </div>
         </div>
-        <div class="col-md-6">
+        
+        <div class="container col-md-9 mt-2 mb-3" id="Gvertical">
             <mat-card [ngStyle]="{'background': _theme._box}">
-                <div class="d-flex fs-5">
-                    <span class="material-icons c-icon">pie_chart</span> 
-                    <span class="c-icon m-1">Gráfico circular</span>
+                <div class="row">
+                    <div class="d-flex fs-5 col-md-6">
+                        <span class="material-icons c-icon">bar_chart</span>
+                        <span class="c-icon m-1">Gráfico barra vertical</span>
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-end align-items-stretch">
+                        <button mat-button
+                                [useExistingCss]="true"
+                                printSectionId="Gvertical"
+                                ngxPrint>
+                                <span class="material-icons">print</span>
+                        </button>
+                    </div>
                 </div>
-                <app-pie-chart></app-pie-chart>
-            </mat-card>
-        </div>
-        <div class="col-md-12 mt-2">
-            <mat-card [ngStyle]="{'background': _theme._box}">
-                <div class="d-flex fs-5">
-                    <span class="material-icons c-icon">bar_chart</span>
-                    <span class="c-icon m-1">Gráfico barra vertical</span>
-                </div>
+                
                 <app-vertical-bar-chart></app-vertical-bar-chart>
             </mat-card>
         </div>
