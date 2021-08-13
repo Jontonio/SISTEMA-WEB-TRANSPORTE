@@ -3,32 +3,32 @@
 
         <mat-tab>
             <ng-template mat-tab-label>
-            <mat-icon class="m-tab-icon"><span class="material-icons c-icon">format_list_numbered</span></mat-icon>
-             <span class="c-icon">Lista transportistas</span>
+            <mat-icon class="m-tab-icon"><span class="material-icons" [ngStyle]="{'color': _theme._color}">format_list_numbered</span></mat-icon>
+             <span [ngStyle]="{'color': _theme._color}">Lista transportistas</span>
             </ng-template>
             <app-list-carriers></app-list-carriers>
         </mat-tab>
 
         <mat-tab>
             <ng-template mat-tab-label>
-            <mat-icon class="m-tab-icon"><span class="material-icons c-icon">airport_shuttle</span></mat-icon>
-             <span class="c-icon">Registro de transportista</span>
+            <mat-icon class="m-tab-icon"><span class="material-icons" [ngStyle]="{'color': _theme._color}">airport_shuttle</span></mat-icon>
+             <span [ngStyle]="{'color': _theme._color}">Registro de transportista</span>
             </ng-template>
             <app-register-carriers></app-register-carriers>
         </mat-tab>
 
         <mat-tab>
             <ng-template mat-tab-label>
-            <mat-icon class="m-tab-icon"><span class="material-icons c-icon">qr_code</span></mat-icon>
-              <span class="c-icon">QR vehículos</span>
+            <mat-icon class="m-tab-icon"><span class="material-icons" [ngStyle]="{'color': _theme._color}">qr_code</span></mat-icon>
+              <span [ngStyle]="{'color': _theme._color}">QR vehículos</span>
             </ng-template>
             <app-list-qr-carriers></app-list-qr-carriers>
         </mat-tab>
 
         <mat-tab>
             <ng-template mat-tab-label>
-            <mat-icon class="m-tab-icon"><span class="material-icons c-icon">cancel_presentation</span></mat-icon>
-             <span class="c-icon">Transportistas desactivadas</span>
+            <mat-icon class="m-tab-icon"><span class="material-icons" [ngStyle]="{'color': _theme._color}">cancel_presentation</span></mat-icon>
+             <span [ngStyle]="{'color': _theme._color}">Transportistas desactivadas</span>
             </ng-template>
             <app-desactivate-carriers></app-desactivate-carriers>
         </mat-tab>

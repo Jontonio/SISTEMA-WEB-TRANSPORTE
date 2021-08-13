@@ -6,7 +6,7 @@
             <mat-icon><span class="material-icons">west</span></mat-icon>
           </button>
         </div>
-        <mat-card-title>Registro de transportistas</mat-card-title>
+        <mat-card-title [ngStyle]="{'color': _theme._color}">Registro de transportistas</mat-card-title>
         <mat-card-subtitle><span class="badge-s">Registro</span></mat-card-subtitle>
       </mat-card-header>
       <div class="row">
@@ -34,7 +34,11 @@
                   </div>
                   <div class="col-md-2 mt-2">
                     <button mat-raised-button type="button" class="button-search" (click)="completeData()" [disabled]="loadComlete">
-                      <span *ngIf="loadComlete" class="spinner-border spinner-border-sm" role="status"></span> Buscar por DNI
+                      <span *ngIf="loadComlete" class="spinner-border spinner-border-sm" role="status"></span>
+                      <span class="material-icons">
+                        search
+                      </span>
+                      Buscar por DNI
                     </button>
                   </div>
                 </div>
@@ -123,16 +127,16 @@
                     </mat-form-field>
                   </div>
                   <div class="col-md-3">
-                    <div class="upload-btn-wrapper">
-                        <span class="title-upload" *ngIf="!this._db.subiedoImg">
-                          <span class="material-icons">photo_camera</span></span>
+                    <div class="upload-btn-wrapper" [ngStyle]="{'color': _theme._color}">
+                        <span class="title-upload d-flex" *ngIf="!this._db.subiedoImg">
+                          <span class="material-icons">photo_camera</span> <p class="m-1">Foto</p></span>
                         <span *ngIf="_db.subiedoImg" >{{this._db.porcentajeSFoto}}%</span>
-                      <input type="file" class="file-owner" 
-                             (change)="this._db.onImage($event,3)" 
-                             [class.invalid]="photo" 
-                             accept="image/*" 
-                             formControlName="URL_photo"
-                             [ngStyle]="{'color': _theme._color}"/>
+                        <input type="file" class="file-owner" 
+                              (change)="this._db.onImage($event,3)" 
+                              [class.invalid]="photo" 
+                              accept="image/*" 
+                              formControlName="URL_photo"
+                              [ngStyle]="{'color': _theme._color}"/>
                     </div>
                     <div *ngIf="photo" class="mt-2 animate__animated animate__fadeInDown">
                       <span class="message-invalid">El campo foto del propietario es <strong>requerido</strong></span>

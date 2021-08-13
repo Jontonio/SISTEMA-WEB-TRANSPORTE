@@ -6,7 +6,7 @@
         <mat-icon><span class="material-icons c-icon">west</span></mat-icon>
       </button>
     </div>
-    <mat-card-title class="c-icon">Lista de Vehículos registrados</mat-card-title>
+    <mat-card-title [ngStyle]="{'color': _theme._color}" >Lista de Vehículos registrados</mat-card-title>
     <mat-card-subtitle><span class="badge-b">Registrados {{listCars.length}} </span></mat-card-subtitle>
   </mat-card-header>
 </div>

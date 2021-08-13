@@ -3,24 +3,24 @@
 
         <mat-tab>
             <ng-template mat-tab-label>
-            <mat-icon class="m-tab-icon"><span class="material-icons c-icon">format_list_numbered</span></mat-icon>
-             <span class="c-icon">Lista empresas</span>
+            <mat-icon class="m-tab-icon"><span class="material-icons" [ngStyle]="{'color': _theme._color}">format_list_numbered</span></mat-icon>
+             <span [ngStyle]="{'color': _theme._color}">Lista empresas</span>
             </ng-template>
             <app-list-enterprice></app-list-enterprice>
         </mat-tab>
 
         <mat-tab>
             <ng-template mat-tab-label>
-            <mat-icon class="m-tab-icon"><span class="material-icons c-icon">business</span></mat-icon>
-             <span class="c-icon">Registro empresa</span>
+            <mat-icon class="m-tab-icon"><span class="material-icons" [ngStyle]="{'color': _theme._color}">business</span></mat-icon>
+             <span [ngStyle]="{'color': _theme._color}">Registro empresa</span>
             </ng-template>
             <app-register-enterprice></app-register-enterprice>
         </mat-tab>
 
         <mat-tab>
             <ng-template mat-tab-label>
-            <mat-icon class="m-tab-icon"><span class="material-icons c-icon">cancel_presentation</span></mat-icon>
-             <span class="c-icon">Empresas desactivadas</span>
+            <mat-icon class="m-tab-icon"><span class="material-icons" [ngStyle]="{'color': _theme._color}">cancel_presentation</span></mat-icon>
+             <span [ngStyle]="{'color': _theme._color}">Empresas desactivadas</span>
             </ng-template>
             <app-desactivate-enterprice></app-desactivate-enterprice>
         </mat-tab>

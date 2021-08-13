@@ -6,7 +6,7 @@
           <mat-icon><span class="material-icons">keyboard_backspace</span></mat-icon>
         </button>
       </div>
-      <mat-card-title>Registro de empresas</mat-card-title>
+      <mat-card-title [ngStyle]="{'color': _theme._color}">Registro de empresas</mat-card-title>
       <mat-card-subtitle><span class="badge-b">Empresas de transportes</span></mat-card-subtitle>
     </mat-card-header>
     <form [formGroup]="formEnterprise">
@@ -32,7 +32,10 @@
         </div>
         <div class="col-md-2">
           <button mat-raised-button type="button" class="button-search" (click)="getRUC()" [disabled]="loadRuc">
-            <span *ngIf="loadRuc" class="spinner-border spinner-border-sm" role="status"></span> Buscar RUC
+            <span *ngIf="loadRuc" class="spinner-border spinner-border-sm" role="status"></span>
+            <span class="material-icons">
+              search
+              </span> Buscar RUC
           </button>
         </div>
       </div>
