@@ -199,3 +199,10 @@ body::-webkit-scrollbar-thumb {
 .td:hover{
     color: #FFFF;
 }
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #ccc;
+    height: 45px;
+}
+.mat-form-field-label {
+    color: rgb(155, 154, 154);
+}

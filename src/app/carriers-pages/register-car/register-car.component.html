@@ -3,7 +3,7 @@
         <form [formGroup]="formCarRegister">
             <div class="row">
                 <div class="col-md-6" >
-                <mat-form-field class="full-width" appearance="legacy">
+                <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Placa</mat-label>
                     <input type="text" matInput autocomplete="off" formControlName="placa" maxlength="7">
                     <mat-error>
@@ -12,7 +12,7 @@
                 </mat-form-field>
                 </div>
                 <div class="col-md-6" >
-                    <mat-form-field class="full-width" appearance="legacy">
+                    <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Serie</mat-label>
                         <input type="text" matInput autocomplete="off" formControlName="serie" maxlength="17">
                         <mat-error>
@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12" >
-                    <mat-form-field class="full-width" appearance="legacy">
+                    <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Modelo</mat-label>
                         <input type="text" matInput autocomplete="off" formControlName="modelo">
                         <mat-error>
@@ -34,7 +34,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6" >
-                    <mat-form-field class="full-width" appearance="legacy">
+                    <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Color</mat-label>
                         <input type="text" matInput autocomplete="off" formControlName="color">
                         <mat-error>
@@ -43,7 +43,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col-md-6" >
-                <mat-form-field class="full-width" appearance="legacy">
+                <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Empresa al que pertenece</mat-label>
                         <mat-select formControlName="idEmpresa">
                             <div *ngFor="let enterprise of _db.listEnterpise">
@@ -103,7 +103,7 @@
         </div>
         <div class="row">
             <div class="col-md-12" >
-            <mat-form-field class="full-width" appearance="legacy">
+            <mat-form-field class="full-width" appearance="outline">
                 <mat-label>DNI conductor</mat-label>
                 <input type="text" matInput autocomplete="off" formControlName="dniconductor">
                 <mat-error>
@@ -114,7 +114,7 @@
         </div>
         <div class="row">
             <div class="col-md-12" >
-            <mat-form-field class="full-width" appearance="legacy">
+            <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Nombres</mat-label>
                 <input type="text" matInput autocomplete="off" formControlName="nombresConductor">
                 <mat-error>
@@ -125,7 +125,7 @@
         </div>
         <div class="row">
             <div class="col-md-6" >
-            <mat-form-field class="full-width" appearance="legacy">
+            <mat-form-field class="full-width" appearance="outline">
                 <mat-label>Apellido paterno</mat-label>
                 <input type="text" matInput autocomplete="off" formControlName="apellidoPaterno">
                 <mat-error>
@@ -134,7 +134,7 @@
             </mat-form-field>
             </div>
             <div class="col-md-6" >
-                <mat-form-field class="full-width" appearance="legacy">
+                <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Apellido materno</mat-label>
                     <input type="email" matInput autocomplete="off" formControlName="apellidoMaterno">
                     <mat-error>
@@ -145,7 +145,7 @@
         </div>
         <div class="row">
             <div class="col-md-12" >
-                <mat-form-field class="full-width" appearance="legacy">
+                <mat-form-field class="full-width" appearance="outline">
                     <mat-label>Estado conductor</mat-label>
                     <mat-select formControlName="estadoConductor">
                         <mat-option value="true">Activo</mat-option>
