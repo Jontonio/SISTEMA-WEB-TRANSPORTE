@@ -64,64 +64,21 @@
 </div>
 
 <div class="container-fluid mt-3 container-general-chart">
-<<<<<<< HEAD
-        <div>
-            <div id="general" class="row">
-                <div class="col-md-6 mb-3" id="Ghorizoltal">
-                    <mat-card [ngStyle]="{'background': _theme._box}">
-                        <div class="row">
-                            <div class="d-flex fs-5 col-md-6">
-                                <span class="material-icons c-icon">leaderboard</span> 
-                                <span class="c-icon m-1">Grafico horizontal</span>
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end align-items-stretch">
-                                <button mat-button
-                                        [useExistingCss]="true"
-                                        printSectionId="Ghorizoltal"
-                                        ngxPrint>
-                                        <span class="material-icons">print</span>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <app-horizontal-bar></app-horizontal-bar>
-                    </mat-card>
-                </div>
-                <div class="col-md-6 mb-3" id="Gcircular">
-                    <mat-card [ngStyle]="{'background': _theme._box}">
-                        <div class="row">
-                            <div class="d-flex fs-5 col-md-6">
-                                <span class="material-icons c-icon">pie_chart</span> 
-                                <span class="c-icon m-1">Gráfico circular</span>
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end align-items-stretch">
-                                <button mat-button
-                                        [useExistingCss]="true"
-                                        printSectionId="Gcircular"
-                                        ngxPrint>
-                                        <span class="material-icons">print</span>
-                                </button>
-                            </div>
-                        </div>                    
-                        <app-pie-chart></app-pie-chart>
-                    </mat-card>
-                </div>
-=======
-    <div class="row">
+    <div>
         <div id="general" class="row">
             <div class="col-md-6 mb-3" id="Ghorizoltal">
                 <mat-card [ngStyle]="{'background': _theme._box}">
                     <div class="row">
                         <div class="d-flex fs-5 col-md-6">
-                            <span [ngStyle]="{'color': _theme._color}" class="material-icons c-icon">leaderboard</span> 
-                            <span [ngStyle]="{'color': _theme._color}" class="c-icon m-1">Grafico horizontal</span>
+                            <span class="material-icons c-icon">leaderboard</span> 
+                            <span class="c-icon m-1">Grafico horizontal</span>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end align-items-stretch">
                             <button mat-button
                                     [useExistingCss]="true"
                                     printSectionId="Ghorizoltal"
                                     ngxPrint>
-                                    <span [ngStyle]="{'color': _theme._color}" class="material-icons">print</span>
+                                    <span class="material-icons">print</span>
                             </button>
                         </div>
                     </div>
@@ -133,41 +90,40 @@
                 <mat-card [ngStyle]="{'background': _theme._box}">
                     <div class="row">
                         <div class="d-flex fs-5 col-md-6">
-                            <span [ngStyle]="{'color': _theme._color}" class="material-icons c-icon">pie_chart</span> 
-                            <span [ngStyle]="{'color': _theme._color}" class="c-icon m-1">Gráfico circular</span>
+                            <span class="material-icons c-icon">pie_chart</span> 
+                            <span class="c-icon m-1">Gráfico circular</span>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end align-items-stretch">
                             <button mat-button
                                     [useExistingCss]="true"
                                     printSectionId="Gcircular"
                                     ngxPrint>
-                                    <span [ngStyle]="{'color': _theme._color}" class="material-icons">print</span>
+                                    <span class="material-icons">print</span>
                             </button>
                         </div>
                     </div>                    
                     <app-pie-chart></app-pie-chart>
                 </mat-card>
->>>>>>> 0c333fb18df4cde97abde18caa5a7ade256d7985
             </div>
         </div>
-        <div class="container col-md-9 mt-2 mb-3" id="Gvertical">
-            <mat-card [ngStyle]="{'background': _theme._box}">
-                <div class="row">
-                    <div class="d-flex fs-5 col-md-6">
-                        <span [ngStyle]="{'color': _theme._color}" class="material-icons c-icon">bar_chart</span>
-                        <span [ngStyle]="{'color': _theme._color}" class="c-icon m-1">Gráfico barra vertical</span>
-                    </div>
-                    <div class="col-md-6 d-flex justify-content-end align-items-stretch">
-                        <button mat-button
-                                [useExistingCss]="true"
-                                printSectionId="Gvertical"
-                                ngxPrint>
-                                <span [ngStyle]="{'color': _theme._color}" class="material-icons">print</span>
-                        </button>
-                    </div>
+    </div>
+    <div class="container col-md-9 mt-2 mb-3" id="Gvertical">
+        <mat-card [ngStyle]="{'background': _theme._box}">
+            <div class="row">
+                <div class="d-flex fs-5 col-md-6">
+                    <span [ngStyle]="{'color': _theme._color}" class="material-icons c-icon">bar_chart</span>
+                    <span [ngStyle]="{'color': _theme._color}" class="c-icon m-1">Gráfico barra vertical</span>
                 </div>
-                
-                <app-vertical-bar-chart></app-vertical-bar-chart>
-            </mat-card>
-        </div>
+                <div class="col-md-6 d-flex justify-content-end align-items-stretch">
+                    <button mat-button
+                            [useExistingCss]="true"
+                            printSectionId="Gvertical"
+                            ngxPrint>
+                            <span [ngStyle]="{'color': _theme._color}" class="material-icons">print</span>
+                    </button>
+                </div>
+            </div>
+            <app-vertical-bar-chart></app-vertical-bar-chart>
+        </mat-card>
+    </div>
 </div>
