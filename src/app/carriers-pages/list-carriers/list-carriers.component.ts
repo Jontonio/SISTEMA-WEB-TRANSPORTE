@@ -17,6 +17,7 @@ export class ListCarriersComponent {
   desde       : number = 0;
   hasta       : number = 9;
   ownerPreview: Owner;
+  value:string;
 
   constructor(public _trans:TransportService, public _db:DatabaseService, private dialog:MatDialog, public _theme:ThemeService) {}
 
@@ -29,5 +30,7 @@ export class ListCarriersComponent {
   previewOwner(data:Owner){
     this.dialog.open(PreviewOwnerComponent, {data:data, panelClass: 'dialog-container' })
   }
+
+
 
 }

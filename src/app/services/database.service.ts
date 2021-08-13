@@ -6,9 +6,8 @@ import { MessagesService } from './messages.service';
 import { Ruc } from '../models/ruc';
 import { PortDescriotion } from '../models/portdaDes';
 import { Post } from '../models/post';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from './auth.service';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -45,11 +44,11 @@ export class DatabaseService {
               private _auth:AngularFireAuth,
               private storage:AngularFireStorage, 
               private _msg:MessagesService) {
-    // this.getUsers();
-    // this.getUsersdisable();
-    // this.getEnterprises();
+    this.getUsers();
+    this.getUsersdisable();
+    this.getEnterprises();
     this.getDescriptions();
-    // this.getDesactEnterprises();
+    this.getDesactEnterprises();
     this.getPosts();
   }
 
@@ -358,6 +357,27 @@ export class DatabaseService {
         reject(err.message)
       })
     })
+  }
+
+  searchEnterprise(ruc:string){
+    return new Promise( (resolve, reject) =>{
+      this.fs.collection('enterprise', ref => ref.where('ruc','==',ruc))
+             .valueChanges().subscribe( res => {
+              if(res.length > 0){ 
+                this._msg.warningMsg(`La empresa  con el ruc ${ruc} ya esta registrada`,'Registre otra empresa') 
+                resolve(true)
+              } else {
+                resolve(false) 
+              }
+      }, err => {
+        reject(err)
+      })
+    })
+  }
+
+  selectEntrerprise(data:any){
+    console.log("hola")
+    console.log(data)
   }
 
 }

@@ -215,5 +215,19 @@ export class TransportService {
       this.average = (sum / listValoration.length).toFixed() as any;
     }
   }
+
+  searchTransportista(data:any){
+    const carrierFiltrado: Owner[] = [];
+    let find:boolean = false;
+    this.listCarriers.forEach( carrier =>{
+      const nombre = carrier.firts_name.toLocaleLowerCase()
+      if(carrier.ID_card.indexOf(data) >= 0 || nombre.indexOf(data) >= 0){
+        carrierFiltrado.push(carrier)
+        find = true;
+      } else {
+        find = false;
+      }
+    })
+  }
  
 }
