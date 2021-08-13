@@ -34,7 +34,7 @@ export class RegisterCarriersComponent {
               public _db:DatabaseService,
               public _theme:ThemeService,
               private _msg:MessagesService,
-              private _api:ApiService) { 
+              public _api:ApiService) { 
     this.formCarriers();
     this.dataEdit();
   }

@@ -6,22 +6,22 @@
     </mat-card-header>
     <div class="row">
       <div class="col-md-3">
-        <mat-form-field appearance="legacy" class="c-icon">
+        <!-- <mat-form-field appearance="legacy" class="c-icon">
           <mat-label>Empresa de transporte</mat-label>
-          <mat-select>
-            <div *ngFor="let enterprise of _db.listEnterpise">
-              <mat-option [value]="enterprise.id">{{enterprise.razonSocial}}</mat-option>
-            </div>
+          <mat-select [(ngModel)]="dataSelect" (ngModelChange)="selectEntrerprise($event)">
+            <mat-option *ngFor="let enterprise of _db.listEnterpise" 
+                        [value]="enterprise.id">{{enterprise.razonSocial}}</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
       <div class="col-md-6"></div>
       <div class="col-md-3">
         <mat-form-field class="full-width" appearance="legacy">
-          <mat-label>Buscar</mat-label>
+          <mat-label>Buscar transportista por dni o nombres</mat-label>
           <mat-icon matSuffix><i class="fas fa-search"></i></mat-icon>
           <input type="text" matInput 
                  autocomplete="off"
+                 [(ngModel)]="value"
                  [ngStyle]="{'color': _theme._color}">
           <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
         </mat-form-field>
@@ -41,7 +41,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let data of _trans.listCarriers | slice:desde:hasta; let i=index" [ngStyle]="{'color': _theme._color}">
+                  <tr *ngFor="let data of _trans.listCarriers | searchCarrier:this.value | slice:desde:hasta; let i=index" [ngStyle]="{'color': _theme._color}">
                     <td>{{i+1}}</td>
                     <td>{{data.ID_card}}</td>
                     <td (click)="previewOwner(data)" class="cursor">

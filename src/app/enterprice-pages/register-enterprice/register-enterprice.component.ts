@@ -96,13 +96,19 @@ export class RegisterEnterpriceComponent implements OnInit {
     if(this.formEnterprise.controls['ruc'].valid){
       const ruc = this.formEnterprise.value.ruc;
       this.loadRuc = true;
-      this._api.enterprise(ruc).then( res => {
-        this.completeData(res as Ruc);
-        this.loadRuc = false;
-      }).catch( err => {
-        this.loadRuc = false;
-        this._msg.errorMsg(err,'API ruc')
-      })
+      this._db.searchEnterprise(ruc).then( res => { 
+        if(res){
+          setTimeout(() => this.loadRuc = false , 500);
+        }else{
+          this._api.enterprise(ruc).then( res => {
+            this.completeData(res as Ruc);
+            this.loadRuc = false;
+          }).catch( err => {
+            this.loadRuc = false;
+            this._msg.errorMsg(err,'API ruc')
+          })
+        }
+      });
     } 
   }
 
@@ -136,16 +142,23 @@ export class RegisterEnterpriceComponent implements OnInit {
         this.formEnterprise.controls[input].markAllAsTouched()
       })
       return;
-    }
-    this.loadRegister = true;
-    this._db.addEnterprise(this.formEnterprise.value).then( res => {
-      this._msg.successMsg(res as any,'Registro empresa')
-      this.loadRegister = false;
-      this.formEnterprise.reset();
-    }).catch( err =>{
-      this.loadRegister = false;
-      this._msg.errorMsg(err as any,'Registro empresa')
-    })
+    } 
+
+    this._db.searchEnterprise(this.formEnterprise.value.ruc).then( res => { 
+        if(!res){
+          this.loadRegister = true;
+          this._db.addEnterprise(this.formEnterprise.value).then( res => {
+            this._msg.successMsg(res as any,'Registro empresa')
+            this.loadRegister = false;
+            this.formEnterprise.reset();
+          }).catch( err =>{
+            this.loadRegister = false;
+            this._msg.errorMsg(err as any,'Registro empresa')
+          })
+        }else{
+          this.formEnterprise.reset();
+        }
+    });
   }
 
   saveChage(){
