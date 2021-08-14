@@ -54,7 +54,9 @@
                       <td>{{car.placa}}</td>
                       <td class="d-flex">
                         <span class="material-icons">link</span>
-                        <span class="cursor"><b>Targeta de circulación</b></span>
+                        <span class="cursor">
+                          <a [href]="car.targetaCirculacion" target="_blank"><b>Targeta de circulación</b></a>
+                        </span>
                       </td>
                     </tr>
                     <tr>
@@ -62,7 +64,7 @@
                       <td>{{car.modelo}}</td>
                       <td class="d-flex">
                         <span class="material-icons">image</span> 
-                        <span class="cursor"><b>Foto vehículo</b></span>
+                        <span class="cursor" (click)="openViewImage(car)"><b>Foto vehículo</b></span>
                       </td>
                     </tr>
                     <tr>
@@ -72,7 +74,7 @@
                   </tbody>
                 </table>
               </div>
-              <button mat-raised-button color="primary" class="m-1">Editar</button>
+              <button mat-raised-button color="primary" class="m-1" (click)="editCar(car)">Editar</button>
               <button mat-raised-button color="primary" class="m-1" (click)="verResenia(car.id, car.idEmpresa, car.placa)">Ver reseña</button>
               <button mat-raised-button color="warn" class="m-1">Eliminar</button>
             </mat-card>

@@ -85,6 +85,12 @@ import { NgxPrintModule } from 'ngx-print';
 import { CalificationComponent } from './public/calification/calification.component';
 import { MessageComponent } from './shared/message/message.component';
 import { BuscarCarrierPipe } from './pipes/buscar-carrier.pipe';
+import { BuscarCarPipe } from './pipes/buscar-car.pipe';
+import { EnterpriseCarPipe } from './pipes/enterprise-car.pipe';
+import { ViewPhotoCarComponent } from './carriers-pages/view-photo-car/view-photo-car.component';
+
+// view pdf
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -136,6 +142,9 @@ import { BuscarCarrierPipe } from './pipes/buscar-carrier.pipe';
     CalificationComponent,
     MessageComponent,
     BuscarCarrierPipe,
+    BuscarCarPipe,
+    EnterpriseCarPipe,
+    ViewPhotoCarComponent,
   ],
   imports: [
     BrowserModule,
@@ -154,7 +163,8 @@ import { BuscarCarrierPipe } from './pipes/buscar-carrier.pipe';
     AvatarModule,
     RatingModule,
     NgxSpinnerModule,
-    NgxPrintModule
+    NgxPrintModule,
+    PdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

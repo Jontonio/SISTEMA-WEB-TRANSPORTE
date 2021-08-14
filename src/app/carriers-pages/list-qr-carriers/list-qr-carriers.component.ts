@@ -13,6 +13,8 @@ export class ListQrCarriersComponent{
 
   desde       : number = 0;
   hasta       : number = 9;
+  value       : string;
+  entreprise  : string;
 
   constructor(public _trans:TransportService, public _db:DatabaseService, public _theme:ThemeService) {}
 
@@ -20,5 +22,9 @@ export class ListQrCarriersComponent{
     console.log(e)
     this.desde = e.pageIndex * e.pageSize;
     this.hasta = this.desde + e.pageSize;
+  }
+
+  search(data:any){
+    console.log(data)
   }
 }

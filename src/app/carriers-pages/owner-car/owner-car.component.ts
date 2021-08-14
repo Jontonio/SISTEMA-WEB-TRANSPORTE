@@ -10,6 +10,8 @@ import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { TransportService } from 'src/app/services/transport.service';
+import { RegisterCarComponent } from '../register-car/register-car.component';
+import { ViewPhotoCarComponent } from '../view-photo-car/view-photo-car.component';
 
 @Component({
   selector: 'app-owner-car',
@@ -128,6 +130,14 @@ export class OwnerCarComponent {
           })
         }
       })
+  }
+
+  editCar(car:any){
+    this.dialog.open(RegisterCarComponent, { width:'100%', data:car})
+  }
+
+  openViewImage(data:Car){
+    this.dialog.open(ViewPhotoCarComponent,{data:data})
   }
 
 }

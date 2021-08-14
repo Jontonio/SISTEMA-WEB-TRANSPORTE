@@ -229,5 +229,77 @@ export class TransportService {
       }
     })
   }
+
+  findTransportista(dni:string){
+    return new Promise( (resolve, reject) =>{
+      this.fs.collection('carriers', ref => ref.where('ID_card','==',dni)).valueChanges().subscribe( res => {
+          if(res.length > 0){ 
+            resolve(true)
+          } else {
+            resolve(false) 
+          }
+      }, err => {
+        reject(err)
+      })
+    })
+  }
+
+  uploadImg  :boolean = false;
+  urlCarPhoto:string;
+  porcentajeCar:number = 0;
+
+  onFotoCar(event:any) {
+
+    this.uploadImg = true;
+    const time = new Date().getTime();
+    const file = event.target.files[0];
+    const ruta = 'cars-photo/'+time;
+    const ref = this.storage.ref(ruta);
+    const task = ref.put(file);
+
+    //verificamos mientras se sube la foto
+    task.then((tarea)=>{
+        ref.getDownloadURL().subscribe((imgUrl)=>{
+          this.urlCarPhoto = imgUrl;
+          this.uploadImg = false;
+          this.porcentajeCar = 0;
+        })
+    })
+     //observale de la subida del archivo en %
+    task.percentageChanges().subscribe((porcentaje)=>{
+        if(porcentaje){
+          this.porcentajeCar = parseInt(porcentaje.toString(),10)
+        }
+    })
+  }
+
+  uploadFile :boolean = false;
+  urlCarFile:string;
+  porcentajeFile:number = 0;
+
+  onFileTarjeta(event:any) {
+
+    this.uploadFile = true;
+    const time = new Date().getTime();
+    const file = event.target.files[0];
+    const ruta = 'cars-files/'+time;
+    const ref = this.storage.ref(ruta);
+    const task = ref.put(file);
+
+    //verificamos mientras se sube la foto
+    task.then((tarea)=>{
+        ref.getDownloadURL().subscribe((imgUrl)=>{
+          this.urlCarFile = imgUrl;
+          this.uploadFile = false;
+          this.porcentajeFile = 0;
+        })
+    })
+     //observale de la subida del archivo en %
+    task.percentageChanges().subscribe((porcentaje)=>{
+        if(porcentaje){
+          this.porcentajeFile = parseInt(porcentaje.toString(),10)
+        }
+    })
+  }
  
 }

@@ -48,7 +48,7 @@ export class DatabaseService {
     this.getUsersdisable();
     this.getEnterprises();
     this.getDescriptions();
-    this.getDesactEnterprises();
+    // this.getDesactEnterprises();
     this.getPosts();
   }
 
@@ -231,15 +231,15 @@ export class DatabaseService {
 
       let dir = '';
 
-      if(rut=1){
+      if(rut==1){
         dir = 'user-profile/';
       }
 
-      if(rut=2){
+      if(rut==2){
         dir = 'post/';
       }
 
-      if(rut=3){
+      if(rut==3){
         dir = 'photo-carriers/';
       }
     
@@ -364,7 +364,6 @@ export class DatabaseService {
       this.fs.collection('enterprise', ref => ref.where('ruc','==',ruc))
              .valueChanges().subscribe( res => {
               if(res.length > 0){ 
-                this._msg.warningMsg(`La empresa  con el ruc ${ruc} ya esta registrada`,'Registre otra empresa') 
                 resolve(true)
               } else {
                 resolve(false) 

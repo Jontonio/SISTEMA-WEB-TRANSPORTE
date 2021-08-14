@@ -8,7 +8,7 @@
         <div class="col-md-3">
           <mat-form-field class="full-width" appearance="legacy">
             <mat-label>Empresa de transporte</mat-label>
-            <mat-select>
+            <mat-select [(ngModel)]="entreprise" (ngModelChange)="search(entreprise)">
               <div *ngFor="let enterprise of _db.listEnterpise">
                 <mat-option [value]="enterprise.id">{{enterprise.razonSocial}}</mat-option>
               </div>
@@ -18,9 +18,9 @@
         <div class="col-md-4"></div>
         <div class="col-md-3">
           <mat-form-field class="full-width" appearance="legacy">
-            <mat-label>Buscar</mat-label>
+            <mat-label>Buscar por placa de vehículo</mat-label>
             <mat-icon matSuffix><i class="fas fa-search"></i></mat-icon>
-            <input type="text" matInput autocomplete="off">
+            <input type="text" matInput autocomplete="off" [(ngModel)]="value">
             <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
           </mat-form-field>
         </div>
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="m-2" id="list">
-        <div class="row mb-2" *ngFor="let car of _trans.listcars; let i=index">
+        <div class="row mb-2" *ngFor="let car of _trans.listcars | enterpriseCar:this.entreprise | buscarCar:this.value; let i=index">
           <div class="col-sm-6">
             <div class="card">
               <div class="card-body">
