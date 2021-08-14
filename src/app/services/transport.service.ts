@@ -16,6 +16,7 @@ export class TransportService {
   listValoration : Valoration[] = [];
   listValorationAdmin : Valoration[] = [];
   listcars       = new Array<any>();
+  listCarsOnly   : Car[] = [];
   car            : Car;
   loadGetcarriers: boolean = false;
   url            : string = 'http://localhost:4200/conductor/'
@@ -67,6 +68,16 @@ export class TransportService {
       })
     }
   }
+  addOnlyCar(idowner:string, data:any){
+    return new Promise((resolve, reject) => {
+      this.fs.collection('/carriers/'+idowner+'/cars').add(data).then( res => {
+        this.updateId('/carriers/'+idowner+'/cars',res.id);
+        resolve('vehículo añadido correctamente')
+      }).catch( err => {
+        reject('Error al registrar el vehiculo');
+      })
+    })
+  }
 
   getCarriers(){
     this.loadGetcarriers = true;
@@ -107,6 +118,7 @@ export class TransportService {
     return new Promise((resolve,reject) =>{
       if(id){
         this.fs.collection('/carriers/'+id+'/cars').valueChanges().subscribe( res => {
+          this.listCarsOnly = res as any;
           resolve(res);
         }, err => {
           reject('Error al obtener datos del transportista');
@@ -198,7 +210,6 @@ export class TransportService {
           .then( res => {
             resolve('Reseña actualizada correctamente');
           }).catch( err => {
-            console.log(err)
             reject('Error al actualizar reseña')
           })
     })
@@ -241,6 +252,19 @@ export class TransportService {
       }, err => {
         reject(err)
       })
+    })
+  }
+
+  updateCar(idowner:string, idcar:string, data:any){
+    // /carriers/XCCkhtHTp6njMwD4PtLp/cars/JA0hdPGhWTyA6jGZiNBG
+    return new Promise((resolve, reject) => {
+      this.fs.collection('/carriers/'+idowner+'/cars').doc(idcar).update(data)
+          .then( res => {
+            resolve('Reseña actualizada correctamente');
+          }).catch( err => {
+            console.log(err)
+            reject('Error al actualizar datos')
+          })
     })
   }
 

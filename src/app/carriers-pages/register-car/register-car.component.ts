@@ -30,17 +30,21 @@ export class RegisterCarComponent {
 
   formCar:FormGroup;
   soyconductor: string = 'si';
-  update: boolean = false;
   formCarRegister: FormGroup;
   formDriver:FormGroup;
+  update: boolean = false;
   dataUpdate:any;
+  updateCar: boolean = false;
+  idUpdateCar :string;
+  idUpdateOwner :string;
+  idOwner       :string;
 
   constructor(public _db:DatabaseService,
     private _formBuilder: FormBuilder, 
               private fb:FormBuilder, 
               private _msg:MessagesService,
               public _trans:TransportService, 
-              @Inject(MAT_DIALOG_DATA) public data: number,
+              @Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<RegisterCarComponent>) {
     this.createFormCar();
     this.createFormDriver();
@@ -113,13 +117,24 @@ export class RegisterCarComponent {
     this.formCarRegister.value.foto = this._trans.urlCarPhoto;
     this.formCarRegister.value.targetaCirculacion = this._trans.urlCarFile;
 
-    const data = {...this.formCarRegister.value, ...this.formDriver.value};
-    this._trans.addListCar(data).then( res => {
-      if(res){
-        this._msg.successMsg('Automóvil añadido a la lista','Automóvil añadido');
-        this.dialogRef.close();
-      }
-    })
+    if(this.idOwner){
+      const data = {...this.formCarRegister.value, ...this.formDriver.value, 'id':''};
+      this._trans.addOnlyCar(this.idOwner, data).then( res => {
+        this._msg.successMsg(res as any,'Datos Registrados correctamente');
+        this.reset();
+      }).catch( err => { 
+        this.reset();
+        this._msg.errorMsg(err as any,'Error al registrar datos');
+      })
+    } else {
+      const data = {...this.formCarRegister.value, ...this.formDriver.value};
+      this._trans.addListCar(data).then( res => {
+        if(res){
+          this._msg.successMsg('Automóvil añadido a la lista','Automóvil añadido');
+          this.dialogRef.close();
+        }
+      })
+    }
   }
 
   loadEdit(){
@@ -130,6 +145,13 @@ export class RegisterCarComponent {
       if(isNaN(this.data)){
         // cargar los datos a actualizar
         this.dataUpdate = this.data;
+        this.idUpdateCar = this.data.id;
+        this.idUpdateOwner = this.data.idOwner;
+        this.updateCar = true;
+        if(this.data.new){
+          this.idOwner = this.data.idOwner;
+          this.update = false;
+        }
       }else{
         // cargar los datos a actualizar
         this.dataUpdate = this._trans.listCarOwner[this.data] as any;
@@ -177,9 +199,23 @@ export class RegisterCarComponent {
     }
 
     const data = {...this.formCarRegister.value, ...this.formDriver.value};
-    this._trans.listCarOwner.splice(this.data, 1, data);
-    this._msg.successMsg('Automóvil actualizado correctamente','Automóvil actualizado');
-    this.dialogRef.close();
+
+    if(this.updateCar){
+
+      this._trans.updateCar(this.idUpdateOwner, this.idUpdateCar, data).then( res => {
+        this._msg.successMsg(res as any,'Datos actualizado correctamente');
+        this.reset();
+      }).catch( err =>{
+        this.reset();
+        this._msg.warningMsg(err,'Error al actualizar datos')
+      })
+
+    } else {
+      this._trans.listCarOwner.splice(this.data, 1, data);
+      this._msg.successMsg('Automóvil actualizado correctamente','Automóvil actualizado');
+      this.dialogRef.close();
+    }
+
   }
   
   validateNext1(){
@@ -198,6 +234,15 @@ export class RegisterCarComponent {
       })
       return;
     }
+  }
+
+  reset(){
+    this.update = false;
+    this.dataUpdate = '';
+    this.updateCar = false;
+    this.idUpdateCar = '';
+    this.idUpdateOwner = '';
+    this.idOwner = '';
   }
 
 }

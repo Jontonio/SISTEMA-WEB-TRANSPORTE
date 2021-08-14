@@ -123,7 +123,7 @@ export class OwnerCarComponent {
       const ref = this.dialog.open(OptionsComponent,{data:msg, width:'35%', panelClass:'description-modal'})
       ref.afterClosed().subscribe( res => {
         if(res){
-          this._trans.delteComment(this.idconductor,this.idcar, idValoration).then( res => {
+          this._trans.delteComment(this.idconductor, this.idcar, idValoration).then( res => {
             this._msg.successMsg(res as any,'Eliminar reseña')
           }).catch( err =>{
             this._msg.errorMsg(err,'Eliminar empresa')
@@ -133,11 +133,17 @@ export class OwnerCarComponent {
   }
 
   editCar(car:any){
-    this.dialog.open(RegisterCarComponent, { width:'100%', data:car})
+    const Data = { ...car,'idOwner':this.idconductor};
+    this.dialog.open(RegisterCarComponent, { width:'100%', data:Data});
   }
 
   openViewImage(data:Car){
     this.dialog.open(ViewPhotoCarComponent,{data:data})
+  }
+
+  addCar(){
+    const Data = {'new':true,'idOwner':this.idconductor};
+    this.dialog.open(RegisterCarComponent, { width:'100%', data:Data});
   }
 
 }

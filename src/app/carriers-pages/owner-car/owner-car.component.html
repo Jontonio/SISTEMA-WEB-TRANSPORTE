@@ -1,5 +1,5 @@
 <br>
-<div>
+<div class="d-flex justify-content-between">
   <mat-card-header>
     <div mat-card-avatar>
       <button mat-icon-button routerLink="../../carriers">
@@ -9,6 +9,11 @@
     <mat-card-title [ngStyle]="{'color': _theme._color}" >Lista de Vehículos registrados</mat-card-title>
     <mat-card-subtitle><span class="badge-b">Registrados {{listCars.length}} </span></mat-card-subtitle>
   </mat-card-header>
+  <div>
+    <button mat-mini-fab color="primary" (click)="addCar()">
+      <mat-icon><span class="material-icons">add</span></mat-icon>
+    </button>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-3 mb-1" *ngIf="owner!=null">
@@ -31,7 +36,7 @@
   </div>
   <div class="col-md-5 animate__animated animate__fadeIn">
       <div class="row">
-          <div class="col-md-12 mb-4" *ngFor="let car of listCars; let i=index">
+          <div class="col-md-12 mb-4" *ngFor="let car of _trans.listCarsOnly; let i=index">
             <mat-card [ngStyle]="{'background': _theme._box, color:_theme._color}">
               <h5 class="card-title">
                 <img class="header-image" src="../../../assets/img/muni.png" alt="">
