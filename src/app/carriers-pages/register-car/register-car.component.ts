@@ -123,6 +123,7 @@ export class RegisterCarComponent {
   }
 
   loadEdit(){
+    
     if(this.data!=null){
       this.update = true;
       // verificamos si la data es un indice o un objeto

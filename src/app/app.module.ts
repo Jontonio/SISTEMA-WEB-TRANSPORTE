@@ -90,7 +90,6 @@ import { EnterpriseCarPipe } from './pipes/enterprise-car.pipe';
 import { ViewPhotoCarComponent } from './carriers-pages/view-photo-car/view-photo-car.component';
 
 // view pdf
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -163,8 +162,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     AvatarModule,
     RatingModule,
     NgxSpinnerModule,
-    NgxPrintModule,
-    PdfViewerModule
+    NgxPrintModule
   ],
   providers: [],
   bootstrap: [AppComponent]
