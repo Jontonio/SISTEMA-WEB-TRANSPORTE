@@ -7,7 +7,6 @@ export class ThemeService {
 
   // atributes 
   _color:string
-  _colortxtb:string
   _backgroundMain:string;
   _backgroundNav:string;
   _box:string;
@@ -28,7 +27,6 @@ export class ThemeService {
 
   darkTheme(){
     this._color = '#fafafaec';
-    this._colortxtb = '#1D1D1D';
     this._backgroundMain = '#121212';
     this._backgroundNav = '#1f1f1f';
     this._box = '#1d1d1d';
