@@ -156,16 +156,21 @@ export class RegisterCarriersComponent {
     } else {
       // console.log(data.toObject,this._trans.listCarOwner)
       // caso que pase la validación crear un obejto dueño 
-      this.registerLoad = true;
-      this._trans.addCarrier(data.toObject,this._trans.listCarOwner).then( res => {
-        this._msg.successMsg(res as any,'Registro de transportista');
-        this.registerLoad = false;
-        this.resetForm();
-      }).catch( err => {
-        this.registerLoad = false;
-        this._msg.errorMsg(err,'Error');
+      this._trans.findTransportista(this.formMain.value.ID_card).then( res => {
+        if(!res){
+          this.registerLoad = true;
+          this._trans.addCarrier(data.toObject,this._trans.listCarOwner).then( res => {
+            this._msg.successMsg(res as any,'Registro de transportista');
+            this.registerLoad = false;
+            this.resetForm();
+          }).catch( err => {
+            this.registerLoad = false;
+            this._msg.errorMsg(err,'Error');
+          })
+        } else {
+          this._msg.warningMsg(`El transportista con DNI ${this.formMain.value.ID_card} ya esta registrado`,'Registre otro transportista') 
+        }
       })
-
     }
 
   }
@@ -175,31 +180,36 @@ export class RegisterCarriersComponent {
     // verificamos si el campo idcard esta compelto y válido
     if(this.formMain.controls['ID_card'].valid){
       const idcard = this.formMain.value.ID_card;
-      let person = new Person();
-      this.loadComlete = true;
-      this._api.person(idcard).then( res => {
-        this.loadComlete = false;
-        person = res as Person;
-        // si dni existe, entonces existe toda la data
-        if(person.dni){
-          this.formMain.controls['first_name'].setValue(person.nombres)
-          this.formMain.controls['father_last_name'].setValue(person.apellidoPaterno)
-          this.formMain.controls['mother_last_name'].setValue(person.apellidoMaterno)
-          this.formMain.controls['email'].setValue(`${person.nombres.toLowerCase().replace(' ','')}${person.apellidoPaterno.toLowerCase()}@mail.com`)
+      this._trans.findTransportista(this.formMain.value.ID_card).then( res => {
+        if(!res){
+          let person = new Person();
+          this.loadComlete = true;
+          this._api.person(idcard).then( res => {
+            this.loadComlete = false;
+            person = res as Person;
+            // si dni existe, entonces existe toda la data
+            if(person.dni){
+              this.formMain.controls['first_name'].setValue(person.nombres)
+              this.formMain.controls['father_last_name'].setValue(person.apellidoPaterno)
+              this.formMain.controls['mother_last_name'].setValue(person.apellidoMaterno)
+              this.formMain.controls['email'].setValue(`${person.nombres.toLowerCase().replace(' ','')}${person.apellidoPaterno.toLowerCase()}@mail.com`)
+            } else {
+              this._msg.warningMsg('Persona no encotrada en RENIEC', 'Warning API data dni');
+              this.loadComlete = false;
+            }
+          }).catch( err => {
+            this.loadComlete = false;
+            this._msg.errorMsg(err, 'Error API data dni');
+          })
         } else {
-          this._msg.warningMsg('Persona no encotrada en RENIEC', 'Warning API data dni');
-          this.loadComlete = false;
+          this._msg.warningMsg(`El transportista con DNI ${this.formMain.value.ID_card} ya esta registrado`,'Registre otro transportista') 
         }
-      }).catch( err => {
-        this.loadComlete = false;
-        this._msg.errorMsg(err, 'Error API data dni');
       })
-
     }
   }
 
   editCar(indice:number) {
-    this.dialog.open(RegisterCarComponent,{ width:'100%', disableClose:true, data: indice, panelClass:'description-modal'});
+    this.dialog.open(RegisterCarComponent,{ width:'100%', data: indice, panelClass:'description-modal'});
   }
 
   resetForm(){

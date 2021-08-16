@@ -1,7 +1,7 @@
 <div class="table-responsive mt-4">
   <mat-card class="m-1" [ngStyle]="{'background': _theme._box}">
     <mat-card-header class="c-icon">
-      <mat-card-title>Empresas registradas</mat-card-title>
+      <mat-card-title [ngStyle]="{'color': _theme._color}">Empresas registradas</mat-card-title>
       <mat-card-subtitle><span class="badge-b">Activas</span></mat-card-subtitle>
     </mat-card-header>
     <table class="table cursor">
@@ -23,8 +23,8 @@
           <td class="text-center">{{data.razonSocial | slice:0:45}}..</td>
           <td class="text-center">{{data.direccion | slice:0:50}}..</td>
           <td class="text-center"><span class="badge-s">{{data.estado | lowercase}}</span></td>
-          <td class="text-center"><button mat-raised-button type="button" color="primary" [routerLink]="['../edit-enterprise',data.id]"><span class="material-icons">edit</span> Editar</button></td>
-          <td class="text-center"><button mat-raised-button type="button" color="warn" (click)="desactivateEnterprise(data.id,'DESACTIVADO')">Desactivar</button></td>
+          <td class="text-center"><button mat-stroked-button type="button" color="primary" [routerLink]="['../edit-enterprise',data.id]"><span class="material-icons">edit</span> Editar</button></td>
+          <td class="text-center"><button mat-stroked-button type="button" color="warn" (click)="desactivateEnterprise(data.id,'DESACTIVADO')">Desactivar</button></td>
         </tr>
       </tbody>
     </table>

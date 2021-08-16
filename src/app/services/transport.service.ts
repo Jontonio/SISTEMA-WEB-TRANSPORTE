@@ -16,6 +16,7 @@ export class TransportService {
   listValoration : Valoration[] = [];
   listValorationAdmin : Valoration[] = [];
   listcars       = new Array<any>();
+  listCarsOnly   : Car[] = [];
   car            : Car;
   loadGetcarriers: boolean = false;
   url            : string = 'http://localhost:4200/conductor/'
@@ -67,6 +68,16 @@ export class TransportService {
       })
     }
   }
+  addOnlyCar(idowner:string, data:any){
+    return new Promise((resolve, reject) => {
+      this.fs.collection('/carriers/'+idowner+'/cars').add(data).then( res => {
+        this.updateId('/carriers/'+idowner+'/cars',res.id);
+        resolve('vehículo añadido correctamente')
+      }).catch( err => {
+        reject('Error al registrar el vehiculo');
+      })
+    })
+  }
 
   getCarriers(){
     this.loadGetcarriers = true;
@@ -107,6 +118,7 @@ export class TransportService {
     return new Promise((resolve,reject) =>{
       if(id){
         this.fs.collection('/carriers/'+id+'/cars').valueChanges().subscribe( res => {
+          this.listCarsOnly = res as any;
           resolve(res);
         }, err => {
           reject('Error al obtener datos del transportista');
@@ -198,7 +210,6 @@ export class TransportService {
           .then( res => {
             resolve('Reseña actualizada correctamente');
           }).catch( err => {
-            console.log(err)
             reject('Error al actualizar reseña')
           })
     })
@@ -227,6 +238,91 @@ export class TransportService {
       } else {
         find = false;
       }
+    })
+  }
+
+  findTransportista(dni:string){
+    return new Promise( (resolve, reject) =>{
+      this.fs.collection('carriers', ref => ref.where('ID_card','==',dni)).valueChanges().subscribe( res => {
+          if(res.length > 0){ 
+            resolve(true)
+          } else {
+            resolve(false) 
+          }
+      }, err => {
+        reject(err)
+      })
+    })
+  }
+
+  updateCar(idowner:string, idcar:string, data:any){
+    // /carriers/XCCkhtHTp6njMwD4PtLp/cars/JA0hdPGhWTyA6jGZiNBG
+    return new Promise((resolve, reject) => {
+      this.fs.collection('/carriers/'+idowner+'/cars').doc(idcar).update(data)
+          .then( res => {
+            resolve('Reseña actualizada correctamente');
+          }).catch( err => {
+            console.log(err)
+            reject('Error al actualizar datos')
+          })
+    })
+  }
+
+  uploadImg  :boolean = false;
+  urlCarPhoto:string;
+  porcentajeCar:number = 0;
+
+  onFotoCar(event:any) {
+
+    this.uploadImg = true;
+    const time = new Date().getTime();
+    const file = event.target.files[0];
+    const ruta = 'cars-photo/'+time;
+    const ref = this.storage.ref(ruta);
+    const task = ref.put(file);
+
+    //verificamos mientras se sube la foto
+    task.then((tarea)=>{
+        ref.getDownloadURL().subscribe((imgUrl)=>{
+          this.urlCarPhoto = imgUrl;
+          this.uploadImg = false;
+          this.porcentajeCar = 0;
+        })
+    })
+     //observale de la subida del archivo en %
+    task.percentageChanges().subscribe((porcentaje)=>{
+        if(porcentaje){
+          this.porcentajeCar = parseInt(porcentaje.toString(),10)
+        }
+    })
+  }
+
+  uploadFile :boolean = false;
+  urlCarFile:string;
+  porcentajeFile:number = 0;
+
+  onFileTarjeta(event:any) {
+
+    this.uploadFile = true;
+    const time = new Date().getTime();
+    const file = event.target.files[0];
+    const ruta = 'cars-files/'+time;
+    const ref = this.storage.ref(ruta);
+    const task = ref.put(file);
+
+    //verificamos mientras se sube la foto
+    task.then((tarea)=>{
+        ref.getDownloadURL().subscribe((imgUrl)=>{
+          this.urlCarFile = imgUrl;
+          this.uploadFile = false;
+          this.porcentajeFile = 0;
+        })
+    })
+     //observale de la subida del archivo en %
+    task.percentageChanges().subscribe((porcentaje)=>{
+        if(porcentaje){
+          this.porcentajeFile = parseInt(porcentaje.toString(),10)
+        }
     })
   }
  

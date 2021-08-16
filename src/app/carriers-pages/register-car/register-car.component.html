@@ -59,10 +59,15 @@
             <div class="row">
                 <div class="col-md-6" >
                     <div class="custom-input-file">
-                        <input type="file" class="form-control file"  [class.invalid]="photo" accept="image/*" formControlName="foto">
+                        <input type="file" class="form-control file"
+                               (change)="this._trans.onFotoCar($event)"   
+                               [class.invalid]="photo" 
+                               accept="image/*" 
+                               formControlName="foto">
                         <p class="letterFile">
-                            <span *ngIf="false; else letra">
-                            {{100}}%
+                            <span *ngIf="_trans.uploadImg; else letra">
+                            {{_trans.porcentajeCar}}%
+                            <span class="spinner-border spinner-border-sm" role="status"></span>
                             </span>
                             <ng-template #letra>
                                 <span class="material-icons">directions_car_filled</span> vehículo foto
@@ -75,10 +80,15 @@
                 </div>
                 <div class="col-md-6" >
                     <div class="custom-input-file">
-                        <input type="file" class="form-control file" [class.invalid]="targeta" accept="image/*" formControlName="targetaCirculacion">
+                        <input type="file" class="form-control file"
+                               (change)="this._trans.onFileTarjeta($event)"  
+                               [class.invalid]="targeta" 
+                               accept="application/pdf" 
+                               formControlName="targetaCirculacion">
                         <p class="letterFile">
-                            <span *ngIf="false; else letraT">
-                            {{100}}%
+                            <span *ngIf="_trans.uploadFile; else letraT">
+                            {{_trans.porcentajeFile}}% 
+                            <span class="spinner-border spinner-border-sm" role="status"></span>
                             </span>
                             <ng-template #letraT><span class="material-icons"> branding_watermark</span> Tarjeta circulación</ng-template>
                         </p>
@@ -169,8 +179,7 @@
         
             <!-- stepper footer !-->
             <div class="mt-3 d-flex justify-content-between">
-                <button mat-button color="warn" mat-dialog-close>Cancelar Registro</button>
-                <button mat-button matStepperNext color="primary" (click)="validateNext1()">
+                <button mat-button matStepperNext color="primary" (click)="validateNext1()" [disabled]="_trans.uploadImg || _trans.uploadFile">
                     Siguiente <span class="material-icons">navigate_next</span>
                 </button>
             </div>
@@ -187,7 +196,6 @@
         
             <!-- stepper footer !-->
             <div class="mt-3 d-flex justify-content-between">
-                <button mat-button color="warn" mat-dialog-close>Cancelar Registro</button>
                 <div>
                     <button mat-button matStepperPrevious color="primary">
                         <span class="material-icons">chevron_left</span>  Regresar   
@@ -206,17 +214,16 @@
             </div>
             <div class="text-center">
             Se completo los datos con éxito, <span><b>presiona registrar para guardar los datos</b></span>
-            <div class="mt-3">
-                <button *ngIf="!this.update" mat-raised-button mat-dialog-close color="primary" (click)="registerCar()">Agredar a lista</button>
-                <button *ngIf="this.update" mat-raised-button mat-dialog-close color="primary" (click)="saveToList()">Guardar cambios</button>
-            </div>
         </div>
         <div class="mt-3 d-flex justify-content-between">
             <button mat-button matStepperPrevious color="primary">
                 <span class="material-icons">chevron_left</span>  Regresar
             </button>
-            <button mat-button mat-dialog-close color="warn">Cancelar Registro</button>
+            <div>
+                <button *ngIf="!this.update" mat-raised-button mat-dialog-close="true" color="primary" (click)="registerCar()">Agredar a lista</button>
+                <button *ngIf="this.update" mat-raised-button mat-dialog-close="true" color="primary" (click)="saveToList()">Guardar cambios</button>
             </div>
+        </div>
         </mat-step>
     </mat-horizontal-stepper>
 </div>

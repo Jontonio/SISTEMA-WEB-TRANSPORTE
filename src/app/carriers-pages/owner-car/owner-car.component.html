@@ -1,14 +1,19 @@
 <br>
-<div>
+<div class="d-flex justify-content-between">
   <mat-card-header>
     <div mat-card-avatar>
       <button mat-icon-button routerLink="../../carriers">
         <mat-icon><span class="material-icons c-icon">west</span></mat-icon>
       </button>
     </div>
-    <mat-card-title class="c-icon">Lista de Vehículos registrados</mat-card-title>
+    <mat-card-title [ngStyle]="{'color': _theme._color}" >Lista de Vehículos registrados</mat-card-title>
     <mat-card-subtitle><span class="badge-b">Registrados {{listCars.length}} </span></mat-card-subtitle>
   </mat-card-header>
+  <div>
+    <button mat-mini-fab color="primary" (click)="addCar()">
+      <mat-icon><span class="material-icons">add</span></mat-icon>
+    </button>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-3 mb-1" *ngIf="owner!=null">
@@ -31,7 +36,7 @@
   </div>
   <div class="col-md-5 animate__animated animate__fadeIn">
       <div class="row">
-          <div class="col-md-12 mb-4" *ngFor="let car of listCars; let i=index">
+          <div class="col-md-12 mb-4" *ngFor="let car of _trans.listCarsOnly; let i=index">
             <mat-card [ngStyle]="{'background': _theme._box, color:_theme._color}">
               <h5 class="card-title">
                 <img class="header-image" src="../../../assets/img/muni.png" alt="">
@@ -54,7 +59,9 @@
                       <td>{{car.placa}}</td>
                       <td class="d-flex">
                         <span class="material-icons">link</span>
-                        <span class="cursor"><b>Targeta de circulación</b></span>
+                        <span class="cursor">
+                          <a [href]="car.targetaCirculacion" target="_blank"><b>Targeta de circulación</b></a>
+                        </span>
                       </td>
                     </tr>
                     <tr>
@@ -62,7 +69,7 @@
                       <td>{{car.modelo}}</td>
                       <td class="d-flex">
                         <span class="material-icons">image</span> 
-                        <span class="cursor"><b>Foto vehículo</b></span>
+                        <span class="cursor" (click)="openViewImage(car)"><b>Foto vehículo</b></span>
                       </td>
                     </tr>
                     <tr>
@@ -72,7 +79,7 @@
                   </tbody>
                 </table>
               </div>
-              <button mat-raised-button color="primary" class="m-1">Editar</button>
+              <button mat-raised-button color="primary" class="m-1" (click)="editCar(car)">Editar</button>
               <button mat-raised-button color="primary" class="m-1" (click)="verResenia(car.id, car.idEmpresa, car.placa)">Ver reseña</button>
               <button mat-raised-button color="warn" class="m-1">Eliminar</button>
             </mat-card>

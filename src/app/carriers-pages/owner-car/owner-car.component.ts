@@ -10,6 +10,8 @@ import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { TransportService } from 'src/app/services/transport.service';
+import { RegisterCarComponent } from '../register-car/register-car.component';
+import { ViewPhotoCarComponent } from '../view-photo-car/view-photo-car.component';
 
 @Component({
   selector: 'app-owner-car',
@@ -121,13 +123,27 @@ export class OwnerCarComponent {
       const ref = this.dialog.open(OptionsComponent,{data:msg, width:'35%', panelClass:'description-modal'})
       ref.afterClosed().subscribe( res => {
         if(res){
-          this._trans.delteComment(this.idconductor,this.idcar, idValoration).then( res => {
+          this._trans.delteComment(this.idconductor, this.idcar, idValoration).then( res => {
             this._msg.successMsg(res as any,'Eliminar reseña')
           }).catch( err =>{
             this._msg.errorMsg(err,'Eliminar empresa')
           })
         }
       })
+  }
+
+  editCar(car:any){
+    const Data = { ...car,'idOwner':this.idconductor};
+    this.dialog.open(RegisterCarComponent, { width:'100%', data:Data});
+  }
+
+  openViewImage(data:Car){
+    this.dialog.open(ViewPhotoCarComponent,{data:data})
+  }
+
+  addCar(){
+    const Data = {'new':true,'idOwner':this.idconductor};
+    this.dialog.open(RegisterCarComponent, { width:'100%', data:Data});
   }
 
 }

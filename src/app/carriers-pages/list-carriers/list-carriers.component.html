@@ -1,19 +1,11 @@
 <div class="container-fluid mt-4 container-card">
   <mat-card [ngStyle]="{'background': _theme._box}">
     <mat-card-header class="c-icon">
-      <mat-card-title>Transportistas registrados</mat-card-title>
+      <mat-card-title [ngStyle]="{'color': _theme._color}">Transportistas registrados</mat-card-title>
       <mat-card-subtitle><span class="badge-s">Activos</span></mat-card-subtitle>
     </mat-card-header>
     <div class="row">
-      <div class="col-md-3">
-        <!-- <mat-form-field appearance="legacy" class="c-icon">
-          <mat-label>Empresa de transporte</mat-label>
-          <mat-select [(ngModel)]="dataSelect" (ngModelChange)="selectEntrerprise($event)">
-            <mat-option *ngFor="let enterprise of _db.listEnterpise" 
-                        [value]="enterprise.id">{{enterprise.razonSocial}}</mat-option>
-          </mat-select>
-        </mat-form-field> -->
-      </div>
+      <div class="col-md-3"></div>
       <div class="col-md-6"></div>
       <div class="col-md-3">
         <mat-form-field class="full-width" appearance="legacy">
@@ -34,6 +26,7 @@
                     <th scope="col">Nro</th>
                     <th scope="col">DNI propietario</th>
                     <th scope="col">Nombres y apellidos</th>
+                    <th scope="col">Correos</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Más</th>
                     <th scope="col">Editar</th>
@@ -47,14 +40,15 @@
                     <td (click)="previewOwner(data)" class="cursor">
                       {{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}
                     </td>
+                    <td>{{data.email}}</td>
                     <td><span class="badge-b">activo</span></td>
                     <td><a [routerLink]="[ '../owner-car', data.id ]" class="link-success">ver más</a></td>
                     <td>
-                        <button mat-raised-button type="button" color="primary" [routerLink]="[ '../edit-carriers', data.id]">
+                        <button mat-stroked-button type="button" color="primary" [routerLink]="[ '../edit-carriers', data.id]">
                             <span class="material-icons">edit</span> Editar
                         </button>
                     </td>
-                    <td><button mat-raised-button type="button" class="button-search" color="warn">Desactivar</button></td>
+                    <td><button mat-stroked-button type="button" class="button-search" color="warn">Desactivar</button></td>
                   </tr>
                 </tbody>
             </table>

@@ -98,6 +98,7 @@ export class RegisterEnterpriceComponent implements OnInit {
       this.loadRuc = true;
       this._db.searchEnterprise(ruc).then( res => { 
         if(res){
+          this._msg.warningMsg(`La empresa  con el ruc ${this.formEnterprise.value.ruc} ya esta registrada`,'Registre otra empresa') 
           setTimeout(() => this.loadRuc = false , 500);
         }else{
           this._api.enterprise(ruc).then( res => {
@@ -156,6 +157,7 @@ export class RegisterEnterpriceComponent implements OnInit {
             this._msg.errorMsg(err as any,'Registro empresa')
           })
         }else{
+          this._msg.warningMsg(`La empresa  con el ruc ${this.formEnterprise.value.ruc} ya esta registrada`,'Registre otra empresa') 
           this.formEnterprise.reset();
         }
     });

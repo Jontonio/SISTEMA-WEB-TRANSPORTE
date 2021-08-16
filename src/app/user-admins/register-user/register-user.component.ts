@@ -127,9 +127,7 @@ export class RegisterUserComponent {
     //this.formUser.controls['URL_photo'].setValue(data.URL_photo);
     this.formUser.controls['celphone'].setValue(data.celphone);
     this.formUser.controls['user'].setValue(data.user);
-    // desabilitar inputs
-    this.formUser.controls['user'].disable()
-    
+        
     if(this._auth.userActive.type_profile=='normal'){
       this.formUser.controls['type_profile'].disable();
     }
