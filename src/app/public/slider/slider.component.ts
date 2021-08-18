@@ -19,7 +19,7 @@ export class SliderComponent {
   vista:boolean;
   vistaPost:boolean;
   countPost: number = 0
-  img:string = '../../../assets/img/svg/order_a_car.svg';
+  img:string = 'assets/img/svg/order_a_car.svg';
 
   constructor(public _db:DatabaseService, private _sp:NgxSpinnerService) {
     this.viewDescription();
@@ -56,7 +56,7 @@ export class SliderComponent {
         this.img = this._db.listpost[this.countPost].url;
         this.countPost = this.countPost + 1;
       }else{
-        this.img = '../../../assets/img/svg/order_a_car.svg';
+        this.img = 'assets/img/svg/order_a_car.svg';
       }
     },25000)
   }

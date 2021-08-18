@@ -81,7 +81,7 @@ export class RegisterUserComponent {
         console.log(err)
       })
     }else{
-      this._db.imgURL = "../../../assets/img/img-user/default-user.png";
+      this._db.imgURL = "assets/img/img-user/default-user.png";
     }
   }
 
@@ -103,7 +103,7 @@ export class RegisterUserComponent {
                             this.formUser.value.celphone,
                             this.formUser.value.type_profile);
     this._db.addUser(usuario).then( res => {
-      this._db.imgURL = "../../../assets/img/img-user/default-user.png";
+      this._db.imgURL = "assets/img/img-user/default-user.png";
       this.formUser.reset();
       this._auth.createUserAPI(usuario).then( res =>{
         this._msg.successMsg(res as any,'Registro usuario');

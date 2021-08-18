@@ -29,7 +29,7 @@ export class DatabaseService {
   loadGetDisable   : boolean = false;
   loadGetpost      : boolean = false;
   
-  imgURL           : string = "../../../assets/img/img-user/default-user.png";
+  imgURL           : string = "assets/img/img-user/default-user.png";
   imgauxPost           : string = '';
   // instancias de las clases
   descripcion: PortDescriotion;

@@ -9,7 +9,7 @@ export class ImgPipe implements PipeTransform {
     if(value){
       return value;
     }
-    return '../../../assets/img/img-user/default-user.png';
+    return 'assets/img/img-user/default-user.png';
   }
 
 }
