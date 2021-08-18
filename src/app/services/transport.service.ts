@@ -11,16 +11,19 @@ import { Valoration } from '../models/valoration';
 })
 export class TransportService {
 
-  listCarOwner   : Object[] = [];
-  listCarriers   : Owner[] = [];
-  listValoration : Valoration[] = [];
+  listCarOwner      : Object[] = [];
+  listCarriers      : Owner[] = [];
+  listCarriersDes   : Owner[] = [];
+  listValoration    : Valoration[] = [];
   listValorationAdmin : Valoration[] = [];
-  listcars       = new Array<any>();
-  listCarsOnly   : Car[] = [];
-  car            : Car;
-  loadGetcarriers: boolean = false;
-  url            : string = 'http://localhost:4200/conductor/'
-  carriersRef    = this.fs.collection('carriers');
+  listcars            = new Array<any>();
+  listCarsOnly        : Car[] = [];
+  car                 : Car;
+  loadGetcarriers     : boolean = false;
+  loadGetcarriersDes  : boolean = false;
+  url                 : string = 'http://localhost:4200/conductor/'
+  carriersRef         = this.fs.collection('carriers', ref => ref.where('status','==',true));
+  carriersRefDes      = this.fs.collection('carriers', ref => ref.where('status','==',false));
   
   // average valorations
   average        :number = 0;
@@ -82,12 +85,24 @@ export class TransportService {
   getCarriers(){
     this.loadGetcarriers = true;
     this.carriersRef.valueChanges().subscribe( res => {
-      this.listCarriers = res as any;
+      this.listCarriers = res as Owner[];
       this.loadGetcarriers = false;
       this.getcars();
     }, err =>{
       this.loadGetcarriers = false;
       this._msg.warningMsg('err al obtener lista de transportistas','Error 504');
+    })
+  }
+
+  getCarriersDesactivate(){
+    this.loadGetcarriersDes = true;
+    this.carriersRefDes.valueChanges().subscribe( res => {
+      this.listCarriersDes = res as Owner[];
+      this.loadGetcarriersDes = false;
+      this.getcars();
+    }, err =>{
+      this.loadGetcarriersDes = false;
+      this._msg.warningMsg('err al obtener lista de transportistas desactivados','Error 504');
     })
   }
 
@@ -118,7 +133,7 @@ export class TransportService {
     return new Promise((resolve,reject) =>{
       if(id){
         this.fs.collection('/carriers/'+id+'/cars').valueChanges().subscribe( res => {
-          this.listCarsOnly = res as any;
+          this.listCarsOnly = res as Car[];
           resolve(res);
         }, err => {
           reject('Error al obtener datos del transportista');
@@ -211,6 +226,37 @@ export class TransportService {
             resolve('Reseña actualizada correctamente');
           }).catch( err => {
             reject('Error al actualizar reseña')
+          })
+    })
+  }
+
+  updateStatus(status:boolean, id:string){
+    return new Promise((resolve, reject) =>{
+      this.carriersRef.doc(id).update({'status':status})
+          .then( res => {
+            if(status){
+              resolve('Transportista activado correctamente');
+            }else{
+              resolve('Transportista desactivado correctamente');
+            }
+          }).catch( err => {
+            reject('Error al actualizar reseña')
+          })
+    })
+  }
+
+  updateStatusCar(idOwner:string, idcar:string,status:boolean){
+    return new Promise((resolve, reject) =>{
+      // /carriers/N70KWQPY3Evy9dgFRbrY/cars/1djPGzmM41nS1QvMTnw9
+      this.fs.collection('carriers/'+idOwner+'/cars').doc(idcar).update({'status':status})
+          .then( res => {
+            if(status){
+              resolve('Vehículo activado correctamente');
+            }else{
+              resolve('Vehículo desactivado correctamente');
+            }
+          }).catch( err => {
+            reject('Error al actualizar estado vehículo')
           })
     })
   }

@@ -36,8 +36,8 @@ export class DatabaseService {
   // Referecia a los documentos
   userRef       = this.fs.collection('users');
   enterpriseRef = this.fs.collection('enterprise');
-  coverpageRef  = this.fs.collection('coverPage');
-  postRef       = this.fs.collection('post');
+  coverpageRef  = this.fs.collection('coverPage', ref => ref.orderBy('dateDescription','desc'));
+  postRef       = this.fs.collection('post', ref => ref.orderBy('date','desc'));
 
   constructor(private fs: AngularFirestore, 
               private ruta:Router,

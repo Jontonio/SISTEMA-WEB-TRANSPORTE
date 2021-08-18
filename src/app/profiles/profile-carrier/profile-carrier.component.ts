@@ -90,7 +90,6 @@ export class ProfileCarrierComponent {
               private _sp:NgxSpinnerService) {
     this.verifcarData();
     this.isSesion();
-    console.log(this.results[0].name)
   }
 
   verifcarData(){

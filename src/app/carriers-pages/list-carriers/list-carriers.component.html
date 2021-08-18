@@ -48,7 +48,13 @@
                             <span class="material-icons">edit</span> Editar
                         </button>
                     </td>
-                    <td><button mat-stroked-button type="button" class="button-search" color="warn">Desactivar</button></td>
+                    <td>
+                      <button mat-stroked-button 
+                              type="button" 
+                              class="button-search" 
+                              (click)="setEstatuscarrier(data.status, data.id)"
+                              color="warn">Desactivar</button>
+                    </td>
                   </tr>
                 </tbody>
             </table>
