@@ -33,7 +33,11 @@
                     </mat-form-field>
                   </div>
                   <div class="col-md-2 mt-2">
-                    <button mat-raised-button type="button" class="button-search" (click)="completeData()" [disabled]="loadComlete">
+                    <button mat-raised-button 
+                            type="button" 
+                            class="button-search" 
+                            (click)="completeData()" 
+                            [disabled]="loadComlete">
                       <span *ngIf="loadComlete" class="spinner-border spinner-border-sm" role="status"></span>
                       <span class="material-icons">
                         search
@@ -144,7 +148,7 @@
                   </div>
                 </div>
                 <div *ngIf="!updateData">
-                  <button  mat-raised-button type="button" class="button-search" (click)="openRegisterCar()">
+                  <button  mat-raised-button type="button" class="button-search mt-1" (click)="openRegisterCar()">
                     + agregar <span class="material-icons">directions_car_filled</span>
                   </button>
                   <mat-list role="list">
@@ -163,13 +167,27 @@
                 </div>
             
                 <div class="mt-3">
-                  <button *ngIf="!updateData" color="primary" mat-raised-button type="button" (click)="registerOwner()" [disabled]="registerLoad">
+                  <button *ngIf="!updateData" 
+                           color="primary" 
+                           mat-raised-button 
+                           class="button-search"
+                           type="button" 
+                           (click)="registerOwner()" [disabled]="registerLoad">
                     <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Registrar
                   </button>
-                  <button *ngIf="updateData" color="primary" mat-raised-button type="button" (click)="registerOwner()" [disabled]="registerLoad">
+                  <button *ngIf="updateData" 
+                           color="primary" 
+                           mat-raised-button 
+                           type="button" 
+                           class="button-search"
+                           (click)="registerOwner()" [disabled]="registerLoad">
                     <span *ngIf="registerLoad" class="spinner-border spinner-border-sm" role="status"></span> Guardar cambios
                   </button>
-                  <button *ngIf="!updateData" mat-raised-button type="reset" (click)="resetForm()" class="button-search m-2" color="warn" [disabled]="registerLoad">
+                  <button *ngIf="!updateData" 
+                           mat-raised-button 
+                           type="reset" 
+                           (click)="resetForm()" 
+                           class="button-search m-1" color="warn" [disabled]="registerLoad">
                     Cancelar
                   </button>
                 </div>

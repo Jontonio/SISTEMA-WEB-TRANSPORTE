@@ -53,7 +53,12 @@
                     </mat-form-field>
                   </div>
                   <div class="col-md-3 mt-2">
-                    <button type="button" class="full-width" mat-raised-button (click)="dataPerson()" [disabled]="loadPerson">
+                    <button type="button" 
+                            class="full-width" 
+                            mat-raised-button 
+                            (click)="dataPerson()" 
+                            class="button-search"
+                            [disabled]="loadPerson">
                       <span *ngIf="loadPerson" class="spinner-border spinner-border-sm" role="status"></span> Buscar
                     </button>
                   </div>
@@ -159,13 +164,27 @@
             </div>
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <button *ngIf="!update" type="button" mat-raised-button color="primary" (click)="registerUser()" [disabled]="_db.subiedoImg || loadregister">
+                    <button *ngIf="!update" 
+                             type="button" 
+                             mat-raised-button 
+                             color="primary" 
+                             class="button-search"
+                             (click)="registerUser()" 
+                             [disabled]="_db.subiedoImg || loadregister">
                       <span *ngIf="loadregister" class="spinner-border spinner-border-sm" role="status"></span> Registrar
                     </button>
-                    <button *ngIf="update" type="button" mat-raised-button color="primary" (click)="updateUser()" [disabled]="!update">
+                    <button *ngIf="update" 
+                             type="button" 
+                             mat-raised-button 
+                             class="button-search"
+                             color="primary" (click)="updateUser()" [disabled]="!update">
                       <i class="fas fa-save"></i> Guardar cambios
                     </button>
-                    <button *ngIf="!update" type="reset" mat-raised-button color="warn" class="m-1">Cancelar</button>
+                    <button *ngIf="!update" 
+                             type="reset" 
+                             mat-raised-button
+                             class="button-search m-1"
+                             color="warn">Cancelar</button>
                 </div>
                 <div class="col-md-6">
                 </div>

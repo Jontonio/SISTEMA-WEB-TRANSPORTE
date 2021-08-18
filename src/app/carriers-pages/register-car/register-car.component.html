@@ -220,7 +220,11 @@
                 <span class="material-icons">chevron_left</span>  Regresar
             </button>
             <div>
-                <button *ngIf="!this.update" mat-raised-button mat-dialog-close="true" color="primary" (click)="registerCar()">Agredar a lista</button>
+                <button *ngIf="!this.update" 
+                         mat-raised-button 
+                         mat-dialog-close="true" 
+                         color="primary"
+                         (click)="registerCar()">Agredar a lista</button>
                 <button *ngIf="this.update" mat-raised-button mat-dialog-close="true" color="primary" (click)="saveToList()">Guardar cambios</button>
             </div>
         </div>

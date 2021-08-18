@@ -34,8 +34,8 @@
         </div>
       </div>
       <div class="m-2" id="list">
-        <div class="row mb-2" *ngFor="let car of _trans.listcars | enterpriseCar:this.entreprise | buscarCar:this.value; let i=index">
-          <div class="col-sm-6">
+        <div class="row" *ngFor="let car of _trans.listcars | enterpriseCar:this.entreprise | buscarCar:this.value; let i=index">
+          <div class="col-sm-6 mb-2">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -59,7 +59,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 mb-2">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -79,7 +79,6 @@
                       <qrcode elementType="img" [qrdata]="car.link" [width]="178" [errorCorrectionLevel]="'M'"></qrcode>
                     </div>
                   </div>
-                  {{car.link}}
                 </div>
               </div>
             </div>

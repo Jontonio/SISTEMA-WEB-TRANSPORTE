@@ -4,3 +4,10 @@
 .content-card{
     padding: 3.5px;
 }
+@media (max-width: 768px) {
+    .button-search{
+        margin-top: -8px;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+}
