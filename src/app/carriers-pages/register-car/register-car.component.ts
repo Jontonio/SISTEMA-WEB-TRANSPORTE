@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Car } from 'src/app/models/Car';
+import { Person } from 'src/app/models/person';
+import { ApiService } from 'src/app/services/api.service';
 import { DatabaseService } from 'src/app/services/database.service';
 import { MessagesService } from 'src/app/services/messages.service';
-import { ThemeService } from 'src/app/services/theme.service';
 import { TransportService } from 'src/app/services/transport.service';
 
 @Component({
@@ -28,22 +28,25 @@ export class RegisterCarComponent {
     });
   }
 
-  formCar:FormGroup;
-  soyconductor: string = 'si';
+  formCar        : FormGroup;
+  soyconductor   : string = 'si';
   formCarRegister: FormGroup;
-  formDriver:FormGroup;
-  update: boolean = false;
-  dataUpdate:any;
-  updateCar: boolean = false;
-  idUpdateCar :string;
-  idUpdateOwner :string;
-  idOwner       :string;
+  formDriver     : FormGroup;
+  update         : boolean = false;
+  dataUpdate     : any;
+  updateCar      : boolean = false;
+  idUpdateCar    : string;
+  idUpdateOwner  : string;
+  idOwner        : string;
+  loadPerson     : boolean = false;
+  existeCar      : boolean = false;
 
   constructor(public _db:DatabaseService,
     private _formBuilder: FormBuilder, 
               private fb:FormBuilder, 
               private _msg:MessagesService,
-              public _trans:TransportService, 
+              public _trans:TransportService,
+              private _api:ApiService, 
               @Inject(MAT_DIALOG_DATA) public data: any,
               public dialogRef: MatDialogRef<RegisterCarComponent>) {
     this.createFormCar();
@@ -54,8 +57,8 @@ export class RegisterCarComponent {
 
   createFormCar(){
     this.formCarRegister = this.fb.group({
-      placa:['',[Validators.required]],
-      serie:['',[Validators.required]],
+      placa:['',[Validators.required, Validators.minLength(7)]],
+      serie:['',[Validators.required, Validators.minLength(17)]],
       modelo:['',[Validators.required]],
       color:['',[Validators.required]],
       foto:['',[Validators.required]],
@@ -68,12 +71,21 @@ export class RegisterCarComponent {
     this.formDriver = this.fb.group({
       soyConductor:[this.soyconductor,[Validators.required]],
       valoration: new FormArray([]),
-      dniconductor:['',[Validators.required]],
-      nombresConductor:['',[Validators.required]],
-      apellidoPaterno:['',[Validators.required]],
-      apellidoMaterno:['',[Validators.required]],
+      dniconductor:['',[Validators.required,Validators.minLength(8),Validators.pattern(/^([0-9])*$/)]],
+      nombresConductor:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      apellidoPaterno:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
+      apellidoMaterno:['',[Validators.required,Validators.pattern(/^([a-z ñáéíóú]{2,60})$/i)]],
       estadoConductor:['',[Validators.required]],
     })
+  }
+  
+  // getters para car
+  get placa(){
+    return this.formCarRegister.controls['placa'];
+  }
+
+  get serie(){
+    return this.formCarRegister.controls['serie'];
   }
 
   get photo(){
@@ -83,6 +95,21 @@ export class RegisterCarComponent {
   get targeta(){
     return this.formCarRegister.controls['targetaCirculacion'].invalid && this.formCarRegister.controls['targetaCirculacion'].touched;
   }
+
+  // getters para conductor
+  get dni(){
+    return this.formDriver.controls['dniconductor']
+  }
+  get nombre(){
+    return this.formDriver.controls['nombresConductor']
+  }
+  get apellidoP(){
+    return this.formDriver.controls['apellidoPaterno']
+  }
+  get apellidoM(){
+    return this.formDriver.controls['apellidoMaterno']
+  }
+
 
   vistaInputs(estado:string){
 
@@ -217,6 +244,28 @@ export class RegisterCarComponent {
     }
 
   }
+
+  dataPerson(){
+
+    if(this.formDriver.controls['dniconductor'].valid){
+      this.loadPerson = true;
+      const dni = this.formDriver.value.dniconductor;
+      this._api.person(dni).then( res => {
+        this.completeData(res as Person);
+        this.loadPerson = false;
+      }).catch( err => {
+        this.loadPerson = false;
+        this._msg.errorMsg(err,'Error api 504')
+      })
+
+    }
+  }
+
+  completeData(person:Person){
+    this.formDriver.controls['nombresConductor'].setValue(person.nombres);
+    this.formDriver.controls['apellidoPaterno'].setValue(person.apellidoPaterno);
+    this.formDriver.controls['apellidoMaterno'].setValue(person.apellidoMaterno);
+  }
   
   validateNext1(){
     if(this.formCarRegister.invalid){
@@ -243,6 +292,18 @@ export class RegisterCarComponent {
     this.idUpdateCar = '';
     this.idUpdateOwner = '';
     this.idOwner = '';
+  }
+
+  searchCar(event:Event){
+    if(this.formCarRegister.controls['placa'].valid){
+      const placa = this.formCarRegister.value.placa;
+      if(this._trans.findCar(placa)!=-1){
+        this.existeCar = true;
+        this._msg.warningMsg('Registre otro vehículo',`El vehículo con la placa ${placa} esta registrado`)
+      } else {
+        this.existeCar = false
+      }
+    }
   }
 
 }

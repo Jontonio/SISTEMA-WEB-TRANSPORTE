@@ -34,6 +34,7 @@ export class TransportService {
               this.getCarriers();
   }
   
+  // add list carriers
   addListCar(data:Object){
     return new Promise((resolve, reject) => {
       this.listCarOwner.push(data);
@@ -41,6 +42,7 @@ export class TransportService {
     })
   }
   
+  // delete car from local array
   deleteCar(indice:number){
     return new Promise((resolve, reject) => {
       this.listCarOwner.splice(indice,1);
@@ -48,6 +50,7 @@ export class TransportService {
     })
   }
 
+  // add car to firebase
   addCarrier(data:any,dataCar:any){
     return new Promise((resolve,reject) => {
       this.carriersRef.add(data).then( res => {
@@ -71,6 +74,8 @@ export class TransportService {
       })
     }
   }
+  
+  // add only one car to firebase
   addOnlyCar(idowner:string, data:any){
     return new Promise((resolve, reject) => {
       this.fs.collection(`/carriers/${idowner}/cars`).add(data).then( res => {
@@ -82,6 +87,7 @@ export class TransportService {
     })
   }
 
+  // get carriers from firebase
   getCarriers(){
     this.loadGetcarriers = true;
     this.carriersRef.valueChanges().subscribe( res => {
@@ -94,18 +100,19 @@ export class TransportService {
     })
   }
 
+  // get carriers desactivated
   getCarriersDesactivate(){
     this.loadGetcarriersDes = true;
     this.carriersRefDes.valueChanges().subscribe( res => {
       this.listCarriersDes = res as Owner[];
       this.loadGetcarriersDes = false;
-      this.getcars();
     }, err =>{
       this.loadGetcarriersDes = false;
       this._msg.warningMsg('err al obtener lista de transportistas desactivados','Error 504');
     })
   }
-
+  
+  // get one car
   getCarrier(id:string){
     return new Promise((resolve,reject) =>{
       this.carriersRef.doc(id).valueChanges().subscribe( res => {
@@ -144,10 +151,10 @@ export class TransportService {
 
   getcars(){
     this.listcars = [];
-    if(this.listCarriers.length>0){
+    if(this.listCarriers.length > 0){
       this.listCarriers.forEach( carrier => {
         this.getCarrierCars(carrier.id).then( res => {
-          this.getElementCar(res as any, carrier.id);
+          this.getElementCar(res as Car[], carrier.id);
         })
       });
     }
@@ -170,7 +177,7 @@ export class TransportService {
     })
   }
 
-  async getElementCar(data:[],idOwner:string){
+  async getElementCar(data:Car[], idOwner:string){
     if(data.length > 0){
       data.forEach( (car:Car) => {
         const link = `${this.url}${idOwner}/${car.id}`
@@ -203,7 +210,6 @@ export class TransportService {
     this.fs.collection(`carriers/${idOwner}/cars/${idCar}/valoration`, ref => ref.orderBy('dateComent','desc') )
            .valueChanges().subscribe( res => {
              this.listValorationAdmin = res as any;
-             //this.getAverageValoration(this.listValorationAdmin);
            })
   }
 
@@ -286,6 +292,7 @@ export class TransportService {
     })
   }
 
+  // find carriers, this for verication and not register again
   findTransportista(dni:string){
     return new Promise( (resolve, reject) =>{
       this.fs.collection('carriers', ref => ref.where('ID_card','==',dni)).valueChanges().subscribe( res => {
@@ -300,6 +307,7 @@ export class TransportService {
     })
   }
 
+  // update car
   updateCar(idowner:string, idcar:string, data:any){
     return new Promise((resolve, reject) => {
       this.fs.collection(`/carriers/${idowner}/cars`).doc(idcar).update(data)
@@ -316,6 +324,7 @@ export class TransportService {
   urlCarPhoto:string;
   porcentajeCar:number = 0;
 
+  // function for upload file photo car
   onFotoCar(event:any) {
 
     this.uploadImg = true;
@@ -345,6 +354,7 @@ export class TransportService {
   urlCarFile:string;
   porcentajeFile:number = 0;
 
+  // function for upload file 
   onFileTarjeta(event:any) {
 
     this.uploadFile = true;
@@ -368,6 +378,11 @@ export class TransportService {
           this.porcentajeFile = parseInt(porcentaje.toString(),10)
         }
     })
+  }
+
+  // find one car for not register again
+  findCar(placa:string):number{
+    return this.listcars.indexOf(this.listcars.find(x => x.placa === placa));
   }
  
 }

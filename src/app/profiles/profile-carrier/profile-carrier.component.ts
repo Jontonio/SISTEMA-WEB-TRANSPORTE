@@ -144,6 +144,8 @@ export class ProfileCarrierComponent {
       console.log(err)
     })
 
+    console.log("d")
+
   }
 
   logout(){
