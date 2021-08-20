@@ -12,9 +12,7 @@ export class ApiService {
   url: string = 'https://dniruc.apisperu.com/api/v1/';
   key: string = '?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Impvc2VhbnRvbmlvcnN5c3RlbUBnbWFpbC5jb20ifQ.BCnFI0IWlU9IEjv5pXu74c8yysKmGP_NN1_c7kmu-QI';
 
-  constructor( private http:HttpClient, private _msg:MessagesService) {
-
-  }
+  constructor( private http:HttpClient, private _msg:MessagesService) {}
 
   person(dni:string){
     return new Promise( (resolve, reject) =>{

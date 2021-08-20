@@ -11,17 +11,17 @@ import { Valoration } from '../models/valoration';
 })
 export class TransportService {
 
-  listCarOwner      : Object[] = [];
-  listCarriers      : Owner[] = [];
-  listCarriersDes   : Owner[] = [];
-  listValoration    : Valoration[] = [];
+  listCarOwner        : Object[] = [];
+  listCarriers        : Owner[] = [];
+  listCarriersDes     : Owner[] = [];
+  listValoration      : Valoration[] = [];
   listValorationAdmin : Valoration[] = [];
   listcars            = new Array<any>();
   listCarsOnly        : Car[] = [];
   car                 : Car;
   loadGetcarriers     : boolean = false;
   loadGetcarriersDes  : boolean = false;
-  url                 : string = 'http://localhost:4200/conductor/'
+  url                 : string = 'https://jontonio.github.io/SISTEMA-WEB-TRANSPORTE/conductor/'
   carriersRef         = this.fs.collection('carriers', ref => ref.where('status','==',true));
   carriersRefDes      = this.fs.collection('carriers', ref => ref.where('status','==',false));
   
@@ -63,8 +63,8 @@ export class TransportService {
 
   addCar(data:[],id:string){
     for(let i = 0; i < data.length; i++){
-      this.fs.collection('/carriers/'+id+'/cars').add(data[i]).then( res => {
-        this.updateId('/carriers/'+id+'/cars',res.id);
+      this.fs.collection(`/carriers/${id}/cars`).add(data[i]).then( res => {
+        this.updateId(`/carriers/${id}/cars`,res.id);
         console.log('car registrado correctamente');
       }).catch( err => {
         this._msg.errorMsg('Error al registrar el vehiculo','Error al registrar la data')
@@ -73,8 +73,8 @@ export class TransportService {
   }
   addOnlyCar(idowner:string, data:any){
     return new Promise((resolve, reject) => {
-      this.fs.collection('/carriers/'+idowner+'/cars').add(data).then( res => {
-        this.updateId('/carriers/'+idowner+'/cars',res.id);
+      this.fs.collection(`/carriers/${idowner}/cars`).add(data).then( res => {
+        this.updateId(`/carriers/${idowner}/cars`,res.id);
         resolve('vehículo añadido correctamente')
       }).catch( err => {
         reject('Error al registrar el vehiculo');
@@ -118,7 +118,7 @@ export class TransportService {
 
   getCar(idOwner:string, idCar:string){
     return new Promise((resolve,reject) =>{
-      this.fs.collection('/carriers/'+idOwner+'/cars').doc(idCar)
+      this.fs.collection(`/carriers/${idOwner}/cars`).doc(idCar)
              .valueChanges().subscribe( res => {
               this.car = res as Car;
               this.getValoration(idOwner, idCar);
@@ -132,7 +132,7 @@ export class TransportService {
   getCarrierCars(id:string){
     return new Promise((resolve,reject) =>{
       if(id){
-        this.fs.collection('/carriers/'+id+'/cars').valueChanges().subscribe( res => {
+        this.fs.collection(`/carriers/${id}/cars`).valueChanges().subscribe( res => {
           this.listCarsOnly = res as Car[];
           resolve(res);
         }, err => {
@@ -182,8 +182,8 @@ export class TransportService {
 
   addValoration(idOwner:string, idCar:string, data:any){
     return new Promise((resolve, reject) => {
-       this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration').add(data).then( res => {
-         this.updateId('carriers/'+idOwner+'/cars/'+idCar+'/valoration',res.id);
+       this.fs.collection(`carriers/${idOwner}/cars/${idCar}/valoration`).add(data).then( res => {
+         this.updateId(`carriers/${idOwner}/cars/${idCar}/valoration`,res.id);
          resolve('Datos registrado correctamente');
        }).catch( err => {
          reject('Error al registrar los datos')
@@ -192,7 +192,7 @@ export class TransportService {
   }
 
   getValoration(idOwner:string, idCar:string){
-    this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration', ref => ref.orderBy('dateComent','desc') )
+    this.fs.collection(`carriers/${idOwner}/cars/${idCar}/valoration`, ref => ref.orderBy('dateComent','desc') )
            .valueChanges().subscribe( res => {
              this.listValoration = res as any;
              this.getAverageValoration(this.listValoration);
@@ -200,7 +200,7 @@ export class TransportService {
   }
 
   getValorationAdmin(idOwner:string, idCar:string){
-    this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration', ref => ref.orderBy('dateComent','desc') )
+    this.fs.collection(`carriers/${idOwner}/cars/${idCar}/valoration`, ref => ref.orderBy('dateComent','desc') )
            .valueChanges().subscribe( res => {
              this.listValorationAdmin = res as any;
              //this.getAverageValoration(this.listValorationAdmin);
@@ -210,7 +210,7 @@ export class TransportService {
 
   delteComment(idOwner:string, idCar:string, idValoration:string){
     return new Promise((resolve, reject) => {
-      this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration').doc(idValoration).delete()
+      this.fs.collection(`carriers/${idOwner}/cars/${idCar}/valoration`).doc(idValoration).delete()
           .then( res => {
             resolve('Reseña eliminada correctamente');
           }).catch( err => {
@@ -221,7 +221,7 @@ export class TransportService {
 
   updateComment(idOwner:string, idCar:string, idValoration:string, data:any){
     return new Promise((resolve, reject) => {
-      this.fs.collection('carriers/'+idOwner+'/cars/'+idCar+'/valoration').doc(idValoration).update(data)
+      this.fs.collection(`carriers/${idOwner}/cars/${idCar}/valoration`).doc(idValoration).update(data)
           .then( res => {
             resolve('Reseña actualizada correctamente');
           }).catch( err => {
@@ -247,8 +247,7 @@ export class TransportService {
 
   updateStatusCar(idOwner:string, idcar:string,status:boolean){
     return new Promise((resolve, reject) =>{
-      // /carriers/N70KWQPY3Evy9dgFRbrY/cars/1djPGzmM41nS1QvMTnw9
-      this.fs.collection('carriers/'+idOwner+'/cars').doc(idcar).update({'status':status})
+      this.fs.collection(`carriers/${idOwner}/cars`).doc(idcar).update({'status':status})
           .then( res => {
             if(status){
               resolve('Vehículo activado correctamente');
@@ -302,9 +301,8 @@ export class TransportService {
   }
 
   updateCar(idowner:string, idcar:string, data:any){
-    // /carriers/XCCkhtHTp6njMwD4PtLp/cars/JA0hdPGhWTyA6jGZiNBG
     return new Promise((resolve, reject) => {
-      this.fs.collection('/carriers/'+idowner+'/cars').doc(idcar).update(data)
+      this.fs.collection(`/carriers/${idowner}/cars`).doc(idcar).update(data)
           .then( res => {
             resolve('Reseña actualizada correctamente');
           }).catch( err => {

@@ -37,7 +37,7 @@ export class ProfileCarrierComponent {
     },
     {
       "name": "4",
-      "value": 1
+      "value": 5050
     },
     {
       "name": "3",
@@ -123,7 +123,7 @@ export class ProfileCarrierComponent {
       })
     })
     .catch( err => {
-      console.log(err)
+      this.ruta.navigateByUrl('home');
     })
   }
 

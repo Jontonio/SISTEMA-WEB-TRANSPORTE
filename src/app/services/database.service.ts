@@ -43,14 +43,7 @@ export class DatabaseService {
               private ruta:Router,
               private _auth:AngularFireAuth,
               private storage:AngularFireStorage, 
-              private _msg:MessagesService) {
-    this.getUsers();
-    this.getUsersdisable();
-    this.getEnterprises();
-    this.getDescriptions();
-    // this.getDesactEnterprises();
-    this.getPosts();
-  }
+              private _msg:MessagesService) {}
 
   getUsers(){
     this.loadGet = true;

@@ -1,7 +1,12 @@
 <div class="mt-2  mb-2">
     <span [ngStyle]="{'color': _theme._color}" class="material-icons c-icon">title</span> 
     <span [ngStyle]="{'color': _theme._color}" class="c-icon fs-5">Añade una descripción a la portada </span>
-    <button mat-button (click)="portDescrip()" *ngIf="_db.listCoverPage.length < 9; else info" class="c-icon">
+    <button mat-button 
+            class="c-icon"
+            matTooltip="Agregar una descripción para la portada"
+            matTooltipPosition="below"
+            (click)="portDescrip()" 
+            *ngIf="_db.listCoverPage.length < 9; else info">
         <mat-icon><span [ngStyle]="{'color': _theme._color}" class="material-icons">add</span></mat-icon> 
         <span [ngStyle]="{'color': _theme._color}">nuevo</span> 
     </button>
@@ -37,7 +42,10 @@
 
 <h2 class="mt-3 c-icon"><span [ngStyle]="{'color': _theme._color}" class="material-icons">layers</span> 
     <span [ngStyle]="{'color': _theme._color}">Añade post a tu portada</span> 
-    <button mat-button (click)="post()"><span [ngStyle]="{'color': _theme._color}" class="material-icons">add</span> 
+    <button mat-button 
+            matTooltip="Agregar una imagen svg para la portada"
+            matTooltipPosition="below"
+            (click)="post()"><span [ngStyle]="{'color': _theme._color}" class="material-icons">add</span> 
     <span [ngStyle]="{'color': _theme._color}">nuevo</span>
     </button>
 </h2>

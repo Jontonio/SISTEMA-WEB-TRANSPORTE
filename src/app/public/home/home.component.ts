@@ -8,7 +8,10 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public _db:DatabaseService) { }
+  constructor(public _db:DatabaseService) { 
+    this._db.getDescriptions();
+    this._db.getPosts();
+  }
 
   ngOnInit(): void {
   }

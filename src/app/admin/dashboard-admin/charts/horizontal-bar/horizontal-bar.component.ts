@@ -32,9 +32,9 @@ export class HorizontalBarComponent {
   gradient   = true;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Country';
+  xAxisLabel = 'Empresas';
   showYAxisLabel = true;
-  yAxisLabel = 'Population';
+  yAxisLabel = 'Años';
 
   colorScheme = { domain: ['#FAAF05', '#DE8504', '#F57710','#DE4704', '#FA2C05'] }
 

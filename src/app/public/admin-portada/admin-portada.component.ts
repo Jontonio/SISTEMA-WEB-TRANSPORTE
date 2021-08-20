@@ -15,7 +15,10 @@ import { PostComponent } from '../forms/post/post.component';
 })
 export class AdminPortadaComponent implements OnInit {
 
-  constructor(private mat:MatDialog, public _db:DatabaseService, public _theme:ThemeService) {}
+  constructor(private mat:MatDialog, public _db:DatabaseService, public _theme:ThemeService) {
+    this._db.getDescriptions();
+    this._db.getPosts();
+  }
 
   ngOnInit(): void {
   }

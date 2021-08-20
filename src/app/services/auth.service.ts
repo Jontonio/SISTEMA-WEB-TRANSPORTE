@@ -15,6 +15,7 @@ import { MessagesService } from './messages.service';
   providedIn: 'root'
 })
 export class AuthService {
+
   // sesión con rest api
   url    : string = 'https://identitytoolkit.googleapis.com/v1/accounts:'
   apiKey : string = 'AIzaSyBMmlDoes6AYQ5inG33o6StCM7S4EFUzoQ'
@@ -24,9 +25,6 @@ export class AuthService {
   usergoogle: commonUser;
   loadUser  :boolean = false;
   message: string = "Cargando";
-
-  //destroy
-  dataisActiveUser = Subscription;
 
   constructor(public auth: AngularFireAuth, 
               private ruta: Router, 
