@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 const myImports = [
@@ -44,7 +45,8 @@ const myImports = [
   MatTableModule,
   MatPaginatorModule,
   MatProgressBarModule,
-  MatStepperModule
+  MatStepperModule,
+  MatTooltipModule
 ];
 
 @NgModule({

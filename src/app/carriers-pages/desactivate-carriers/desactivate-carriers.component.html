@@ -1,26 +1,72 @@
-<div class="table-responsive mt-4 animate__animated animate__fadeIn">
-  <mat-card class="m-1" [ngStyle]="{'background': _theme._box}">
-    <div class="table-responsive">
-      <table class="table table-hover table-sm">
-        <thead class="c-icon">
-            <tr>
-              <th scope="col">Nro</th>
-              <th scope="col">Dni</th>
-              <th scope="col">Nombre y Apellidos</th>
-              <th scope="col">Estado</th>
-              <th scope="col">Avtivar</th>
-            </tr>
-          </thead>
-          <tbody>
-        </tbody>
-      </table>
+<div class="container-fluid mt-4 container-card">
+  <mat-card [ngStyle]="{'background': _theme._box}">
+    <mat-card-header class="c-icon">
+      <mat-card-title [ngStyle]="{'color': _theme._color}">Transportistas registrados</mat-card-title>
+      <mat-card-subtitle><span class="badge-s">Activos</span></mat-card-subtitle>
+    </mat-card-header>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6"></div>
+      <div class="col-md-3">
+        <mat-form-field class="full-width" appearance="legacy">
+          <mat-label>Buscar transportista por dni o nombres</mat-label>
+          <mat-icon matSuffix><i class="fas fa-search"></i></mat-icon>
+          <input type="text" matInput 
+                 autocomplete="off"
+                 [(ngModel)]="value"
+                 [ngStyle]="{'color': _theme._color}">
+          <mat-icon matSuffix><span class="material-icons">search</span></mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="col-md-12">
+          <div class="table-responsive mt-2">
+            <table class="table table-hover">
+                <thead class="c-icon">
+                  <tr>
+                    <th scope="col">Nro</th>
+                    <th scope="col">DNI propietario</th>
+                    <th scope="col">Nombres y apellidos</th>
+                    <th scope="col">Correos</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Más</th>
+                    <th scope="col">Activar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let data of _trans.listCarriersDes | searchCarrier:this.value | slice:desde:hasta; let i=index" [ngStyle]="{'color': _theme._color}">
+                    <td>{{i+1}}</td>
+                    <td>{{data.ID_card}}</td>
+                    <td class="cursor">
+                      {{data.firts_name}} {{data.father_last_name}} {{data.mother_last_name}}
+                    </td>
+                    <td>{{data.email}}</td>
+                    <td><span class="badge-e">Desactivo</span></td>
+                    <td><a [routerLink]="[ '../owner-car', data.id ]" class="link-success">ver más</a></td>
+                    <td>
+                      <button mat-stroked-button 
+                              type="button" 
+                              class="button-search" 
+                              (click)="setEstatuscarrier(data.status, data.id)"
+                              color="warn">Activar</button>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+                <div *ngIf="_trans.listCarriersDes.length==0 && !_trans.loadGetcarriersDes">
+                  <app-message message="No se encontraron transportistas desactivados" 
+                   subMessage="En está sección usted podrá administrar a transportistas desactivados">
+                  </app-message>
+                </div>
+                <div *ngIf="_trans.loadGetcarriersDes" class="text-center mt-4">
+                  <div class="spinner-border text-secondary" role="status"></div>
+                  <div>Cargando...</div>
+                </div>
+          </div>
+          <mat-paginator [length]="_trans.listCarriersDes.length" 
+                         [pageSize]="9" 
+                         (page)="pageEvent($event)"
+                         [ngStyle]="{'background': _theme._box}"> </mat-paginator>
+      </div>
     </div>
-    <app-message message="No se encontraron transportitas desactivados" 
-                   subMessage="El modulo se encuetra en desarrollo">
-    </app-message>
-    <mat-paginator [length]="desCarriers.length" 
-                   [pageSize]="9" 
-                   (page)="pageEvent($event)"
-                   [ngStyle]="{'background': _theme._box}"></mat-paginator>
   </mat-card>
 </div>

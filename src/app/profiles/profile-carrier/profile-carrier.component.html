@@ -26,8 +26,9 @@
 
 <div class="container-fluid container-profile">
   <div class="row">
-    <div class="col-md-12">
-        <mat-card *ngIf="owner" class="mt-4 animate__animated animate__fadeInLeft">
+    <div class="col-md-12" *ngIf="owner && car">
+      <div *ngIf="owner.status; else desac">
+        <mat-card *ngIf="car.status; else desac" class="mt-4 animate__animated animate__fadeInLeft">
             <mat-card-header>
               <mat-card-title><b>Información</b></mat-card-title>
             </mat-card-header>
@@ -180,6 +181,11 @@
               </div>
             </mat-card-content>
         </mat-card>
+      </div>
+      <ng-template #desac>
+        <br><br>
+        <app-page404></app-page404>
+      </ng-template>
     </div>
   </div>
 </div>

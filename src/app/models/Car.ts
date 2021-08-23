@@ -8,6 +8,7 @@ export class Car{
     fotoConductor:string
     idEmpresa:string
     targetaCirculacion: string
+    status: boolean
     soyConductor:string
 
     dniconductor?: string
@@ -38,6 +39,7 @@ export class Car{
         this.fotoConductor = foto;
         this.idEmpresa = idEmpresa;
         this.targetaCirculacion = targetaCirculacion;
+        this.status = true;
         this.soyConductor = soyConductor;
 
         this.dniconductor = dniconductor;
@@ -57,6 +59,7 @@ export class Car{
             fotoConductor: this.fotoConductor, 
             idEmpresa: this.idEmpresa, 
             targetaCirculacion: this.targetaCirculacion, 
+            status: this.status,
             soyConductor: this.soyConductor, 
             dniconductor: this.dniconductor, 
             nombresConductor: this.nombresConductor, 

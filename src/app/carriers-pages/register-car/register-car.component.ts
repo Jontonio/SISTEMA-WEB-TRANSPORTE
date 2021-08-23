@@ -118,7 +118,7 @@ export class RegisterCarComponent {
     this.formCarRegister.value.targetaCirculacion = this._trans.urlCarFile;
 
     if(this.idOwner){
-      const data = {...this.formCarRegister.value, ...this.formDriver.value, 'id':''};
+      const data = {...this.formCarRegister.value, ...this.formDriver.value, 'id':'', 'status':true};
       this._trans.addOnlyCar(this.idOwner, data).then( res => {
         this._msg.successMsg(res as any,'Datos Registrados correctamente');
         this.reset();
@@ -127,7 +127,7 @@ export class RegisterCarComponent {
         this._msg.errorMsg(err as any,'Error al registrar datos');
       })
     } else {
-      const data = {...this.formCarRegister.value, ...this.formDriver.value};
+      const data = {...this.formCarRegister.value, ...this.formDriver.value, 'status':true};
       this._trans.addListCar(data).then( res => {
         if(res){
           this._msg.successMsg('Automóvil añadido a la lista','Automóvil añadido');

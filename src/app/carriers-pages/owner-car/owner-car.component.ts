@@ -146,4 +146,21 @@ export class OwnerCarComponent {
     this.dialog.open(RegisterCarComponent, { width:'100%', data:Data});
   }
 
+  setEstatusCar(status:boolean, idcar:string){
+
+    const ms = status?'¿Estas seguro de desactivar al vehículo?. Recuerda que los usuarios no podrán visualizar la información asi como calificar el servicio.':'Activar vehículo los usuarios podrán ver la información y calificar el servicio. ';
+    const mstitle = status?'Desactivar usuario':'Activar vehículo'
+    const msg = new Message(mstitle, ms);
+      const ref = this.dialog.open(OptionsComponent,{data:msg, panelClass:'description-modal'})
+      ref.afterClosed().subscribe( res => {
+        if(res){
+          this._trans.updateStatusCar(this.idconductor, idcar, !status).then( res => {
+            this._msg.successMsg(res as string, 'Estado vehículo');
+          }).catch(  err => {
+            this._msg.errorMsg(err, 'Estado vehículo');
+          })
+        }
+      })
+  }
+
 }

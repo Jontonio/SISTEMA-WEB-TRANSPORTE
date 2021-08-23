@@ -10,7 +10,11 @@
     <mat-card-subtitle><span class="badge-b">Registrados {{listCars.length}} </span></mat-card-subtitle>
   </mat-card-header>
   <div>
-    <button mat-mini-fab color="primary" (click)="addCar()">
+    <button mat-mini-fab 
+            color="primary" 
+            matTooltip="Agregar un vehículo para el propietario"
+            matTooltipPosition="left"
+            (click)="addCar()">
       <mat-icon><span class="material-icons">add</span></mat-icon>
     </button>
   </div>
@@ -79,9 +83,16 @@
                   </tbody>
                 </table>
               </div>
-              <button mat-raised-button color="primary" class="m-1" (click)="editCar(car)">Editar</button>
-              <button mat-raised-button color="primary" class="m-1" (click)="verResenia(car.id, car.idEmpresa, car.placa)">Ver reseña</button>
-              <button mat-raised-button color="warn" class="m-1">Eliminar</button>
+              <div class="d-flex">
+                <button mat-raised-button color="primary" class="m-1" (click)="editCar(car)">Editar</button>
+                <button mat-raised-button color="primary" class="m-1" (click)="verResenia(car.id, car.idEmpresa, car.placa)">Ver reseña</button>
+                <div *ngIf="car.status; else other">
+                  <button mat-raised-button color="primary" class="m-1" (click)="setEstatusCar(car.status,car.id)">Desactivar</button>
+                </div>
+                <ng-template #other>
+                  <button mat-raised-button color="warn" class="m-1" (click)="setEstatusCar(car.status,car.id)">Activar</button>
+                </ng-template>
+              </div>
             </mat-card>
           </div>
           <div *ngIf="listCars.length==0 && !loadCars">
