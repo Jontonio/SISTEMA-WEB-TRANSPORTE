@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-calification',
   templateUrl: './calification.component.html',
   styleUrls: ['./calification.component.css']
 })
-export class CalificationComponent implements OnInit {
+export class CalificationComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

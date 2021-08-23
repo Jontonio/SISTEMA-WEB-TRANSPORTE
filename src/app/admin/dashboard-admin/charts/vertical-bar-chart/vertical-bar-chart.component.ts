@@ -9,7 +9,7 @@ export class VerticalBarChartComponent {
 
   multi: any[] = [
     {
-      "name": "Germany",
+      "name": "Cristo morado",
       "series": [
         {
           "name": "2010",
@@ -23,7 +23,7 @@ export class VerticalBarChartComponent {
     },
   
     {
-      "name": "USA",
+      "name": "Arguedas",
       "series": [
         {
           "name": "2010",
@@ -37,7 +37,7 @@ export class VerticalBarChartComponent {
     },
   
     {
-      "name": "France",
+      "name": "Empresa picaflor",
       "series": [
         {
           "name": "2010",
@@ -59,16 +59,12 @@ export class VerticalBarChartComponent {
   gradient: boolean = true;
   showLegend: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Country';
+  xAxisLabel: string = 'Empresas';
   showYAxisLabel: boolean = true;
-  yAxisLabel: string = 'Population';
+  yAxisLabel: string = 'Valoraciones';
   legendTitle: string = 'Years';
 
   colorScheme = { domain: ['#FAAF05', '#DE8504', '#F57710','#DE4704', '#FA2C05'] }
-
-  // colorScheme = {
-  //   domain: ['#5AA454', '#C7B42C', '#AAAAAA']
-  // };
 
   constructor() {
 

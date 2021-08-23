@@ -29,7 +29,7 @@ export class DatabaseService {
   loadGetDisable   : boolean = false;
   loadGetpost      : boolean = false;
   
-  imgURL           : string = "../../../assets/img/img-user/default-user.png";
+  imgURL           : string = "assets/img/img-user/default-user.png";
   imgauxPost           : string = '';
   // instancias de las clases
   descripcion: PortDescriotion;
@@ -43,14 +43,7 @@ export class DatabaseService {
               private ruta:Router,
               private _auth:AngularFireAuth,
               private storage:AngularFireStorage, 
-              private _msg:MessagesService) {
-    this.getUsers();
-    this.getUsersdisable();
-    this.getEnterprises();
-    this.getDescriptions();
-    // this.getDesactEnterprises();
-    this.getPosts();
-  }
+              private _msg:MessagesService) {}
 
   getUsers(){
     this.loadGet = true;

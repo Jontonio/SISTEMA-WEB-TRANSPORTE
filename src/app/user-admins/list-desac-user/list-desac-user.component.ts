@@ -24,7 +24,9 @@ export class ListDesacUserComponent implements OnInit {
               private _auth:AuthService, 
               private _ts:ToastrService, 
               private dialog:MatDialog,
-              public _theme:ThemeService) { }
+              public _theme:ThemeService) { 
+              this._db.getUsersdisable();
+  }
 
   ngOnInit(): void {
   }

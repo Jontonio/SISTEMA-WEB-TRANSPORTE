@@ -18,7 +18,6 @@ export class MsgLogoutComponent implements OnInit {
 
   salir(){
     this._auth.logout().then( res => {
-      console.log(res);
       this.ruta.navigateByUrl('login');
     }).catch( err =>{
       console.log(err);

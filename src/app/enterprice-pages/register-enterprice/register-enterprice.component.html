@@ -149,14 +149,30 @@
         </div>
       </div>
 
-      <button *ngIf="!edit" color="primary"  mat-raised-button type="button" (click)="register()" [disabled]="loadRegister">
+      <button *ngIf="!edit" 
+              color="primary" 
+              mat-raised-button 
+              type="button" 
+              class="button-search"
+              (click)="register()" 
+              [disabled]="loadRegister">
         <span *ngIf="loadRegister" class="spinner-border spinner-border-sm" role="status"></span>
         <span *ngIf="!loadRegister" class="material-icons">save</span> Registrar
       </button>
-      <button *ngIf="edit" color="primary" mat-raised-button type="button" (click)="saveChage()" [disabled]="loadChage">
+      <button *ngIf="edit" 
+              color="primary" 
+              mat-raised-button 
+              type="button" 
+              class="button-search"
+              (click)="saveChage()" 
+              [disabled]="loadChage">
         <span class="material-icons">save</span> Guardar cambios
       </button>
-      <button *ngIf="!edit" mat-raised-button type="reset" class="button-search m-1" color="warn">Cancelar</button>
+      <button *ngIf="!edit" 
+               mat-raised-button 
+               type="reset" 
+               class="button-search m-1" 
+               color="warn">Cancelar</button>
       
     </form>
   </mat-card>

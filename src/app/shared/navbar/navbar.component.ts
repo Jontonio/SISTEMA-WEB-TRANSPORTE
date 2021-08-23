@@ -1,11 +1,11 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent{
 
   moveScroll:boolean = false;
   iconMenu:boolean = true;
@@ -22,10 +22,6 @@ export class NavbarComponent implements OnInit {
   }
 
   constructor() { }
-
-
-  ngOnInit(): void {
-  }
 
   positionScroll(){
     var y = window.scrollY;

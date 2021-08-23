@@ -40,4 +40,13 @@
     font-size: 11px;
     color    : #F44336;
 }
-  
+.button-search{
+    margin-top: 8px;
+}
+@media (max-width: 768px) {
+    .button-search{
+        margin-top: -8px;
+        margin-bottom: 8px;
+        width: 100%;
+    }
+}

@@ -149,12 +149,13 @@ export class RegisterCarriersComponent {
       this._trans.updateCarrier(data.toObject).then( res =>{
         this._msg.successMsg(res as any,'Actualizar datos')
         this.registerLoad = false;
+        // update list to QR 
+        this._trans.getcars();
       }).catch( err =>{
         this.registerLoad = false;
         this._msg.errorMsg(err,'Ocurrio un error')
       })
     } else {
-      // console.log(data.toObject,this._trans.listCarOwner)
       // caso que pase la validación crear un obejto dueño 
       this._trans.findTransportista(this.formMain.value.ID_card).then( res => {
         if(!res){
@@ -163,6 +164,8 @@ export class RegisterCarriersComponent {
             this._msg.successMsg(res as any,'Registro de transportista');
             this.registerLoad = false;
             this.resetForm();
+            // update list to QR 
+            this._trans.getcars();
           }).catch( err => {
             this.registerLoad = false;
             this._msg.errorMsg(err,'Error');

@@ -34,16 +34,17 @@
         </div>
       </div>
       <div class="m-2" id="list">
-        <div class="row mb-2" *ngFor="let car of _trans.listcars | enterpriseCar:this.entreprise | buscarCar:this.value; let i=index">
-          <div class="col-sm-6">
+        <div class="row" *ngFor="let car of _trans.listcars | enterpriseCar:this.entreprise | buscarCar:this.value; let i=index">
+          <div class="col-sm-6 mb-2">
             <div class="card">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-7">
-                    <img class="header-image" src="../../../assets/img/muni.png" alt="" srcset="">
+                    <img class="header-image" src="assets/img/muni.png" alt="" srcset="">
                     <b class="m-1">Municipalidad de Andahuaylas</b>
                     <p class="mt-2">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis dignissimos earum libero ipsum ad magni in laudantium labore est 
+                      Sé parte del mejoramiento del servicio de transporte público. 
+                      <b>Califique</b> el servicio que se le brinda escaneando el <b>código QR</b>.
                     </p>
                     <div class="d-flex align-items-center">
                       <span class="material-icons">directions_car</span> {{car.placa}}
@@ -59,15 +60,16 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-6 mb-2">
             <div class="card">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-7">
-                    <img class="header-image" src="../../../assets/img/muni.png" alt="" srcset="">
+                    <img class="header-image" src="assets/img/muni.png" alt="" srcset="">
                     <b class="m-1">Municipalidad de Andahuaylas</b>
                     <p class="mt-2">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis dignissimos earum libero ipsum ad magni in laudantium labore est 
+                      Sé parte del mejoramiento del servicio de transporte público. 
+                      <b>Califique</b> el servicio que se le brinda escaneando el <b>código QR</b>.
                     </p>
                     <div class="d-flex align-items-center">
                       <span class="material-icons">directions_car</span> {{car.placa}}
@@ -79,7 +81,6 @@
                       <qrcode elementType="img" [qrdata]="car.link" [width]="178" [errorCorrectionLevel]="'M'"></qrcode>
                     </div>
                   </div>
-                  {{car.link}}
                 </div>
               </div>
             </div>

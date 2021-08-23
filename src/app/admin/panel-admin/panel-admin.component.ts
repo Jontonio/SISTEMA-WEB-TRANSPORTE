@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MsgLogoutComponent } from 'src/app/messages/msg-logout/msg-logout.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { DatabaseService } from 'src/app/services/database.service';
 import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
@@ -16,7 +17,11 @@ export class PanelAdminComponent implements OnInit {
   
   constructor(private dialog:MatDialog, 
               public _theme:ThemeService, 
-              public _auth:AuthService) {}
+              public _db:DatabaseService,
+              public _auth:AuthService) {
+                this._db.getUsers();
+                this._db.getEnterprises();
+  }
 
   ngOnInit(): void {}
 

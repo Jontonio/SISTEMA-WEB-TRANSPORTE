@@ -20,7 +20,9 @@ export class DesactivateEnterpriceComponent implements OnInit {
   constructor(public _db:DatabaseService, 
               private dialog:MatDialog, 
               private _msg:MessagesService,
-              public _theme:ThemeService) {}
+              public _theme:ThemeService) {
+                this._db.getDesactEnterprises();
+              }
 
   ngOnInit(): void {
   }
